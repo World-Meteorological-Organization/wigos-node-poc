@@ -1,0 +1,71 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/104>,"'Flux density energy spectrum of low-, medium-, and high-energy electrons from the magnetosphere, the radiation belts or the interplanetary medium.'@en",skos:Concept,Electron flux energy spectrum,104
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/105>,'Measurement of the electrostatic charge of a satellite accumulated because of the environmental situation.'@en,skos:Concept,Electrostatic charge,105
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/106>,"'Flux density energy and mass spectrum of heavy ions ranging from Helium to Iron, per unit solid angle.'@en",skos:Concept,Heavy ion angular flux energy and mass spectrum,106
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/107>,'Flux density energy and mass spectrum of heavy ions ranging from Helium to Iron.'@en,skos:Concept,Heavy ion flux energy and mass spectrum,107
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/108>,'Vector magnetic field (3D) in the solar wind. The reference frame is Cartesian or Cylindrical with many different axis orientations. Important in Space Weather to monitor magnetic disturbances of the near earth environment.'@en,skos:Concept,Interplanetary magnetic field,108
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/111>,'3D field of the dose rate of energetic particles'@en,skos:Concept,Radiation Dose Rate,111
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/112>,'Temperature of solar wind protons.'@en,skos:Concept,Solar wind temperature,112
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/113>,'Vector velocity of solar wind plasma.'@en,skos:Concept,Solar wind velocity,113
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/114>,'Occurrence of fluorescence of the upper atmosphere through ionization by energetic charged particles accelerated by the Earth's magnetic field.'@en,skos:Concept,Aurora,114
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/115>,'Magnitude and direction of the Earth's electric field.'@en,skos:Concept,Electric Field,115
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/116>,'3-D field of the electron density in the ionosphere.'@en,skos:Concept,Electron Density,116
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/117>,'Attenuation of a radio wave passing through the lower ionosphere.'@en,skos:Concept,Ionospheric Radio Absorption,117
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/118>,'Random fluctuations of radio waves resulting of small scale variations of the ionospheric electron density in space and time.'@en,skos:Concept,Ionospheric Scintillation,118
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/119>,'Number of electrons between two points.'@en,skos:Concept,Ionospheric Vertical Total Electron Content (VTEC),119
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/120>,'Total number of ionized particles in a volume unit of ionospheric plasma.'@en,skos:Concept,Ionospheric plasma density,120
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/121>,'Velocity of bulk plasma or electrons (depending on measurement technique) as a function of altitude in the ionosphere.'@en,skos:Concept,Ionospheric plasma velocity,121
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/122>,'Vertical thickness of highly structured ion density in the F-region of the ionosphere.'@en,skos:Concept,Spread F,122
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/123>,'The highest ordinary-wave frequency reflected back from a sporadic E layer and observed by an ionosonde.'@en,skos:Concept,foEs,123
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/124>,"'Critical frequency of the F2 layer of the ionosphere. This critical frequency (f, in MHz) is associated with the electron density (Ne, in cm-3): f=9*10^-3*sqrt(Ne).'@en",skos:Concept,foF2,124
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/125>,'Virtual height of the bottom of the ionospheric F-layer.'@en,skos:Concept,h'F,125
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/126>,'Altitude of the peak density in the ionospheric F2 layer.'@en,skos:Concept,hmF2,126
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/127>,'Radiative flux integrated over the EUV band.'@en,skos:Concept,EUV flux,127
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/128>,'Energy spectrum of the radiative flux measured in the EUV band.'@en,skos:Concept,EUV flux spectrum,128
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/129>,'Extreme Ultra-Violet (EUV) image of the sky.'@en,skos:Concept,EUV sky image,129
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/130>,'Radiative flux integrated over the gamma-ray domain.'@en,skos:Concept,Gamma-ray flux,130
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/131>,'Energy spectrum of the radiative flux measured in the gamma-ray domain.'@en,skos:Concept,Gamma-ray flux spectrum,131
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/132>,'Image of the interplanetary space between the Sun and Earth.'@en,skos:Concept,Heliospheric image,132
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/133>,"'Travelling radio-waves of solar, galactic and extragalactic origin, entering the Earth's environment.'@en",skos:Concept,Radio-waves,133
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/134>,'Image of the Sun in the K-line of Ca-II(393.4 nm).'@en,skos:Concept,Solar Ca II-K image,134
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/135>,'Integrated Extreme Ultra-Violet (EUV) flux over the solar disk.'@en,skos:Concept,Solar EUV flux,135
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/136>,'Energy spectrum of the Extreme Ultra-Violet (EUV) flux integrated over the solar disk.'@en,skos:Concept,Solar EUV flux spectrum,136
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/137>,"'Images of the Sun in the Extreme Ultra-Violet (EUV) wavelengths in order to identify features such as filaments, active regions and coronal holes.'@en",skos:Concept,Solar EUV image,137
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/138>,'Image of the Sun in the Hydrogen-alpha transition wavelength (656.3 nm).'@en,skos:Concept,Solar H-alpha image,138
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/139>,'Solar flux in the Hydrogen Lyman-alpha transition wavelength (121.6 nm).'@en,skos:Concept,Solar Lyman-alpha flux,139
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/140>,'Image of the Sun in the Hydrogen Lyman-alpha transition wavelength (121.6 nm).'@en,skos:Concept,Solar Lyman-alpha image,140
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/141>,'Integrated Ultra-Violet (UV) flux over the solar disk.'@en,skos:Concept,Solar UV flux,141
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/142>,'Energy spectrum of the Ultra-Violet (UV) flux integrated over the solar disk.'@en,skos:Concept,Solar UV flux spectrum,142
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/143>,'Images of the Sun in the Ultra-Violet (UV) wavelengths.'@en,skos:Concept,Solar UV image,143
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/144>,'Integrated VIS (energy at visible wavelengths) flux over the solar disk'@en,skos:Concept,Solar VIS flux,144
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/145>,'Energy spectrum of the integrated VIS (energy at visible wavelengths) flux over the solar disk.'@en,skos:Concept,Solar VIS flux spectrum,145
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/146>,'Images of the Sun in the VIS (visible) wavelengths.'@en,skos:Concept,Solar VIS image,146
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/147>,'Integrated X-ray flux over the solar disk.'@en,skos:Concept,Solar X-ray flux,147
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/148>,'Energy spectrum of the X-ray flux integrated over the solar disk.'@en,skos:Concept,Solar X-ray flux spectrum,148
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/149>,'Image of the Sun in X-ray wavelengths.'@en,skos:Concept,Solar X-ray image,149
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/150>,'Image of the solar corona surrounding the Sun.'@en,skos:Concept,Solar coronagraphic image,150
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/151>,'Map of magnitude and direction of the electric field at the solar surface (photosphere).'@en,skos:Concept,Solar electric field,151
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/152>,'Integrated gamma-ray flux over the solar disk.'@en,skos:Concept,Solar gamma-ray flux,152
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/153>,'Energy spectrum of the gamma-ray flux integrated over the solar disk.'@en,skos:Concept,Solar gamma-ray flux spectrum,153
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/154>,'Vector magnetic field (1D or 3D) at the solar surface (photosphere/chromosphere).'@en,skos:Concept,Solar magnetic field,154
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/155>,'Integrated radio flux over the solar disk.'@en,skos:Concept,Solar radio flux,155
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/156>,'Solar radio flux energy spectrum integrated over the solar disk.'@en,skos:Concept,Solar radio flux spectrum,156
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/157>,'2D image of the solar radio flux.'@en,skos:Concept,Solar radio image,157
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/158>,"'Map of 3D velocity of particles of the Solar atmosphere, significant of the Sun interior.'@en",skos:Concept,Solar velocity fields,158
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/159>,'Image of the Sun in white light.'@en,skos:Concept,Solar white light image,159
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/160>,'Integrated Ultra-Violet (UV) flux.'@en,skos:Concept,UV flux,160
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/161>,'Ultra-Violet (UV)  image of the sky.'@en,skos:Concept,UV sky image,161
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/162>,'Integrated X-ray flux.'@en,skos:Concept,X-ray flux,162
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/163>,'Energy spectrum of the integrated X-ray flux.'@en,skos:Concept,X-ray flux spectrum,163
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/164>,'X-ray image of the sky.'@en,skos:Concept,X-ray sky image,164
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/409>,'Density of solar wind plasma.'@en,skos:Concept,Solar wind density,409
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/511>,''@en,skos:Concept,Alpha particles differential directional flux,511
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/512>,"'An alpha particle has positive charge and consists of two protons and two neutrons (the nucleus of a helium atom). Flux is the rate of flow through a reference surface, measured in particles per unit area. The directional flux is the flux limited to a certain solid angle as a function of the direction (pitch angle).'@en",skos:Concept,Alpha particles integral directional flux,512
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/513>,'Flux density energy spectrum of neutrons from the Sun or as component of the cosmic radiation.'@en,skos:Concept,Cosmic ray neutron flux spectrum,513
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/514>,"'Flux density energy spectrum of low-, medium-, and high-energy electrons from the magnetosphere, the radiation belts or the interplanetary medium, per unit solid angle.'@en",skos:Concept,Electron differential directional flux,514
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/515>,"'Flux density of low-, medium-, and high-energy electrons from the magnetosphere, the radiation belts or the interplanetary medium.'@en",skos:Concept,Electron flux density,515
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/516>,"'Flux density of low-, medium-, and high-energy electrons from the magnetosphere, the radiation belts or the interplanetary medium, per unit solid angle.'@en",skos:Concept,Electron integral directional flux,516
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/517>,'Flux density of heavy ions (heavier than Helium) per unit solid angle.'@en,skos:Concept,Heavy ion differential directional flux,517
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/518>,'Flux density of heavy ions ranging from Helium to Iron.'@en,skos:Concept,Heavy ion integral directional flux,518
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/519>,"'Flux density energy spectrum of low-, medium-, and high-energy protons from the magnetosphere, the radiation belts or the interplanetary medium, per unit solid angle.'@en",skos:Concept,Proton differential directional flux,519
+<http://codes.wmo.int/wmdr/ObservedVariableOuterSpace/520>,"'Flux density of low-, medium-, and high-energy protons from the magnetosphere, the radiation belts or the interplanetary medium.'@en",skos:Concept,Proton integral directional flux,520

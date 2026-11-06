@@ -1,0 +1,8 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/ReferenceSurfaceType/artificialGround>,"'An artificial surface at the interface between the atmosphere and the terrestrial globe, not elevated with respect to the nearby surrounding area (on a scale of 50 meters)'@en",skos:Concept,artificial ground,artificialGround
+<http://codes.wmo.int/wmdr/ReferenceSurfaceType/deck>,"'A permanent covering over a compartment or the body of a fixed or mobile platform (ship). Also the horizontal structure that forms the roof of the hull, elevated with respect to the surrounding sea surface'@en",skos:Concept,deck,deck
+<http://codes.wmo.int/wmdr/ReferenceSurfaceType/inapplicable>,'None of the codes in the table are applicable in the context of the reference surface'@en,skos:Concept,inapplicable,inapplicable
+<http://codes.wmo.int/wmdr/ReferenceSurfaceType/naturalGround>,"'The natural surface at the interface between the atmosphere and the terrestrial globe, not elevated with respect to the nearby surrounding area (on a scale of 50 meters)'@en",skos:Concept,natural ground,naturalGround
+<http://codes.wmo.int/wmdr/ReferenceSurfaceType/roofTerrace>,"'The roof or terrace of a building, elevated with respect to the surrounding local ground'@en",skos:Concept,roof or terrace,roofTerrace
+<http://codes.wmo.int/wmdr/ReferenceSurfaceType/seaSurface>,'The natural surface of the sea at the interface between the atmosphere and the ocean'@en,skos:Concept,sea surface,seaSurface
+<http://codes.wmo.int/wmdr/ReferenceSurfaceType/unknown>,'The reference surface is unknown'@en,skos:Concept,unknown,unknown

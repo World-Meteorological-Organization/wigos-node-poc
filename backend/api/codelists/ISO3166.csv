@@ -1,0 +1,214 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<https://www.iso.org/obp/ui/#iso:code:3166:004>,'Afghanistan'@en,skos:Concept,Afghanistan,004
+<https://www.iso.org/obp/ui/#iso:code:3166:008>,'Albania'@en,skos:Concept,Albania,008
+<https://www.iso.org/obp/ui/#iso:code:3166:012>,'Algeria'@en,skos:Concept,Algeria,012
+<https://www.iso.org/obp/ui/#iso:code:3166:020>,'Andorra'@en,skos:Concept,Andorra,020
+<https://www.iso.org/obp/ui/#iso:code:3166:024>,'Angola'@en,skos:Concept,Angola,024
+<https://www.iso.org/obp/ui/#iso:code:3166:028>,'Antigua and Barbuda'@en,skos:Concept,Antigua and Barbuda,028
+<https://www.iso.org/obp/ui/#iso:code:3166:032>,'Argentina'@en,skos:Concept,Argentina,032
+<https://www.iso.org/obp/ui/#iso:code:3166:051>,'Armenia'@en,skos:Concept,Armenia,051
+<https://www.iso.org/obp/ui/#iso:code:3166:036>,'Australia'@en,skos:Concept,Australia,036
+<https://www.iso.org/obp/ui/#iso:code:3166:040>,'Austria'@en,skos:Concept,Austria,040
+<https://www.iso.org/obp/ui/#iso:code:3166:031>,'Azerbaijan'@en,skos:Concept,Azerbaijan,031
+<https://www.iso.org/obp/ui/#iso:code:3166:044>,'Bahamas'@en,skos:Concept,Bahamas,044
+<https://www.iso.org/obp/ui/#iso:code:3166:048>,'Bahrain'@en,skos:Concept,Bahrain,048
+<https://www.iso.org/obp/ui/#iso:code:3166:050>,'Bangladesh'@en,skos:Concept,Bangladesh,050
+<https://www.iso.org/obp/ui/#iso:code:3166:052>,'Barbados'@en,skos:Concept,Barbados,052
+<https://www.iso.org/obp/ui/#iso:code:3166:112>,'Belarus'@en,skos:Concept,Belarus,112
+<https://www.iso.org/obp/ui/#iso:code:3166:056>,'Belgium'@en,skos:Concept,Belgium,056
+<https://www.iso.org/obp/ui/#iso:code:3166:084>,'Belize'@en,skos:Concept,Belize,084
+<https://www.iso.org/obp/ui/#iso:code:3166:204>,'Benin'@en,skos:Concept,Benin,204
+<https://www.iso.org/obp/ui/#iso:code:3166:064>,'Bhutan'@en,skos:Concept,Bhutan,064
+<https://www.iso.org/obp/ui/#iso:code:3166:068>,'Bolivia (Plurinational State of)'@en,skos:Concept,Bolivia (Plurinational State of),068
+<https://www.iso.org/obp/ui/#iso:code:3166:070>,'Bosnia and Herzegovina'@en,skos:Concept,Bosnia and Herzegovina,070
+<https://www.iso.org/obp/ui/#iso:code:3166:072>,'Botswana'@en,skos:Concept,Botswana,072
+<https://www.iso.org/obp/ui/#iso:code:3166:076>,'Brazil'@en,skos:Concept,Brazil,076
+<https://www.iso.org/obp/ui/#iso:code:3166:096>,'Brunei Darussalam'@en,skos:Concept,Brunei Darussalam,096
+<https://www.iso.org/obp/ui/#iso:code:3166:100>,'Bulgaria'@en,skos:Concept,Bulgaria,100
+<https://www.iso.org/obp/ui/#iso:code:3166:854>,'Burkina Faso'@en,skos:Concept,Burkina Faso,854
+<https://www.iso.org/obp/ui/#iso:code:3166:108>,'Burundi'@en,skos:Concept,Burundi,108
+<https://www.iso.org/obp/ui/#iso:code:3166:132>,'Cabo Verde'@en,skos:Concept,Cabo Verde,132
+<https://www.iso.org/obp/ui/#iso:code:3166:116>,'Cambodia'@en,skos:Concept,Cambodia,116
+<https://www.iso.org/obp/ui/#iso:code:3166:120>,'Cameroon'@en,skos:Concept,Cameroon,120
+<https://www.iso.org/obp/ui/#iso:code:3166:124>,'Canada'@en,skos:Concept,Canada,124
+<https://www.iso.org/obp/ui/#iso:code:3166:140>,'Central African Republic'@en,skos:Concept,Central African Republic,140
+<https://www.iso.org/obp/ui/#iso:code:3166:148>,'Chad'@en,skos:Concept,Chad,148
+<https://www.iso.org/obp/ui/#iso:code:3166:152>,'Chile'@en,skos:Concept,Chile,152
+<https://www.iso.org/obp/ui/#iso:code:3166:156>,'China'@en,skos:Concept,China,156
+<https://www.iso.org/obp/ui/#iso:code:3166:170>,'Colombia'@en,skos:Concept,Colombia,170
+<https://www.iso.org/obp/ui/#iso:code:3166:174>,'Comoros'@en,skos:Concept,Comoros,174
+<https://www.iso.org/obp/ui/#iso:code:3166:178>,'Congo'@en,skos:Concept,Congo,178
+<https://www.iso.org/obp/ui/#iso:code:3166:180>,"'Congo, Democratic Republic of the'@en",skos:Concept,"Congo, Democratic Republic of the",180
+<https://www.iso.org/obp/ui/#iso:code:3166:184>,'Cook Islands'@en,skos:Concept,Cook Islands,184
+<https://www.iso.org/obp/ui/#iso:code:3166:188>,'Costa Rica'@en,skos:Concept,Costa Rica,188
+<https://www.iso.org/obp/ui/#iso:code:3166:384>,'Côte d'Ivoire'@en,skos:Concept,Côte d'Ivoire,384
+<https://www.iso.org/obp/ui/#iso:code:3166:191>,'Croatia'@en,skos:Concept,Croatia,191
+<https://www.iso.org/obp/ui/#iso:code:3166:192>,'Cuba'@en,skos:Concept,Cuba,192
+<https://www.iso.org/obp/ui/#iso:code:3166:531>,'Curaçao'@en,skos:Concept,Curaçao,531
+<https://www.iso.org/obp/ui/#iso:code:3166:196>,'Cyprus'@en,skos:Concept,Cyprus,196
+<https://www.iso.org/obp/ui/#iso:code:3166:203>,'Czechia'@en,skos:Concept,Czechia,203
+<https://www.iso.org/obp/ui/#iso:code:3166:208>,'Denmark'@en,skos:Concept,Denmark,208
+<https://www.iso.org/obp/ui/#iso:code:3166:262>,'Djibouti'@en,skos:Concept,Djibouti,262
+<https://www.iso.org/obp/ui/#iso:code:3166:212>,'Dominica'@en,skos:Concept,Dominica,212
+<https://www.iso.org/obp/ui/#iso:code:3166:214>,'Dominican Republic'@en,skos:Concept,Dominican Republic,214
+<https://www.iso.org/obp/ui/#iso:code:3166:218>,'Ecuador'@en,skos:Concept,Ecuador,218
+<https://www.iso.org/obp/ui/#iso:code:3166:818>,'Egypt'@en,skos:Concept,Egypt,818
+<https://www.iso.org/obp/ui/#iso:code:3166:222>,'El Salvador'@en,skos:Concept,El Salvador,222
+<https://www.iso.org/obp/ui/#iso:code:3166:232>,'Eritrea'@en,skos:Concept,Eritrea,232
+<https://www.iso.org/obp/ui/#iso:code:3166:233>,'Estonia'@en,skos:Concept,Estonia,233
+<https://www.iso.org/obp/ui/#iso:code:3166:748>,'Eswatini'@en,skos:Concept,Eswatini,748
+<https://www.iso.org/obp/ui/#iso:code:3166:231>,'Ethiopia'@en,skos:Concept,Ethiopia,231
+<https://www.iso.org/obp/ui/#iso:code:3166:242>,'Fiji'@en,skos:Concept,Fiji,242
+<https://www.iso.org/obp/ui/#iso:code:3166:246>,'Finland'@en,skos:Concept,Finland,246
+<https://www.iso.org/obp/ui/#iso:code:3166:250>,'France'@en,skos:Concept,France,250
+<https://www.iso.org/obp/ui/#iso:code:3166:258>,'French Polynesia'@en,skos:Concept,French Polynesia,258
+<https://www.iso.org/obp/ui/#iso:code:3166:266>,'Gabon'@en,skos:Concept,Gabon,266
+<https://www.iso.org/obp/ui/#iso:code:3166:270>,'Gambia'@en,skos:Concept,Gambia,270
+<https://www.iso.org/obp/ui/#iso:code:3166:268>,'Georgia'@en,skos:Concept,Georgia,268
+<https://www.iso.org/obp/ui/#iso:code:3166:276>,'Germany'@en,skos:Concept,Germany,276
+<https://www.iso.org/obp/ui/#iso:code:3166:288>,'Ghana'@en,skos:Concept,Ghana,288
+<https://www.iso.org/obp/ui/#iso:code:3166:300>,'Greece'@en,skos:Concept,Greece,300
+<https://www.iso.org/obp/ui/#iso:code:3166:320>,'Guatemala'@en,skos:Concept,Guatemala,320
+<https://www.iso.org/obp/ui/#iso:code:3166:324>,'Guinea'@en,skos:Concept,Guinea,324
+<https://www.iso.org/obp/ui/#iso:code:3166:624>,'Guinea-Bissau'@en,skos:Concept,Guinea-Bissau,624
+<https://www.iso.org/obp/ui/#iso:code:3166:328>,'Guyana'@en,skos:Concept,Guyana,328
+<https://www.iso.org/obp/ui/#iso:code:3166:332>,'Haiti'@en,skos:Concept,Haiti,332
+<https://www.iso.org/obp/ui/#iso:code:3166:340>,'Honduras'@en,skos:Concept,Honduras,340
+<https://www.iso.org/obp/ui/#iso:code:3166:344>,'Hong Kong'@en,skos:Concept,Hong Kong,344
+<https://www.iso.org/obp/ui/#iso:code:3166:348>,'Hungary'@en,skos:Concept,Hungary,348
+<https://www.iso.org/obp/ui/#iso:code:3166:352>,'Iceland'@en,skos:Concept,Iceland,352
+<https://www.iso.org/obp/ui/#iso:code:3166:356>,'India'@en,skos:Concept,India,356
+<https://www.iso.org/obp/ui/#iso:code:3166:360>,'Indonesia'@en,skos:Concept,Indonesia,360
+<https://www.iso.org/obp/ui/#iso:code:3166:364>,'Iran (Islamic Republic of)'@en,skos:Concept,Iran (Islamic Republic of),364
+<https://www.iso.org/obp/ui/#iso:code:3166:368>,'Iraq'@en,skos:Concept,Iraq,368
+<https://www.iso.org/obp/ui/#iso:code:3166:372>,'Ireland'@en,skos:Concept,Ireland,372
+<https://www.iso.org/obp/ui/#iso:code:3166:376>,'Israel'@en,skos:Concept,Israel,376
+<https://www.iso.org/obp/ui/#iso:code:3166:380>,'Italy'@en,skos:Concept,Italy,380
+<https://www.iso.org/obp/ui/#iso:code:3166:388>,'Jamaica'@en,skos:Concept,Jamaica,388
+<https://www.iso.org/obp/ui/#iso:code:3166:392>,'Japan'@en,skos:Concept,Japan,392
+<https://www.iso.org/obp/ui/#iso:code:3166:400>,'Jordan'@en,skos:Concept,Jordan,400
+<https://www.iso.org/obp/ui/#iso:code:3166:398>,'Kazakhstan'@en,skos:Concept,Kazakhstan,398
+<https://www.iso.org/obp/ui/#iso:code:3166:404>,'Kenya'@en,skos:Concept,Kenya,404
+<https://www.iso.org/obp/ui/#iso:code:3166:296>,'Kiribati'@en,skos:Concept,Kiribati,296
+<https://www.iso.org/obp/ui/#iso:code:3166:408>,'Korea (Democratic People's Republic of)'@en,skos:Concept,Korea (Democratic People's Republic of),408
+<https://www.iso.org/obp/ui/#iso:code:3166:410>,"'Korea, Republic of'@en",skos:Concept,"Korea, Republic of",410
+<https://www.iso.org/obp/ui/#iso:code:3166:414>,'Kuwait'@en,skos:Concept,Kuwait,414
+<https://www.iso.org/obp/ui/#iso:code:3166:417>,'Kyrgyzstan'@en,skos:Concept,Kyrgyzstan,417
+<https://www.iso.org/obp/ui/#iso:code:3166:418>,'Lao People's Democratic Republic'@en,skos:Concept,Lao People's Democratic Republic,418
+<https://www.iso.org/obp/ui/#iso:code:3166:428>,'Latvia'@en,skos:Concept,Latvia,428
+<https://www.iso.org/obp/ui/#iso:code:3166:422>,'Lebanon'@en,skos:Concept,Lebanon,422
+<https://www.iso.org/obp/ui/#iso:code:3166:426>,'Lesotho'@en,skos:Concept,Lesotho,426
+<https://www.iso.org/obp/ui/#iso:code:3166:430>,'Liberia'@en,skos:Concept,Liberia,430
+<https://www.iso.org/obp/ui/#iso:code:3166:434>,'Libya'@en,skos:Concept,Libya,434
+<https://www.iso.org/obp/ui/#iso:code:3166:440>,'Lithuania'@en,skos:Concept,Lithuania,440
+<https://www.iso.org/obp/ui/#iso:code:3166:442>,'Luxembourg'@en,skos:Concept,Luxembourg,442
+<https://www.iso.org/obp/ui/#iso:code:3166:446>,'Macao'@en,skos:Concept,Macao,446
+<https://www.iso.org/obp/ui/#iso:code:3166:450>,'Madagascar'@en,skos:Concept,Madagascar,450
+<https://www.iso.org/obp/ui/#iso:code:3166:454>,'Malawi'@en,skos:Concept,Malawi,454
+<https://www.iso.org/obp/ui/#iso:code:3166:458>,'Malaysia'@en,skos:Concept,Malaysia,458
+<https://www.iso.org/obp/ui/#iso:code:3166:462>,'Maldives'@en,skos:Concept,Maldives,462
+<https://www.iso.org/obp/ui/#iso:code:3166:466>,'Mali'@en,skos:Concept,Mali,466
+<https://www.iso.org/obp/ui/#iso:code:3166:470>,'Malta'@en,skos:Concept,Malta,470
+<https://www.iso.org/obp/ui/#iso:code:3166:478>,'Mauritania'@en,skos:Concept,Mauritania,478
+<https://www.iso.org/obp/ui/#iso:code:3166:480>,'Mauritius'@en,skos:Concept,Mauritius,480
+<https://www.iso.org/obp/ui/#iso:code:3166:484>,'Mexico'@en,skos:Concept,Mexico,484
+<https://www.iso.org/obp/ui/#iso:code:3166:583>,'Micronesia (Federated States of)'@en,skos:Concept,Micronesia (Federated States of),583
+<https://www.iso.org/obp/ui/#iso:code:3166:498>,"'Moldova, Republic of'@en",skos:Concept,"Moldova, Republic of",498
+<https://www.iso.org/obp/ui/#iso:code:3166:492>,'Monaco'@en,skos:Concept,Monaco,492
+<https://www.iso.org/obp/ui/#iso:code:3166:496>,'Mongolia'@en,skos:Concept,Mongolia,496
+<https://www.iso.org/obp/ui/#iso:code:3166:499>,'Montenegro'@en,skos:Concept,Montenegro,499
+<https://www.iso.org/obp/ui/#iso:code:3166:504>,'Morocco'@en,skos:Concept,Morocco,504
+<https://www.iso.org/obp/ui/#iso:code:3166:508>,'Mozambique'@en,skos:Concept,Mozambique,508
+<https://www.iso.org/obp/ui/#iso:code:3166:104>,'Myanmar'@en,skos:Concept,Myanmar,104
+<https://www.iso.org/obp/ui/#iso:code:3166:516>,'Namibia'@en,skos:Concept,Namibia,516
+<https://www.iso.org/obp/ui/#iso:code:3166:520>,'Nauru'@en,skos:Concept,Nauru,520
+<https://www.iso.org/obp/ui/#iso:code:3166:524>,'Nepal'@en,skos:Concept,Nepal,524
+<https://www.iso.org/obp/ui/#iso:code:3166:528>,"'Netherlands, Kingdom of the'@en",skos:Concept,"Netherlands, Kingdom of the",528
+<https://www.iso.org/obp/ui/#iso:code:3166:540>,'New Caledonia'@en,skos:Concept,New Caledonia,540
+<https://www.iso.org/obp/ui/#iso:code:3166:554>,'New Zealand'@en,skos:Concept,New Zealand,554
+<https://www.iso.org/obp/ui/#iso:code:3166:558>,'Nicaragua'@en,skos:Concept,Nicaragua,558
+<https://www.iso.org/obp/ui/#iso:code:3166:562>,'Niger'@en,skos:Concept,Niger,562
+<https://www.iso.org/obp/ui/#iso:code:3166:566>,'Nigeria'@en,skos:Concept,Nigeria,566
+<https://www.iso.org/obp/ui/#iso:code:3166:570>,'Niue'@en,skos:Concept,Niue,570
+<https://www.iso.org/obp/ui/#iso:code:3166:807>,'North Macedonia'@en,skos:Concept,North Macedonia,807
+<https://www.iso.org/obp/ui/#iso:code:3166:578>,'Norway'@en,skos:Concept,Norway,578
+<https://www.iso.org/obp/ui/#iso:code:3166:512>,'Oman'@en,skos:Concept,Oman,512
+<https://www.iso.org/obp/ui/#iso:code:3166:586>,'Pakistan'@en,skos:Concept,Pakistan,586
+<https://www.iso.org/obp/ui/#iso:code:3166:591>,'Panama'@en,skos:Concept,Panama,591
+<https://www.iso.org/obp/ui/#iso:code:3166:598>,'Papua New Guinea'@en,skos:Concept,Papua New Guinea,598
+<https://www.iso.org/obp/ui/#iso:code:3166:600>,'Paraguay'@en,skos:Concept,Paraguay,600
+<https://www.iso.org/obp/ui/#iso:code:3166:604>,'Peru'@en,skos:Concept,Peru,604
+<https://www.iso.org/obp/ui/#iso:code:3166:608>,'Philippines'@en,skos:Concept,Philippines,608
+<https://www.iso.org/obp/ui/#iso:code:3166:616>,'Poland'@en,skos:Concept,Poland,616
+<https://www.iso.org/obp/ui/#iso:code:3166:620>,'Portugal'@en,skos:Concept,Portugal,620
+<https://www.iso.org/obp/ui/#iso:code:3166:634>,'Qatar'@en,skos:Concept,Qatar,634
+<https://www.iso.org/obp/ui/#iso:code:3166:642>,'Romania'@en,skos:Concept,Romania,642
+<https://www.iso.org/obp/ui/#iso:code:3166:643>,'Russian Federation'@en,skos:Concept,Russian Federation,643
+<https://www.iso.org/obp/ui/#iso:code:3166:646>,'Rwanda'@en,skos:Concept,Rwanda,646
+<https://www.iso.org/obp/ui/#iso:code:3166:662>,'Saint Lucia'@en,skos:Concept,Saint Lucia,662
+<https://www.iso.org/obp/ui/#iso:code:3166:882>,'Samoa'@en,skos:Concept,Samoa,882
+<https://www.iso.org/obp/ui/#iso:code:3166:678>,'Sao Tome and Principe'@en,skos:Concept,Sao Tome and Principe,678
+<https://www.iso.org/obp/ui/#iso:code:3166:682>,'Saudi Arabia'@en,skos:Concept,Saudi Arabia,682
+<https://www.iso.org/obp/ui/#iso:code:3166:686>,'Senegal'@en,skos:Concept,Senegal,686
+<https://www.iso.org/obp/ui/#iso:code:3166:688>,'Serbia'@en,skos:Concept,Serbia,688
+<https://www.iso.org/obp/ui/#iso:code:3166:690>,'Seychelles'@en,skos:Concept,Seychelles,690
+<https://www.iso.org/obp/ui/#iso:code:3166:694>,'Sierra Leone'@en,skos:Concept,Sierra Leone,694
+<https://www.iso.org/obp/ui/#iso:code:3166:702>,'Singapore'@en,skos:Concept,Singapore,702
+<https://www.iso.org/obp/ui/#iso:code:3166:534>,'Sint Maarten (Dutch part)'@en,skos:Concept,Sint Maarten (Dutch part),534
+<https://www.iso.org/obp/ui/#iso:code:3166:703>,'Slovakia'@en,skos:Concept,Slovakia,703
+<https://www.iso.org/obp/ui/#iso:code:3166:705>,'Slovenia'@en,skos:Concept,Slovenia,705
+<https://www.iso.org/obp/ui/#iso:code:3166:090>,'Solomon Islands'@en,skos:Concept,Solomon Islands,090
+<https://www.iso.org/obp/ui/#iso:code:3166:706>,'Somalia'@en,skos:Concept,Somalia,706
+<https://www.iso.org/obp/ui/#iso:code:3166:710>,'South Africa'@en,skos:Concept,South Africa,710
+<https://www.iso.org/obp/ui/#iso:code:3166:728>,'South Sudan'@en,skos:Concept,South Sudan,728
+<https://www.iso.org/obp/ui/#iso:code:3166:724>,'Spain'@en,skos:Concept,Spain,724
+<https://www.iso.org/obp/ui/#iso:code:3166:144>,'Sri Lanka'@en,skos:Concept,Sri Lanka,144
+<https://www.iso.org/obp/ui/#iso:code:3166:729>,'Sudan'@en,skos:Concept,Sudan,729
+<https://www.iso.org/obp/ui/#iso:code:3166:740>,'Suriname'@en,skos:Concept,Suriname,740
+<https://www.iso.org/obp/ui/#iso:code:3166:752>,'Sweden'@en,skos:Concept,Sweden,752
+<https://www.iso.org/obp/ui/#iso:code:3166:756>,'Switzerland'@en,skos:Concept,Switzerland,756
+<https://www.iso.org/obp/ui/#iso:code:3166:760>,'Syrian Arab Republic'@en,skos:Concept,Syrian Arab Republic,760
+<https://www.iso.org/obp/ui/#iso:code:3166:762>,'Tajikistan'@en,skos:Concept,Tajikistan,762
+<https://www.iso.org/obp/ui/#iso:code:3166:834>,"'Tanzania, United Republic of'@en",skos:Concept,"Tanzania, United Republic of",834
+<https://www.iso.org/obp/ui/#iso:code:3166:764>,'Thailand'@en,skos:Concept,Thailand,764
+<https://www.iso.org/obp/ui/#iso:code:3166:626>,'Timor-Leste'@en,skos:Concept,Timor-Leste,626
+<https://www.iso.org/obp/ui/#iso:code:3166:768>,'Togo'@en,skos:Concept,Togo,768
+<https://www.iso.org/obp/ui/#iso:code:3166:776>,'Tonga'@en,skos:Concept,Tonga,776
+<https://www.iso.org/obp/ui/#iso:code:3166:780>,'Trinidad and Tobago'@en,skos:Concept,Trinidad and Tobago,780
+<https://www.iso.org/obp/ui/#iso:code:3166:788>,'Tunisia'@en,skos:Concept,Tunisia,788
+<https://www.iso.org/obp/ui/#iso:code:3166:792>,'Türkiye'@en,skos:Concept,Türkiye,792
+<https://www.iso.org/obp/ui/#iso:code:3166:795>,'Turkmenistan'@en,skos:Concept,Turkmenistan,795
+<https://www.iso.org/obp/ui/#iso:code:3166:798>,'Tuvalu'@en,skos:Concept,Tuvalu,798
+<https://www.iso.org/obp/ui/#iso:code:3166:800>,'Uganda'@en,skos:Concept,Uganda,800
+<https://www.iso.org/obp/ui/#iso:code:3166:804>,'Ukraine'@en,skos:Concept,Ukraine,804
+<https://www.iso.org/obp/ui/#iso:code:3166:784>,'United Arab Emirates'@en,skos:Concept,United Arab Emirates,784
+<https://www.iso.org/obp/ui/#iso:code:3166:826>,'United Kingdom of Great Britain and Northern Ireland'@en,skos:Concept,United Kingdom of Great Britain and Northern Ireland,826
+<https://www.iso.org/obp/ui/#iso:code:3166:840>,'United States of America'@en,skos:Concept,United States of America,840
+<https://www.iso.org/obp/ui/#iso:code:3166:858>,'Uruguay'@en,skos:Concept,Uruguay,858
+<https://www.iso.org/obp/ui/#iso:code:3166:860>,'Uzbekistan'@en,skos:Concept,Uzbekistan,860
+<https://www.iso.org/obp/ui/#iso:code:3166:548>,'Vanuatu'@en,skos:Concept,Vanuatu,548
+<https://www.iso.org/obp/ui/#iso:code:3166:862>,'Venezuela (Bolivarian Republic of)'@en,skos:Concept,Venezuela (Bolivarian Republic of),862
+<https://www.iso.org/obp/ui/#iso:code:3166:704>,'Viet Nam'@en,skos:Concept,Viet Nam,704
+<https://www.iso.org/obp/ui/#iso:code:3166:887>,'Yemen'@en,skos:Concept,Yemen,887
+<https://www.iso.org/obp/ui/#iso:code:3166:894>,'Zambia'@en,skos:Concept,Zambia,894
+<https://www.iso.org/obp/ui/#iso:code:3166:716>,'Zimbabwe'@en,skos:Concept,Zimbabwe,716
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20000>,"'World Weather Watch land-station identifier, sub-index 0.'@en",skos:Concept,WWW land-station (SI=0),20000
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20001>,"'World Weather Watch land-station identifier, sub-index 1 (reused identifier).'@en",skos:Concept,WWW land-station (SI=1),20001
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20002>,"'World Weather Watch marine platform identifier (buoy, drifting platform, etc.).'@en",skos:Concept,WWW marine platform,20002
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20003>,'Ship identifier based on ITU call sign.'@en,skos:Concept,Ship (ITU call sign),20003
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20004>,'Ship identifier issued nationally.'@en,skos:Concept,Ship (national ID),20004
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20005>,'AMDAR aircraft identifier.'@en,skos:Concept,AMDAR aircraft,20005
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20006>,'ICAO airfield identifier.'@en,skos:Concept,ICAO airfield,20006
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20007>,'IMO ship number (hull number).'@en,skos:Concept,IMO ship number,20007
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20008>,'Global Atmosphere Watch (GAW) identifier.'@en,skos:Concept,GAW station,20008
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20009>,'WMO Space Programme identifier.'@en,skos:Concept,WMO Space Programme,20009
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/20010>,'WMO Weather Radar identifier.'@en,skos:Concept,WMO Weather Radar,20010
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/21000>,'Identifiers for the Global Cryosphere Watch (GCW).'@en,skos:Concept,GCW station,21000
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/21009>,"'Identifiers for the WMO Space Programme; local identifier is a three-digit satellite identifier with leading zeros (Common Code Table C-5, WMO-No. 306, Volume I.2).'@en",skos:Concept,WMO Space Programme (satellite),21009
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/21010>,'Identifiers for the WMO Radar Database (WRD).'@en,skos:Concept,WRD station,21010
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/21011>,"'Identifiers from the WMC Aircraft-based Observations Metadata Repository (ABO-MR); see Guide to Aircraft-based Observations (WMO-No. 1200), Appendix D.'@en",skos:Concept,ABO-MR aircraft,21011
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/21016>,'Identifiers for the WMO Hydrological Observing System (WHOS).'@en,skos:Concept,WHOS station,21016
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/22000>,'Identifiers for marine systems administered through OceanOPS (GOOS).'@en,skos:Concept,GOOS/OceanOPS marine system,22000
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/22001>,'Identifiers for the GCOS Reference Upper-Air Network (GRUAN).'@en,skos:Concept,GRUAN station,22001
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/23000>,'Identifiers issued by the Comprehensive Nuclear-Test-Ban Treaty Organization (CTBTO).'@en,skos:Concept,CTBTO station,23000
+<http://codes.wmo.int/wmdr/IssuerOfIdentifier/23001>,'Identifiers issued by the Copernicus Climate Change Service (C3S).'@en,skos:Concept,Copernicus-C3S station,23001

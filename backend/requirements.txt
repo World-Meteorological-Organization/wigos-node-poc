@@ -1,0 +1,9 @@
+Django==6.0.10
+djangorestframework==3.18.3
+django-cors-headers==4.9.0
+psycopg2-binary==2.9.9
+gunicorn==22.0.0
+requests==2.32.3
+jsonpath-ng==1.8.0
+django-guardian==3.5.2
+jsonschema[format-nongpl]==4.26.0

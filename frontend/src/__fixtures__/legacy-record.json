@@ -1,0 +1,139 @@
+{
+  "id": "0-20000-0-12345",
+  "conformsTo": [
+    "http://wigos.wmo.int/spec/wmdr/2/conf/core"
+  ],
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      12,
+      12,
+      265
+    ]
+  },
+  "properties": {
+    "title": "Test Station Alpha Renamed",
+    "contacts": [
+      {
+        "organization": "WMO",
+        "name": "Alberto",
+        "position": "Odd jobs",
+        "phones": [
+          {
+            "value": "+41301292102",
+            "roles": [
+              "Work"
+            ]
+          }
+        ],
+        "emails": [
+          {
+            "value": "ahelguera@wmo.int",
+            "roles": [
+              "Work"
+            ]
+          }
+        ],
+        "addresses": [
+          {
+            "city": "Geneva",
+            "administrativeArea": "Geneva",
+            "postalCode": "1201",
+            "country": "Switzerland",
+            "deliveryPoint": [
+              "asd"
+            ],
+            "roles": [
+              "Work"
+            ]
+          }
+        ],
+        "roles": [
+          "Worker"
+        ]
+      }
+    ],
+    "created": "2026-08-21T16:28:00.000Z",
+    "observingCapabilities": [
+      {
+        "observedProperty": "http://codes.wmo.int/wmdr/ObservedVariableAtmosphere/12166",
+        "observingMethod": "Eye",
+        "operatingStatus": "Active",
+        "sourceOfObservation": "Looking at it",
+        "time": {
+          "date": "2026-08-21",
+          "timestamp": "2026-08-21T16:29:00.000Z",
+          "interval": [
+            "2026-08-21",
+            "2026-08-21"
+          ],
+          "resolution": "P3H"
+        },
+        "deployments": [
+          {
+            "id": "2302192",
+            "instrument": {
+              "id": "321321321312",
+              "manufacturer": "SUTRON",
+              "model": "12-12",
+              "serialNumber": "12-121-212"
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                12,
+                12
+              ]
+            },
+            "time": {
+              "date": "2026-08-21",
+              "timestamp": "2026-08-21T16:29:00.000Z",
+              "interval": [
+                "2026-08-21",
+                "2026-08-21"
+              ],
+              "resolution": "P1H"
+            },
+            "keywords": [
+              "yes"
+            ],
+            "referenceSurfaces": [
+              {
+                "referenceSurface": "22128",
+                "verticalDistance": 2123112
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "description": "Very big description",
+    "additionalTitles": [
+      "A lot"
+    ],
+    "additionalIds": [
+      "0-51-21-2121",
+      "0-533-1212-12321"
+    ],
+    "updated": "2026-08-21T16:29:00.000Z",
+    "keywords": [
+      "temperature"
+    ],
+    "territories": [
+      {
+        "territory": "geneva"
+      }
+    ],
+    "programAffiliations": [
+      {
+        "programAffiliation": "Gbon"
+      }
+    ]
+  },
+  "links": [
+    {
+      "href": "http://wmo.int"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+    "type": "Feature",
+    "id": "0-20008-0-THE",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            22.956,
+            40.634,
+            60
+        ]
+    },
+    "time": {
+        "interval": [
+            "1982-03-13",
+            ".."
+        ]
+    },
+    "conformsTo": [
+        "http://wigos.wmo.int/spec/wmdr/2/conf/core"
+    ],
+    "properties": {
+        "type": "facility",
+        "facilityType": {
+            "id": "landFixed"
+        },
+        "title": "Thessaloniki",
+        "created": "2024-12-11T00:00:00Z",
+        "updated": "2024-12-11T00:00:00Z",
+        "description": "The Brewer spectrophotometers and all radiation instruments are located on the roof of the 4-storey building of the Physics Dept., of the Aristotle University of Thessaloniki. The Campus is located in the city center about 500 m east of the seashore. The highest elevation of about 1100 m is at a distance of about 15 km towards the east. Thessaloniki is the second largest city of Greece with about 1000000 inhabitants in the greater metropolitan area.",
+        "contacts": [
+            {
+                "identifier": "contact:aristotle-university-of-thessaloniki--ed7b7e4a",
+                "organization": "Aristotle University of Thessaloniki",
+                "roles": [
+                    "owner"
+                ],
+                "links": [
+                    {
+                        "rel": "about",
+                        "href": "https://lapweb.physics.auth.gr",
+                        "type": "text/html"
+                    }
+                ]
+            },
+            {
+                "identifier": "contact:clima@hnms.gr",
+                "name": "Mrs M. Michelaraki",
+                "organization": "Hellenic National Meteorological Service",
+                "roles": [
+                    "pointOfContact"
+                ],
+                "links": [
+                    {
+                        "rel": "about",
+                        "href": "https://www.emy.gr",
+                        "type": "text/html"
+                    }
+                ]
+            },
+            {
+                "identifier": "contact:abais@auth.gr",
+                "name": "Alkiviadis Bais",
+                "organization": "Aristotle University of Thessaloniki",
+                "roles": [
+                    "principalInvestigator"
+                ],
+                "links": [
+                    {
+                        "rel": "about",
+                        "href": "https://lapweb.physics.auth.gr",
+                        "type": "text/html"
+                    }
+                ]
+            },
+            {
+                "identifier": "contact:balis@auth.gr",
+                "name": "Dimitris Balis",
+                "organization": "Aristotle University of Thessaloniki",
+                "roles": [
+                    "principalInvestigator"
+                ],
+                "links": [
+                    {
+                        "rel": "about",
+                        "href": "https://lapweb.physics.auth.gr",
+                        "type": "text/html"
+                    }
+                ]
+            }
+        ],
+        "wmoRegion": {
+            "id": "europe"
+        },
+        "territories": [
+            {
+                "dates": [
+                    "2011-02-16",
+                    ".."
+                ],
+                "territory": {"id": "GRC"}
+            }
+        ],
+        "observations": [
+            {
+                "observedProperty": {
+                    "id": "12164"
+                },
+                "programAffiliations": [
+                    {
+                        "dates": [
+                            "1982-03-13",
+                            ".."
+                        ],
+                        "programAffiliation": {
+                            "id": "GAWregional"
+                        },
+                        "reportingStatus": {
+                            "id": "operational"
+                        }
+                    },
+                    {
+                        "dates": [
+                            "2008-01-01",
+                            "2024-12-11"
+                        ],
+                        "programAffiliation": {
+                            "id": "GALION"
+                        },
+                        "reportingStatus": {
+                            "id": "operational"
+                        }
+                    },
+                    {
+                        "dates": [
+                            "2003-06-01",
+                            "2024-12-11"
+                        ],
+                        "programAffiliation": {
+                            "id": "AERONET"
+                        },
+                        "reportingStatus": {
+                            "id": "operational"
+                        }
+                    }
+                ],
+                "configurations": [
+                    {
+                        "id": "configuration-456",
+                        "time": {
+                            "interval": [
+                                "1982-03-13",
+                                ".."
+                            ]
+                        },
+                        "observingMethod": {
+                            "id": "78"
+                        },
+                        "sourceOfObservation": {
+                            "id": "automaticReading"
+                        },
+                        "instrument": {
+                            "id": "instrument-789"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "links": [
+        {
+            "href": "https://lapweb.physics.auth.gr/en/infrastructure/#Infrastructure",
+            "rel": "about",
+            "type": "text/html"
+        }
+    ]
+}

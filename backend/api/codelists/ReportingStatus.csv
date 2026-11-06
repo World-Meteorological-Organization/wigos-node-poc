@@ -1,0 +1,9 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/ReportingStatus/closed>,'The station has been declared as closed by the responsible supervising organization.'@en,skos:Concept,Closed,closed
+<http://codes.wmo.int/wmdr/ReportingStatus/nonReporting>,"'The station is considered non-operational/non-reporting temporarily, but is expected to resume its operations/reporting after the temporary suspension.'@en",skos:Concept,Non-reporting,nonReporting
+<http://codes.wmo.int/wmdr/ReportingStatus/operational>,'The station fully complies with the reporting obligations of the observation programme/network concerned.'@en,skos:Concept,Operational,operational
+<http://codes.wmo.int/wmdr/ReportingStatus/partlyOperational>,'The station partially complies with the reporting obligations of the observation programme/network concerned.'@en,skos:Concept,Partly operational,partlyOperational
+<http://codes.wmo.int/wmdr/ReportingStatus/planned>,"'The station is planned to be deployed sometime in the future, and all information provided is indicative only. No observations are taken.'@en",skos:Concept,Planned,planned
+<http://codes.wmo.int/wmdr/ReportingStatus/preOperational>,'The station is deployed and producing data but still not fully ready to start reporting operationally.'@en,skos:Concept,Pre-operational,preOperational
+<http://codes.wmo.int/wmdr/ReportingStatus/standBy>,'NA'@en,skos:Concept,Stand-by,standBy
+<http://codes.wmo.int/wmdr/ReportingStatus/unknown>,'The declared operating status of this particular station/platform is unknown.'@en,skos:Concept,unknown,unknown

@@ -1,0 +1,256 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/102>,''@en,skos:Concept,Disdrometer (drop spectrographs),102
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/103>,''@en,skos:Concept,Disjunct eddy covariance method,103
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/105>,''@en,skos:Concept,Dissipation method,105
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/106>,''@en,skos:Concept,Dobson,106
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/107>,''@en,skos:Concept,ECC Sonde,107
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/108>,''@en,skos:Concept,Eddy accumulation method,108
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/109>,''@en,skos:Concept,Eddy covariance method,109
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/110>,''@en,skos:Concept,Electric conductivity (EC meter),110
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/111>,''@en,skos:Concept,Electronic pressure transducer (silicon diaphragm),111
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/112>,''@en,skos:Concept,Estimation from visual observation,112
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/113>,''@en,skos:Concept,Evaporation pan and-or tank,113
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/114>,''@en,skos:Concept,Faraday cup photochemistry,114
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/115>,''@en,skos:Concept,Filter sampling + alpha counting,115
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/116>,''@en,skos:Concept,Filter sampling + gamma spectrometry,116
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/119>,''@en,skos:Concept,Flame-ionization detector (FID),119
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/120>,''@en,skos:Concept,Flask sampling (analytical method unspecified),120
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/121>,''@en,skos:Concept,Flow injection analyzer (FIA),121
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/123>,''@en,skos:Concept,Flux variance method,123
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/125>,''@en,skos:Concept,Gradient method,125
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/127>,''@en,skos:Concept,Gravimetry [general],127
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/129>,''@en,skos:Concept,High Performance Liquid Chromatography (HPLC),129
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/130>,''@en,skos:Concept,Hot wire anemometer,130
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/132>,''@en,skos:Concept,Hypsometer (water boiling point),132
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/133>,''@en,skos:Concept,ICP-AES,133
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/134>,''@en,skos:Concept,ICP-MS,134
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/135>,''@en,skos:Concept,Indian Sonde,135
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/136>,''@en,skos:Concept,Interferential method,136
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/137>,''@en,skos:Concept,Ion Chromatography (IC) [general],137
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/142>,"'Light detection and ranging (lidar) with Doppler capability (direct and coherent mode), typically used for measurements of winds.'@en",skos:Concept,Doppler wind lidar,142
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/143>,"'Light detection and ranging (lidar) with Raman capability, typically used for measurements of aerosol particle phase and cloud measurements as well as water vapor and temperature.'@en",skos:Concept,Raman lidar,143
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/144>,''@en,skos:Concept,Liquid-in-glass thermometer (mercury-free),144
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/146>,''@en,skos:Concept,Lysimeter,146
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/147>,''@en,skos:Concept,Mass balance method,147
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/149>,''@en,skos:Concept,Mercury-in-glass thermometer,149
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/150>,''@en,skos:Concept,Microbarometer (dewar),150
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/151>,''@en,skos:Concept,Microtops,151
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/152>,''@en,skos:Concept,Microtops,152
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/153>,''@en,skos:Concept,Microtops,153
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/154>,''@en,skos:Concept,Microwave profiler,154
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/155>,''@en,skos:Concept,Microwave radiometry,155
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/156>,''@en,skos:Concept,Microwave radiometry,156
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/157>,''@en,skos:Concept,NILU_O_2,157
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/158>,''@en,skos:Concept,NILU_O_3,158
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/166>,''@en,skos:Concept,Ozone sonde (unspecified),166
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/167>,''@en,skos:Concept,Passive Samplers [general],167
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/168>,''@en,skos:Concept,Photoacoustic detection,168
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/170>,''@en,skos:Concept,Pluviograph,170
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/171>,''@en,skos:Concept,Potassium iodide (KI) method,171
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/172>,''@en,skos:Concept,Potentiometry (ion-selective electrode),172
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/173>,''@en,skos:Concept,Potentiometry (pH meter),173
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/174>,''@en,skos:Concept,Pressure balance (piston),174
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/175>,''@en,skos:Concept,Pressure plate (solid blade),175
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/176>,''@en,skos:Concept,Pressure tube,176
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/177>,''@en,skos:Concept,Propeller anemometer,177
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/179>,''@en,skos:Concept,Pyranometer (measurement of IR radiation),179
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/180>,''@en,skos:Concept,"Pyrradiometer (total global, UV+IR)",180
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/181>,''@en,skos:Concept,Radio acoustic sounding system (RASS),181
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/182>,''@en,skos:Concept,Radio acoustic sounding system (RASS),182
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/183>,''@en,skos:Concept,Radio detection and ranging (Radar),183
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/184>,''@en,skos:Concept,Radio detection and ranging (Radar) profiler,184
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/185>,''@en,skos:Concept,Radiochemical Methods [general],185
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/186>,''@en,skos:Concept,Regener Sonde (chemiluminescence),186
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/188>,''@en,skos:Concept,"Resistance thermometer, thermistor",188
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/189>,''@en,skos:Concept,SAOZ (UV-vis diode array spectrometer),189
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/190>,'Visual range is calculated by measuring the return of light beam scattered by diffusion in air.'@en,skos:Concept,Scatterometer,190
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/191>,''@en,skos:Concept,Separation + manometric determination,191
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/195>,''@en,skos:Concept,Sonic thermometer,195
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/196>,''@en,skos:Concept,Sound detection and ranging (Sodar) profiler,196
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/197>,''@en,skos:Concept,Sunphotometry-Filter Radiometry,197
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/198>,''@en,skos:Concept,Sunshine duration,198
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/199>,''@en,skos:Concept,Surface chamber,199
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/201>,''@en,skos:Concept,"Thermocouple, thermopile",201
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/202>,''@en,skos:Concept,Thermometer-Thermoelement,202
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/204>,''@en,skos:Concept,Tipping bucket rain gauge (totalizer),204
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/205>,''@en,skos:Concept,Titration,205
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/207>,'Visual range is calculated by measuring the extinction coefficient of a beam of energy sent through a volume of air.'@en,skos:Concept,Transmissometer,207
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/208>,''@en,skos:Concept,Transport modeling (model unspecified),208
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/209>,''@en,skos:Concept,Turbidity measurement,209
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/210>,''@en,skos:Concept,Umkehr method,210
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/211>,''@en,skos:Concept,Volumetric measurement,211
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/212>,''@en,skos:Concept,Weighing type rain gauge (totalizer),212
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/213>,''@en,skos:Concept,Wet Chemical Methods [general],213
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/214>,''@en,skos:Concept,Wind sock (textile tube),214
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/215>,''@en,skos:Concept,Wind vane (solid blade),215
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/217>,''@en,skos:Concept,Aerodyne mass spectrometer (AMS),217
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/218>,''@en,skos:Concept,EUSAAR protocol,218
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/219>,''@en,skos:Concept,"Filter + beta attenuation (betameter, beta gauge)",219
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/220>,''@en,skos:Concept,Filter + light attenuation (aethalometer),220
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/221>,''@en,skos:Concept,Mass Spectrometry (MS) [general],221
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/222>,''@en,skos:Concept,Monitor for AeRosols and GAses (MARGA),222
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/223>,''@en,skos:Concept,Particle induced x-ray emission (PIXE),223
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/224>,''@en,skos:Concept,Particle soot absorption photometry (PSAP),224
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/225>,''@en,skos:Concept,Thermo-optical analyzer (Sunset Labs),225
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/226>,''@en,skos:Concept,X-ray fluorescence (XRF),226
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/227>,''@en,skos:Concept,Aerodynamic particle sizing spectrometer (APS),227
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/228>,''@en,skos:Concept,Aerosol backscatter sonde,228
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/229>,''@en,skos:Concept,Light scattering,229
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/230>,''@en,skos:Concept,"Nephelometry, integrating",230
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/231>,''@en,skos:Concept,Cloud condensation nuclei (CCN) counter,231
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/232>,''@en,skos:Concept,Condensation particle counter (CPC),232
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/233>,''@en,skos:Concept,Continuous gravimetry,233
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/234>,''@en,skos:Concept,"Differential mobility particle sizer (DMA, DMPS)",234
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/235>,''@en,skos:Concept,Diffusion battery,235
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/236>,''@en,skos:Concept,Electric mobility [general],236
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/237>,''@en,skos:Concept,Electrostatic classifier,237
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/238>,''@en,skos:Concept,Multiangle absorption photometry (MAAP),238
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/239>,''@en,skos:Concept,Multistage impactor,239
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/240>,''@en,skos:Concept,Optical particle counter (OPC),240
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/241>,''@en,skos:Concept,Scanning mobility particle sizer (SMPS),241
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/242>,''@en,skos:Concept,Twomey static thermal diffusion chamber,242
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/244>,''@en,skos:Concept,Sun-tracking photometry,244
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/245>,''@en,skos:Concept,Ceilometer,245
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/246>,''@en,skos:Concept,Flexpart (dispersion modeling),246
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/247>,''@en,skos:Concept,Flextra (trajectory modeling),247
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/248>,''@en,skos:Concept,Hysplit (trajectory modeling),248
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/249>,''@en,skos:Concept,Lagranto (trajectory modeling),249
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/24>,'Observation of clouds from the Earth's surface by a human observer (ref: https://cloudatlas.wmo.int/en/observation-of-clouds-from-the-earths-surface.html)'@en,skos:Concept,Human observation,24
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/250>,''@en,skos:Concept,Thin film capacitance,250
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/251>,''@en,skos:Concept,Chilled mirror,251
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/252>,''@en,skos:Concept,Lithium chloride (LiCl),252
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/253>,''@en,skos:Concept,Hair hygrometer-hygrograph,253
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/254>,''@en,skos:Concept,Hygrometer [general],254
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/255>,''@en,skos:Concept,IR absorption hygrometer,255
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/256>,''@en,skos:Concept,Optical hygrometer,256
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/257>,'Detection of UV fluorescence signal emitted by the excited OH radical produced from H2O after dissociation using UV light.'@en,skos:Concept,UV fluorescence-based hygrometer (Lyman-α),257
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/258>,''@en,skos:Concept,Electrical aspiration (Frankenberger type),258
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/259>,''@en,skos:Concept,Mechanical aspiration,259
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/260>,''@en,skos:Concept,(Ultra)sonic ranger,260
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/261>,''@en,skos:Concept,Gradiated pole,261
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/262>,''@en,skos:Concept,Snow pillow,262
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/263>,''@en,skos:Concept,Bimetallic actinograph,263
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/264>,''@en,skos:Concept,"Pyrheliometer (direct solar, broadband)",264
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/265>,''@en,skos:Concept,"Pyrgeometer (global, infrared)",265
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/266>,''@en,skos:Concept,"Pyranometer (global solar, broadband)",266
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/267>,''@en,skos:Concept,Spectral pyranometer,267
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/268>,''@en,skos:Concept,UV-vis spectrometry-radiometry,268
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/269>,'Light detection and ranging (Lidar) profiler for temperature measurements'@en,skos:Concept,Lidar for temperature observations,269
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/270>,''@en,skos:Concept,Tetrachloromercurate (TCM) absorption - CL,270
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/271>,''@en,skos:Concept,Colorimetry (ANSA),271
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/272>,''@en,skos:Concept,Colorimetry (Griess),272
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/273>,''@en,skos:Concept,"Colorimetry (indophenol, Bertholet)",273
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/274>,''@en,skos:Concept,Colorimetry (mercury thiocyanate+iron alum),274
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/275>,''@en,skos:Concept,Colorimetry (NEDA),275
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/276>,''@en,skos:Concept,"Colorimetry (Nessler, K2HgI4)",276
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/277>,''@en,skos:Concept,Colorimetry (sodium salicylate method for nitrate),277
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/278>,''@en,skos:Concept,Colorimetry [general],278
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/279>,''@en,skos:Concept,Filter sampling (analytical method unspecified),279
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/280>,''@en,skos:Concept,Adsorption tube (charcoal) + elution + GC,280
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/281>,''@en,skos:Concept,Filter sampling + combustion + IC,281
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/282>,''@en,skos:Concept,Filter sampling + combustion + other,282
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/283>,''@en,skos:Concept,Filter sampling + extraction + IC,283
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/284>,''@en,skos:Concept,Filter sampling + extraction + other,284
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/285>,''@en,skos:Concept,Filter sampling + gravimetry,285
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/286>,''@en,skos:Concept,Impregnated filter,286
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/287>,''@en,skos:Concept,Catalytic conversion 'Au' - CL,287
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/288>,''@en,skos:Concept,Catalytic conversion 'Fe' - CL,288
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/289>,''@en,skos:Concept,Catalytic conversion 'Mb' - CL,289
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/290>,''@en,skos:Concept,Chemiluminescence (CL) [general],290
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/291>,''@en,skos:Concept,Photolytic conversion - CL,291
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/292>,''@en,skos:Concept,Monitor for AeRosols and GAses (MARGA) Metrohm,292
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/293>,''@en,skos:Concept,Filter sampling + photo multiplier tube (PMT),293
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/294>,''@en,skos:Concept,Fluorescence [general],294
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/295>,''@en,skos:Concept,UV fluorescence,295
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/296>,''@en,skos:Concept,Vacuum UV fluorescence,296
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/297>,''@en,skos:Concept,Gas Chromatography (GC) [general],297
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/298>,''@en,skos:Concept,GC-ECD,298
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/299>,''@en,skos:Concept,GC-ECD-FID,299
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/300>,''@en,skos:Concept,GC-ECD-MS,300
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/301>,''@en,skos:Concept,GC-FID,301
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/302>,''@en,skos:Concept,GC-HgO reduction-UV absorption,302
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/303>,''@en,skos:Concept,GC-MS,303
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/304>,''@en,skos:Concept,H2O2 conversion - IC,304
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/305>,''@en,skos:Concept,Cavity ring-down spectroscopy (CRDS),305
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/306>,''@en,skos:Concept,Cavity-enhanced absorption spectroscopy (CEAS),306
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/307>,''@en,skos:Concept,Integrated cavity output spectroscopy (ICOS),307
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/308>,''@en,skos:Concept,Laser induced fluorescence (LIF),308
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/309>,''@en,skos:Concept,Laser photoacoustic spectroscopy (LPAS),309
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/310>,''@en,skos:Concept,Laser spectroscopy [general],310
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/311>,''@en,skos:Concept,Quantum cascade laser (QCL) spectroscopy,311
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/312>,''@en,skos:Concept,Chemical ionization MS (CIMS) with matrix isolation,312
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/313>,''@en,skos:Concept,Proton transfer reaction mass spectrometry (PTR-MS),313
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/314>,''@en,skos:Concept,IR spectrometry-radiometry [general],314
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/315>,''@en,skos:Concept,Light absorption photometry,315
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/316>,''@en,skos:Concept,Long path absorption photometry (LOPAP),316
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/317>,''@en,skos:Concept,Non-dispersive IR (NDIR) absorption,317
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/318>,''@en,skos:Concept,Non-dispersive UV (NDUV),318
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/319>,''@en,skos:Concept,UV absorption spectrometry-radiometry,319
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/320>,"'Light detection and ranging (lidar) with integrated path differential absorption (IPDA) capability, typically used for column measurements of CH4 and CO2.'@en",skos:Concept,Integrated path differential absorption (IPDA) lidar,320
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/321>,''@en,skos:Concept,Differential optical absorption (DOAS),321
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/322>,''@en,skos:Concept,Fourier-transform IR spectroscopy (FTIR),322
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/323>,''@en,skos:Concept,TCCON Fourier-transform IR spectroscopy (TCCON-FTIR),323
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/325>,''@en,skos:Concept,Magnetron,325
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/326>,''@en,skos:Concept,Klystron,326
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/327>,''@en,skos:Concept,Radiosonde with NAVAID,327
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/328>,''@en,skos:Concept,Radiosonde with radar tracking,328
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/329>,''@en,skos:Concept,Radiosonde with radiotheodolite tracking,329
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/330>,''@en,skos:Concept,Radiosonde with composite method tracking,330
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/331>,''@en,skos:Concept,Radiosonde (tracking unspecified),331
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/332>,''@en,skos:Concept,Pilot balloon with optical tracking),332
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/335>,"'Light detection and ranging (lidar) with differential absorption lidar (DIAL) capability, typically used for trace gas measurements, most notably ozone and water vapor. This technique can be extended to molecules which have suitably defined differential absorption characteristics.'@en",skos:Concept,Differential absorption lidar (DIAL),335
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/336>,''@en,skos:Concept,Microwave radiometry,336
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/338>,'Tunable diode lase spectroscopy (TDLS)'@en,skos:Concept,Tunable diode lase spectroscopy (TDLS),338
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/339>,''@en,skos:Concept,UV spectroradiometry,339
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/340>,"'A thermometer having a bulb that is kept moistened when humidity determinations are being made with a psychrometer. The wet-bulb temperature is the temperature a parcel of air would have if it were cooled to saturation (100% relative humidity) by the evaporation of water into it, with the latent heat being supplied by the parcel.'@en",skos:Concept,Wet-bulb thermometer,340
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/341>,"'Elastic backscatter light detection and ranging (lidar) typically used for measurements of cloud and aerosol particle phase optical properties (e.g., extinction and backscatter coefficient), altimetry, ocean optical properties, and mixed layer height.'@en",skos:Concept,Backscatter lidar,341
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/342>,"'Light detection and ranging (lidar) with high spectral resolution capability, typically used for measurements of cloud and aerosol particle phase properties, ocean properties, and mixed layer height.'@en",skos:Concept,High spectral resolution (HSR) lidar,342
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/343>,"'Light detection and ranging (lidar) capable of determining the linear or circular depolarization ratio, typically used to discriminate spherical and non-spherical particles.'@en",skos:Concept,Polarized lidar,343
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/344>,'Gas chromatography and detection by cold vapour atomic fluorescence spectrometry.'@en,skos:Concept,GC-CVAFS,344
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/345>,'Gas chromatography and detection by a thermal conductivity detector.'@en,skos:Concept,GC-TCD,345
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/346>,'Alpha counting after electrostatic collection of measurand.'@en,skos:Concept,Electrostatic collection + alpha counting,346
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/347>,'Tunable Infrared Laser Differential Absorption Spectroscopy (TILDAS).'@en,skos:Concept,Tunable Infrared Laser Differential Absorption Spectroscopy (TILDAS),347
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/348>,'Determination of the counts measured per unit time as a result of radionuclide decay.'@en,skos:Concept,Radionuclide decay counting [general],348
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/349>,"'Infrared absorption measurement based on the gas-filter correlation technique, a specifique variant of NDIR.'@en",skos:Concept,IR-GFC,349
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/414>,'Collection of fog using a mesh or similar capturing device and subsequent determination of the equivalent volume or mass of water.'@en,skos:Concept,Fog collection,414
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/415>,'Sunshine duration is determined by evaluating the burnt areas imprinted by the sun in a strip of carton or aluminum foil placed behind a glass sphere.'@en,skos:Concept,Campbell-Stokes burn method,415
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/416>,'Sunshine duration is determined by combining multi-sensor detectors with an electronic discriminator.'@en,skos:Concept,Contrast-evaluating and scanning devices,416
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/417>,'Gas chromatography and detection by cold vapour atomic fluorescence spectrometry.'@en,skos:Concept,GC-CVAFS,417
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/418>,'Gas chromatography and detection by a thermal conductivity detector.'@en,skos:Concept,GC-TCD,418
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/58>,''@en,skos:Concept,(Optical) filter Instrument,58
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/59>,''@en,skos:Concept,(Ruler for) rain gauge,59
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/60>,''@en,skos:Concept,(Ultra)sonic anemometer,60
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/62>,''@en,skos:Concept,Adsorption - scintillation counting,62
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/63>,''@en,skos:Concept,Aerovane (wind vane with propeller),63
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/64>,''@en,skos:Concept,Alpha counting,64
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/65>,''@en,skos:Concept,Anemometer [general],65
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/66>,''@en,skos:Concept,Aneroid barometer (evacuated capsule),66
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/67>,''@en,skos:Concept,Anion exchange membrane (AEM),67
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/68>,''@en,skos:Concept,Atmometer,68
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/69>,''@en,skos:Concept,Atmospherics ('sferics') detection,69
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/70>,''@en,skos:Concept,Atomic absorption spectrophotometry (AAS),70
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/71>,''@en,skos:Concept,Atomic emission spectrophotometry (AES),71
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/72>,''@en,skos:Concept,BSRN compliant instrument,72
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/73>,''@en,skos:Concept,"Barometer, mercury column",73
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/74>,''@en,skos:Concept,"Barometer, mercury-free column",74
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/75>,''@en,skos:Concept,Beta counting,75
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/76>,''@en,skos:Concept,Bimetal thermometer,76
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/77>,''@en,skos:Concept,Bowen-ratio method,77
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/78>,''@en,skos:Concept,Brewer,78
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/79>,''@en,skos:Concept,Brewer-GDR,79
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/80>,''@en,skos:Concept,Brewer-Mast Sonde,80
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/82>,''@en,skos:Concept,Capacitive rain sensor,82
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/83>,''@en,skos:Concept,Capillary electrophoresis (CE),83
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/84>,''@en,skos:Concept,Carbon-Iodine Sonde (KC Sonde),84
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/87>,''@en,skos:Concept,Colorimetric titration (Gran method),87
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/88>,''@en,skos:Concept,Colorimetric titration [general],88
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/90>,''@en,skos:Concept,Colorimetry (Saltzman),90
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/91>,''@en,skos:Concept,Colorimetry (thorin),91
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/94>,''@en,skos:Concept,Conductometry,94
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/95>,''@en,skos:Concept,Cup anemometer,95
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/96>,''@en,skos:Concept,Cup anemometer (3 or 4 cups),96
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/97>,''@en,skos:Concept,Cuvette,97
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/98>,''@en,skos:Concept,Denuder,98
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/99>,''@en,skos:Concept,Denuder,99
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/inapplicable>,'None of the codes in the table are applicable in the context of this particular observation.'@en,skos:Concept,inapplicable,inapplicable
+<http://codes.wmo.int/wmdr/ObservingMethodAtmosphere/unknown>,'The measurement/observing method is unknown.'@en,skos:Concept,unknown,unknown
