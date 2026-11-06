@@ -1,0 +1,14 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/400>,'Measurement of emitted fluorescent light and particulate backscattering coefficient.'@en,skos:Concept,"Fluorometry, optical backscattering",400
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/401>,'Measurement of temperature using a mercury based column.'@en,skos:Concept,Mercury-based thermometry,401
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/402>,'Measurement of temperature using a fluid based column (other than mercury).'@en,skos:Concept,Fluid-based thermometry (excluding mercury),402
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/403>,'Measurement derived from the measurement of electrical resistivity.'@en,skos:Concept,Electrical resistivity,403
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/404>,'Measurement derived from the measurement of electrical conductivity.'@en,skos:Concept,Electrical conductivity,404
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/405>,'Measurement derived from the measurement of magnetic inductance.'@en,skos:Concept,Inductivity,405
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/406>,'Measurement of the change in electrical resistance of a material under mechanical stress.'@en,skos:Concept,Piezoresistivity,406
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/407>,'Remote sensing of surface currents employing radars frequencies.'@en,skos:Concept,HF echo Doppler spectra analysis method (HR radar),407
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/408>,'Measurement derived from the difference between two successives GPS positions.'@en,skos:Concept,GPS fixes sequence comparison,408
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/409>,'The dissolved oxygen concentration by counting the number of oxygen molecules per second (flux) that diffuse through the membrane from the ocean environment to the working electrode.'@en,skos:Concept,Clark electrode polarographic method,409
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/410>,'The fluorescent indicator is a special complex embedded in a gas permeable sensing foil that is exposed to the surrounding water. The sensing foil is excited by modulated light; the sensor measures the phase of the returned light.'@en,skos:Concept,Oxygen luminescence quenching method,410
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/411>,'Ion-sensitive field-effect transistor that responds to proton activity and a Ag/AgCl reference electrode.'@en,skos:Concept,Potentiometric method,411
+<http://codes.wmo.int/wmdr/ObservingMethodOcean/412>,'Measurement of the number of photon reaching a surface using a photodiode.'@en,skos:Concept,Radiometry,412

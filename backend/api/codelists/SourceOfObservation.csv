@@ -1,0 +1,6 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/SourceOfObservation/automaticReading>,'Automatically produced measurement result'@en,skos:Concept,Instrumental automatic reading,automaticReading
+<http://codes.wmo.int/wmdr/SourceOfObservation/humanObservation>,"'Human, non-instrumented observation'@en",skos:Concept,Human observation,humanObservation
+<http://codes.wmo.int/wmdr/SourceOfObservation/inapplicable>,'None of the codes in the table are applicable in the context of this particular observation'@en,skos:Concept,inapplicable,inapplicable
+<http://codes.wmo.int/wmdr/SourceOfObservation/manualReading>,"'Manual reading of instrument, both analog and digital outputs'@en",skos:Concept,Instrumental manual reading,manualReading
+<http://codes.wmo.int/wmdr/SourceOfObservation/unknown>,'Procedure used to obtain result is unknown'@en,skos:Concept,unknown,unknown

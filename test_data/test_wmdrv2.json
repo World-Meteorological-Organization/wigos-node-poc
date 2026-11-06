@@ -1,0 +1,87 @@
+{
+    "id": "0-20000-0-123456",
+    "conformsTo": [
+        "http://wigos.wmo.int/spec/wmdr/2/conf/core"
+    ],
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -23,
+            22
+        ]
+    },
+    "properties": {
+        "type": "facility",
+        "title": "Test",
+        "description": "Test",
+        "contacts": [
+            {
+                "organization": "WMO"
+            }
+        ],
+        "created": "2026-08-07T11:13:00.000Z",
+        "updated": "2026-08-07T11:13:00.000Z",
+        "additionalTitles": [
+            "Test"
+        ],
+        "facilityType": {
+            "id": "landFixed",
+            "title": "Land (fixed)",
+            "url": "http://codes.wmo.int/wmdr/FacilityType/landFixed"
+        },
+        "wmoRegion": {
+            "id": "africa",
+            "title": "Africa",
+            "url": "http://codes.wmo.int/wmdr/WMORegion/africa"
+        },
+        "observations": [
+            {
+                "observedProperty": {
+                    "id": "224",
+                    "title": "Air temperature (at specified distance from reference surface)",
+                    "url": "http://codes.wmo.int/wmdr/ObservedVariableAtmosphere/224"
+                },
+                "programAffiliations": [
+                    {
+                        "programAffiliation": {
+                            "id": "GOS"
+                        },
+                        "reportingStatus": {
+                            "id": "operational"
+                        },
+                        "dates": [
+                            "2026-08-07",
+                            ".."
+                        ]
+                    }
+                ],
+                "configurations": [
+                    {
+                        "id": "configuration-1",
+                        "time": {
+                            "interval": [
+                                "2026-08-07",
+                                ".."
+                            ]
+                        },
+                        "sourceOfObservation": {
+                            "id": "automaticReading"
+                        },
+                        "instrument": {
+                            "id": "instrument-1",
+                            "manufacturer": "Vaisala",
+                            "model": "HMP155"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "links": [
+        {
+            "href": "http://test.com",
+            "rel": "about"
+        }
+    ]
+}

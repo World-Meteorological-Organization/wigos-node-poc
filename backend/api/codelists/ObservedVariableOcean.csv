@@ -1,0 +1,85 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/10080>,'Periodic change of sea height caused by the gravitational forces exerted by the Moon and the Sun on the Earth'@en,skos:Concept,Tides,10080
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/100>,'Average amplitude of the highest 33 out of 100 waves'@en,skos:Concept,Significant wave height,100
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/101>,'1D variable colloquially referred to as wave spectrum. Describes the wave energy in each frequency band (e.g. 25 frequency bands) regardless of the direction of propagation.'@en,skos:Concept,Wave 1D energy frequency spectrum,101
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/102>,"'2D variable colloquially referred to as wave spectrum. Describes the wave energy travelling in each direction and frequency band (e.g. 24 distinct azimuth sectors each 15Â°deg; wide, and 25 frequency bands).'@en",skos:Concept,Wave directional energy frequency spectrum,102
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/103>,'The shear force per unit area exerted by wind blowing over the sea surface. The same quantity may be referred in literature as either 'wind stress' or 'ocean wind stress'.'@en,skos:Concept,Sea surface wind stress,103
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12244>,'Concentration of dissolved N2 and Ar'@en,skos:Concept,"N2, Ar",12244
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12245>,'Biomass expressed as weight by volume; and diversity of biomass expressed as number of species per unit sample.'@en,skos:Concept,Zooplankton biomass and diversity,12245
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12246>,'Concentration of trace molecules such as tritium and CFCs'@en,skos:Concept,Ocean subsurface tracers,12246
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12319>,'Concentration of dissolved N2 and Ar'@en,skos:Concept,"N2, Ar",12319
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12320>,"'IUPAC: silicic acid, PubChem CID: 14942, CAS Number: 10193-36-9, concentration in sea water'@en",skos:Concept,Si(OH)4 (orthosilicic acid),12320
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12321>,'Vertical distance from the snow surface to the underlying sea-ice surface.'@en,skos:Concept,Snow depth on sea ice,12321
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12322>,"'IUPAC: nitrous oxide, PubChem CID: 948, CAS Number: 10024-97-2, concentration in sea water'@en",skos:Concept,N2O (nitrous oxide),12322
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12323>,'Absolute value of the difference between a particular peak or trough of the tsunami wave and the expected undisturbed sea level at that time.'@en,skos:Concept,Tsunami wave amplitude,12323
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12324>,'The fraction of an area covered by meltwater on the ice. The term 'puddle' is also used.'@en,skos:Concept,Sea-ice melt pond fraction,12324
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12325>,'The net drift of a fluid parcel at the surface due to surface waves.'@en,skos:Concept,Surface stokes drift,12325
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12326>,'The height of an iceberg above water.'@en,skos:Concept,Iceberg height,12326
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12327>,"'The length of an iceberg above water. If its shape is irregular, then the length is of the largest dimension.'@en",skos:Concept,Iceberg length,12327
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12328>,'Fraction of an area of sea-ice occupied by ridges.'@en,skos:Concept,Sea-ice ridge concentration,12328
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12329>,'Average height of sea-ice ridges in an area.'@en,skos:Concept,Sea-ice ridge height,12329
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12330>,"'Categories of sea-ice melt that represent the occurrence of puddles (melt ponds), thawholes, flooded ice, and ice condition resulting from current or previous melting. Category names and definitions are defined in WMO Sea-Ice Nomenclature (WMO-No. 259).'@en",skos:Concept,Sea-ice stage of melt,12330
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12331>,"'Classes of sea ice related to ice age, thickness, strength, and viscosity. The names and definitions of the classes are defined in WMO Sea-Ice Nomenclature (WMO-No. 259).'@en",skos:Concept,Sea-ice stage of development,12331
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12332>,'Width of a sea-ice lead approximately perpendicular to its long axis.'@en,skos:Concept,Sea-ice lead width,12332
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12333>,'Thickness of new ice within a sea-ice lead.'@en,skos:Concept,Sea-ice lead thickness,12333
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12334>,'Hemispherically integrated reflectance of sea ice in the wavelength range of 0.4-0.7 µm (400-700 nm). The sea-ice surface may be bare ice or snow-covered.'@en,skos:Concept,Sea-ice surface albedo,12334
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12335>,'Age of sea ice since its formation.'@en,skos:Concept,Sea-ice age,12335
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/12336>,'The area density distribution of sea-ice floes expressed as the power-law exponent of the distribution of floe areas over a region.'@en,skos:Concept,Sea-ice floe size distribution,12336
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/13>,'Bathymetry'@en,skos:Concept,Bathymetry,13
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/18>,'Pressure (depth) measured by CTD.'@en,skos:Concept,Pressure,18
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/311>,'Nitrite concentration in sea water.'@en,skos:Concept,NO2- (nitrite),311
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/312>,'Nitrate concentration in sea water.'@en,skos:Concept,NO3- (nitrate),312
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/399>,'Phosphate concentration in sea water.'@en,skos:Concept,PO4= (phosphate),399
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/400>,'Concentration of dissolved organic phosphorous'@en,skos:Concept,Total organic phosphorus,400
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/401>,'Fraction of an ocean area covered by sea-ice.'@en,skos:Concept,Sea-ice concentration,401
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/402>,'Elevation of the upper sea-ice surface relative to the sea surface.'@en,skos:Concept,Sea-ice freeboard,402
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/403>,"'Horizontal displacement of sea ice over a defined time interval, specified as a two-element vector quantity: u and v. Related terms found in the literature are 'Sea-ice motion' and 'Sea-ice drift'.'@en",skos:Concept,Sea-ice velocity,403
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/404>,"'Sea-ice surface characteristics (albedo, meltpond, dust, snow properties, temperature)'@en",skos:Concept,Sea-ice surface characteristics,404
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/405>,"'Sea-ice temperature measured at defined vertical levels in the ice and any snow on the ice, including the temperature at the ice and snow surfaces. By convention, levels are referenced to the surface of the sea ice, with positive values indicating levels above, and negative values indicating levels below the surface of the sea ice.'@en",skos:Concept,Sea-ice temperature,405
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/406>,"'Vertical distance between the bottom and the top of sea ice, excluding snow on ice.'@en",skos:Concept,Sea-ice thickness,406
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/407>,"'Variable convolving several factors (age, roughness, density, etc.). Accuracy expressed as number of classes. Actually [ classes^-1 ] is used, so that smaller figure corresponds to better performance as usual.'@en",skos:Concept,Sea-ice type,407
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/408>,'Measure of the light that passes through the water in relation to the incident light'@en,skos:Concept,Transmissivity,408
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/549>,'partial pressure of O2'@en,skos:Concept,pO2,549
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/62>,'Direction of ocean motion measured at various depth levels'@en,skos:Concept,Ocean current direction,62
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/63>,'Velocity of ocean motion measured at various depth levels'@en,skos:Concept,Ocean current speed,63
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/64>,'Deviation of sea level from the geoid caused by ocean currents (after corrections for tides and atmospheric pressure effects)'@en,skos:Concept,Ocean dynamic topography (ODT),64
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/65>,'Ocean Vector motion measured at or near the surface (at stated depth)'@en,skos:Concept,Surface currents,65
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/67>,"'The cumulated concentration of inorganic carbon species (dissolved carbon dioxide, carbonic acid, bicarbonate and carbonate) in solution'@en",skos:Concept,Dissolved inorganic carbon (DIC),67
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/68>,'Concentration of dissolved organic carbon'@en,skos:Concept,Dissolved organic carbon,68
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/69>,'Concentration of dissolved organic nitrogen'@en,skos:Concept,Dissolved organic nitrogen,69
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/70>,"'Indicator of water turbidity and vertical processes in the ocean, extracted from ocean colour observation'@en",skos:Concept,"Diffuse attenuation coefficient (DAC), turbidity",70
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/71>,"'Concentration of chlorophyll-a pigment in the surface water [Âµg l-1]. Indicator of living phytoplankton biomass, extracted from ocean colour observation. Uncertainty is expressed in mg/m3 for a given concentration of 1 mg/m3.'@en",skos:Concept,Chlorophyll a concentration,71
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/72>,"'Variable extracted from ocean colour observation. Indicative of river outflow, re-suspension or pollution of other-than-biological origin. Uncertainty expressed in g/m3 at a specific concentration (e.g., 2 g/m3).'@en",skos:Concept,Ocean suspended sediments concentration,72
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/731>,'Conductivity measured by CTD or MicroCAT'@en,skos:Concept,Conductivity,731
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/732>,'Density measured by CTD'@en,skos:Concept,Density,732
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/733>,"'Aggregate of animal or animal-like organisms in plankton, as protozoans'@en",skos:Concept,Zooplankton (size and/or development stage),733
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/735>,'Partial pressure of CO2'@en,skos:Concept,pCO2,735
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/736>,'Flux of CO2 from the ocean into the atmosphere'@en,skos:Concept,pCO2 air-sea flux,736
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/739>,'Flurometric coloured dissolved Organic matter concentration'@en,skos:Concept,Fluorescence (DOM),739
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/73>,"'Fraction of an ocean area polluted by hydrocarbons released from ships or off-shore platforms, accidentally or deliberately'@en",skos:Concept,Oil spill cover,73
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/740>,'Time-mean (over a prescribed time period) of the sea surface height above the geoid'@en,skos:Concept,Mean dynamic topography (MDT),740
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/741>,'Time-averaged height (over a prescribed time period) of the ocean surface with respect to the reference ellipsoid'@en,skos:Concept,Mean sea surface (MSS),741
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/742>,'Height of the sea surface with respect to the reference ellipsoid'@en,skos:Concept,"Sea surface height (SSH, OST)",742
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/743>,'Average of height (trough to crest) of the waves sampled over a specified time period'@en,skos:Concept,Wave height,743
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/744>,"'The time required for two successive wave crests to pass a fixed point, or the time for a single wave crest to travel a distance equal to the length of the wave. This is averaged over a specified period of time.'@en",skos:Concept,Wave period,744
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/745>,"'Waves measured in X,Y,Z directions'@en",skos:Concept,Directional waves,745
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/74>,"'Production of organic matter by 'phytoplankton', microscopic plant-like photosynthetic organisms that live in the water'@en",skos:Concept,Primary production,74
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/75>,'Sea surface mass flux'@en,skos:Concept,Sea surface mass flux,75
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/76>,"'The  exchange of heat, per unit area, crossing the surface between the ocean and the atmosphere.  It consists of the turbulent (latent and sensible) and the radiative (short wave and long wave) components.'@en",skos:Concept,Ocean Surface heat flux,76
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/77>,'Sea surface height anomaly'@en,skos:Concept,Sea surface height anomaly (SSHA),77
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/78>,'The amount of acid necessary to titrate all weak bases in seawater'@en,skos:Concept,Total alkalinity (TA),78
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/79>,"'Negative decimal logarithm of the hydrogen ion concentration in seawater, which is a measure of acidity and alkalinity'@en",skos:Concept,pH,79
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/82>,'Concentration of dissolved metasilicate'@en,skos:Concept,SiO3= (metasilicate),82
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/84>,''@en,skos:Concept,"N2, Ar, O2",84
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/85>,'Ratio of O2/Ar concentrations'@en,skos:Concept,O2-Ar ratio,85
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/86>,'Concentration of dissolved oxygen'@en,skos:Concept,Ocean subsurface dissolved oxygen concentration,86
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/87>,'Concentration of dissolved oxygen (O2) in the water column'@en,skos:Concept,Dissolved oxygen,87
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/89>,"'Upward spectral radiance from the ocean surface, i.e. amount of light leaving the ocean per unit area, per wavelength and per solid angle'@en",skos:Concept,Water-leaving spectral radiance,89
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/90>,'Concentration of DMS'@en,skos:Concept,"C2H6S (dimethylsulfide, DMS)",90
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/91>,'Salinity of seawater'@en,skos:Concept,Subsurface salinity,91
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/92>,'Salinity of sea water in the surface layer (upper ~1 m if observed in MW)'@en,skos:Concept,Sea surface salinity,92
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/94>,'Seawater temperature measured with depth (degrees celsius/kelvin)'@en,skos:Concept,Subsurface temperature,94
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/95>,"'Temperature of the sea water at surface. The 'bulk' temperature refers to the depth of typically 2 m, the 'skin' temperature refers to within the upper 1 mm'@en",skos:Concept,Sea surface temperature,95
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/96>,"'Deviation of sea level from local references in coastal zones, caused by local currents and tides (astronomical and wind-induced)'@en",skos:Concept,Coastal sea level (tide),96
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/98>,'One feature of the ocean wave spectrum. It is the direction of the most energetic wave in the spectrum.'@en,skos:Concept,Dominant wave direction,98
+<http://codes.wmo.int/wmdr/ObservedVariableOcean/99>,'The period of the most energetic wave in the ocean wave spectrum'@en,skos:Concept,Dominant wave period,99

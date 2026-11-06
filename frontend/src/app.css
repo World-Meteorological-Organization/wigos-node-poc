@@ -1,0 +1,101 @@
+/* Styles shared by the components. Vuetify's CSS is in cascade layers, so
+   these (unlayered) rules win over it. Keep them to classes the components
+   use: a generic name that styles descendants (.field, .card, .row) would
+   restyle Vuetify's inner elements. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #eff6ff;
+  color: #0f172a;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5rem;
+  color: #1e3a8a;
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #dbeafe;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgb(var(--v-theme-primary));
+}
+
+.group-label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.required-mark {
+  color: rgb(var(--v-theme-error));
+  margin-left: 0.15rem;
+}
+
+/* An item of an object list, or a nested object, edited inline. */
+.nested-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: #f8fafc;
+}
+
+.nested-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.nested-card-header-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+/* An item of an object list edited in the drill-in dialog. */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.9rem;
+}
+
+.input-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.input-row > .v-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.field-message {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+}

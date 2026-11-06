@@ -1,0 +1,22 @@
+# env
+.env
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+backend/staticfiles/
+backend/db.sqlite3
+
+# node
+node_modules/
+frontend/dist/
+
+# editors/os
+.vscode/
+.DS_Store
+
+# internal docs
+docs/

@@ -1,0 +1,45 @@
+{
+  "id": "0-20000-0-12345",
+  "conformsTo": ["http://wigos.wmo.int/spec/wmdr/2/conf/core"],
+  "type": "Feature",
+  "geometry": { "type": "Point", "coordinates": [6.1, 46.2, 420] },
+  "time": { "date": "2020-01-01", "timestamp": "2020-01-01T00:00:37.000Z", "interval": ["2020-01", ".."] },
+  "properties": {
+    "type": "facility",
+    "title": "Full station",
+    "description": "Every field",
+    "contacts": [{
+      "identifier": "contact:1", "name": "A Person", "position": "Observer", "organization": "WMO",
+      "logo": { "href": "https://example.org/logo.png", "rel": "icon", "type": "image/png", "hreflang": "en", "title": "Logo", "length": 1234, "profile": ["p1"], "created": "2020-01-01T00:00:00.000Z", "updated": "2021-01-01T00:00:00.000Z" },
+      "phones": [{ "value": "+41791234567", "roles": ["work"] }],
+      "emails": [{ "value": "a@example.org", "roles": ["work"] }],
+      "addresses": [{ "deliveryPoint": ["Line 1"], "city": "Geneva", "administrativeArea": "GE", "postalCode": "1201", "country": "CH", "roles": ["office"] }],
+      "links": [{ "href": "https://example.org", "rel": "about", "type": "text/html", "hreflang": "en", "title": "Site", "length": 10, "profile": ["p2"], "created": "2020-01-01T00:00:00.000Z", "updated": "2021-01-01T00:00:00.000Z" }],
+      "hoursOfService": "9-17", "contactInstructions": "Email first", "roles": ["owner"]
+    }],
+    "externalIds": [{ "scheme": "https://oscar.wmo.int", "value": "X1" }],
+    "created": "2020-01-01T00:00:00.000Z",
+    "updated": "2021-01-01T00:00:00.000Z",
+    "additionalIds": ["0-51-21-2121"],
+    "additionalTitles": ["Alt"],
+    "facilityType": { "id": "landFixed", "title": "Land (fixed)", "description": "d", "url": "http://codes.wmo.int/wmdr/FacilityType/landFixed" },
+    "wmoRegion": { "id": "europe" },
+    "territories": [{ "territory": { "id": "CHE" }, "dates": ["2011-02-16", ".."] }],
+    "observations": [{
+      "contacts": [{ "organization": "Observation team", "name": "A. Person" }],
+      "observedGeometry": { "id": "point" },
+      "observedProperty": { "id": "224", "url": "http://codes.wmo.int/wmdr/ObservedVariableAtmosphere/224" },
+      "programAffiliations": [{ "programAffiliation": { "id": "GOS" }, "reportingStatus": { "id": "operational" }, "dates": ["2020-01-01", "2021-01-01"] }],
+      "configurations": [{
+        "id": "c1",
+        "time": { "interval": ["2020", ".."] },
+        "geometry": { "type": "Point", "coordinates": [6.1, 46.2, 2] },
+        "observingMethod": { "id": "78" }, "operatingStatus": { "id": "operational" }, "sourceOfObservation": { "id": "automaticReading" },
+        "instrument": { "id": "i1", "manufacturer": "Vaisala", "model": "HMP155" },
+        "instrumentSerialNumber": "SN1",
+        "verticalDistance": { "distances": [2, -0.5], "unit": { "id": "m" }, "referenceSurface": { "id": "localGroundLevel" } }
+      }]
+    }]
+  },
+  "links": [{ "rel": "about", "href": "https://example.org", "type": "text/html", "hreflang": "en", "title": "Home", "length": 5 }]
+}

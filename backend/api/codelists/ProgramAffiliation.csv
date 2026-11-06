@@ -1,0 +1,640 @@
+@id,dct:description,rdf:type,rdfs:label,skos:notation
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AARI>,"'Buoys managed by Arctic and Antarctic Research Institute, Russian Federation'@en",skos:Concept,AARI,AARI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AARIUSIABPDB>,'Collaborative buoys by Arctic and Antarctic Research Institute of Russian Federation and International Arctic Buoy Program of the USA'@en,skos:Concept,AARI-USIABP,AARIUSIABPDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ACTRIS>,"'Aerosol, Clouds and Trace Gases Research Infrastructure, www.actris.eu'@en",skos:Concept,ACTRIS,ACTRIS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ADD>,'Aircraft Derived Data (Mode-S/ADS-B)'@en,skos:Concept,ADD,ADD
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ADNet>,'AD-Net Asian Dust and Lidar Observation Network'@en,skos:Concept,ADNet,ADNet
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ADSC>,'Automatic Data Surveillance (ICAO). These are transmitted at selected points of the flightpath.'@en,skos:Concept,ADS-C,ADSC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AEROCAN>,"'AEROCAN, federated to AERONET'@en",skos:Concept,AEROCAN,AEROCAN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AERONET>,'AErosol RObotic NETwork'@en,skos:Concept,AERONET,AERONET
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AFIRS>,"'Automated Flight Information & Reporting System (Commercial/FLYHT). Not currently open to GTS, contract with Panasonic and airline and/or NMHS.'@en",skos:Concept,AFIRS,AFIRS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AGAGE>,'AGAGE/SOGE/NIES'@en,skos:Concept,AGAGE,AGAGE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AIREP>,'Aircraft Report (Manual). These are transmitted by the aircraft when a weather event encountered e.g. severe turbulence or icing.'@en,skos:Concept,AIREP,AIREP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AMDAR>,'Aircraft Meteorological DAta Relay'@en,skos:Concept,AMDAR,AMDAR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ANTONs>,'Antarctic Observing Network surface station'@en,skos:Concept,ANTON(S),ANTONs
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ANTONt>,'Antarctic Observing Network upper-air station (TEMP)'@en,skos:Concept,ANTON(T),ANTONt
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AOML>,'NA'@en,skos:Concept,AOML,AOML
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AOMLGlider>,'AOML Glider program is part of the CARICOOS Network'@en,skos:Concept,AOML Glider Program,AOMLGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AOMLHurricaneALAMOFloats>,'Hurricane float programme'@en,skos:Concept,AOML Hurricane ALAMO Floats,AOMLHurricaneALAMOFloats
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AOMLMFDB>,'NA'@en,skos:Concept,AOML-MF DB,AOMLMFDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AOMLeSurfmar>,'NA'@en,skos:Concept,AOML-E-SURFMAR,AOMLeSurfmar
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AOOSGlider>,'AOOS glider is the glider program of the Alaska Ocean Observing System part of IOOS program.'@en,skos:Concept,AOOS Gliders,AOOSGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/APLUW>,'NA'@en,skos:Concept,APL-UW,APLUW
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOFPAIIGMMC>,'Fondation Prince Albert II de Monaco - Groupe Mission Mercator Coriolis Argo programme'@en,skos:Concept,Argo FPAII-GMMC,ARGOFPAIIGMMC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOMorocco>,'Morocco Argo programme'@en,skos:Concept,Argo Morocco,ARGOMorocco
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGONIMSKMA>,'National Institute of Meteorological Science/Korean Meteorological Administration Argo programme'@en,skos:Concept,Argo NIMS/KMA,ARGONIMSKMA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOPeru>,'Argo project - Peru'@en,skos:Concept,Argo PERU,ARGOPeru
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOUWMBARI>,'University of Washington - Monterey Bay Aquarium Research Institute Argo programme'@en,skos:Concept,Argo UW-MBARI,ARGOUWMBARI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOUWSOCCOM>,'University of Washington - Southern Ocean Carbon and Climate Observations and Modelling Argo programme'@en,skos:Concept,Argo UW-SOCCOM,ARGOUWSOCCOM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOUWTPOSEQ>,'University of Washington - Tropical Pacific Observing System Argo equivalent programme'@en,skos:Concept,Argo UW-TPOS eq.,ARGOUWTPOSEQ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOWHOISODAEQ>,'Woods Hole Oceanographic Institution - Stratified Ocean Dynamics of the Arctic Argo equivalent programme'@en,skos:Concept,Argo WHOI-SODA eq.,ARGOWHOISODAEQ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ARGOWHOIloopcurrentEQ>,"'\'Woods Hole Oceanographic Institution - Loop Current, Gulf of Mexico Argo equivalent programme\''@en",skos:Concept,Argo WHOI-Loop Current eq.,ARGOWHOIloopcurrentEQ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPAWI>,'AWI ASAP program'@en,skos:Concept,ASAP-AWI,ASAPAWI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPJP>,'Japanese ASAP program'@en,skos:Concept,ASAP-JP,ASAPJP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPKR>,'Korean ASAP program'@en,skos:Concept,ASAP-KR,ASAPKR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPMPI>,'ASAP on MPI operated RVs like German RV Sonne'@en,skos:Concept,ASAP-MPI,ASAPMPI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPUS>,'US ASAP program led by NOAA'@en,skos:Concept,ASAP-US,ASAPUS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ASAPZA>,'South African ASAP program'@en,skos:Concept,ASAP-ZA,ASAPZA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ASOGlider>,'Repeated section in the Adriatic water transformation region'@en,skos:Concept,Adriatic Sea Observatory,ASOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AWIDB>,'Alfred Wagner Institute Drifter Buoy program'@en,skos:Concept,AWI-DB,AWIDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AlaskaLTERGlider>,'NSF Northern Gulf of Alaska Long Term Ecological Research'@en,skos:Concept,NSF Northern Gulf of Alaska Long Term Ecological Research,AlaskaLTERGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AlseamarGlider>,'Open Glider program of the French Manufacturer Alseamar'@en,skos:Concept,Alseamar scientific glider program,AlseamarGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AlterECOGlider>,'An Alternative Framework to Assess Marine Ecosystem Functioning in Shelf Seas'@en,skos:Concept,Alter_Eco glider program,AlterECOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/AtlantOSH2020>,'Atlantic Ocean Observing System Horizon 2020 Argo project'@en,skos:Concept,AtlantOS_H2020,AtlantOSH2020
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BOMDB>,'Bureau of Meteorology (BOM) Drifting Buoy program'@en,skos:Concept,BOM DB,BOMDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BOMMB>,'Bureau of Meteorology (BOM) Moored Buoy'@en,skos:Concept,BOM MB,BOMMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BOMTSU>,'Bureau of Meteorology (BOM) Tsunameter Buoy'@en,skos:Concept,BOM-TSU,BOMTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BPINC>,'NA'@en,skos:Concept,BP INC,BPINC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BSHDWDMB>,'NA'@en,skos:Concept,BSH-DWD-MB,BSHDWDMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BSHDWDfixed>,'NA'@en,skos:Concept,BSH-DWD-FIXED,BSHDWDfixed
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BSHMB>,'NA'@en,skos:Concept,BSH-MB,BSHMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BSRN>,'Baseline Surface Radiation Network'@en,skos:Concept,BSRN,BSRN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/BULARGO>,'NA'@en,skos:Concept,BULARGO,BULARGO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/C3S>,"'The Copernicus Climate Change Service (C3S) operated by the European Centre for Medium Range Weather Forecasts (ECMWF), on behalf of the European Union'@en",skos:Concept,Copernicus Climate Change Service-C3S,C3S
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CANDHIS>,'CANDHIS Wave buoys (CETMEF/Meteo France - (Centre d\'Archivage National de Données de Houle In-Situ))'@en,skos:Concept,CANDHIS,CANDHIS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CAPMoN>,'Canadian Air and Precipitation Monitoring Network'@en,skos:Concept,CAPMoN,CAPMoN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CARICOOS>,'CarICOOS is the observing arm of the Caribbean Regional Association for Integrated Coastal Ocean Observing (CaRA)'@en,skos:Concept,CARICOOS,CARICOOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CARIOCA>,'CARIOCA SOUTHERN OCEAN'@en,skos:Concept,CARIOCA,CARIOCA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CASTNET>,'Clean Air Status and Trends Network'@en,skos:Concept,CASTNET,CASTNET
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CDIP>,'Coastal Data Information Program (CDIP)'@en,skos:Concept,CDIP,CDIP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CEOASGlider>,"'College of Earth, Ocean, and Atmospheric Sciences glider program contribute to the CeNCOOS is the Central and Northern California Ocean Observing System.'@en",skos:Concept,CEOAS glider program,CEOASGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CIS-LiNet>,'Atmosphere aerosol and ozone monitoring in CIS regions through lidar stations network'@en,skos:Concept,CIS-LiNet,CIS-LiNet
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CLIMATc>,'Station for which monthly climatological means of surface elements are transmitted'@en,skos:Concept,CLIMAT(C),CLIMATc
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CLIMATct>,'Station for which monthly climatological means of both surface and upper- air elements are transmitted'@en,skos:Concept,CLIMAT(CT),CLIMATct
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CLIMATt>,'Station for which monthly climatological means of upper-air elements are transmitted'@en,skos:Concept,CLIMAT(T),CLIMATt
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CLN>,'The NOAA Cooperative Remote Sensing Science and Technology (CREST) Lidar network'@en,skos:Concept,CLN,CLN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/COMPSMB>,'Owned and maintained by COMPS (University of South Florida) Offshore Buoy'@en,skos:Concept,COMPS-MB,COMPSMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CORMPNC>,'Coastal Ocean Research and Monitoring Program -NC'@en,skos:Concept,CORMP-NC,CORMPNC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/COSYNA>,'German multi-platform Observatory of the Northern and Arctic Sea'@en,skos:Concept,Coastal Observing System for Northern and Arctic Seas,COSYNA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CSIMB>,"'Owned and maintained by UNC Coastal Studies Institute, Data provided by Scripps Institution of Oceanography'@en",skos:Concept,CSI-MB,CSIMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CTBTO>,'Comprehensive Nuclear-Test Ban Treaty Organization International Monitoring System Network monitoring station'@en,skos:Concept,CTBTO,CTBTO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CW3ECDWR>,'Center for Western Weather and Water Extremes - California Department of Water Resources'@en,skos:Concept,CW3E-CDWR,CW3ECDWR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CYCOFOS>,"'Sub-regional forecasting and observing system in the Eastern Mediterranean Levantine Basin, which covers the coastal and open sea areas of Cyprus, Cilician and Lattakian basins and the Eastern Levantine Base'@en",skos:Concept,Cyprus Coastal Ocean Forecasting and Observing System,CYCOFOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/Challenger>,'The Silbo Challenger mission is a partnership between industry and academia.'@en,skos:Concept,Challenger,Challenger
+<http://codes.wmo.int/wmdr/ProgramAffiliation/CryoNet>,'NA'@en,skos:Concept,CryoNet,CryoNet
+<http://codes.wmo.int/wmdr/ProgramAffiliation/DBCPothers>,'NA'@en,skos:Concept,DBCP others,DBCPothers
+<http://codes.wmo.int/wmdr/ProgramAffiliation/DEKOSIM>,'DEKOSIM is an interdisciplinary research project funded by the Turkish Ministry of Development'@en,skos:Concept,DEKOSIM,DEKOSIM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/DFODB>,'Department of Fisheries and Oceans Drifter Buoys'@en,skos:Concept,DFO DB,DFODB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/DFOGlider>,'The Department of Fisheries and Oceans Canada Glider Program'@en,skos:Concept,Department of Fisheries and Oceans Canada Glider Program,DFOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/DFOUSVs>,"'Unmanned/Autonomous Surface Vehicles by DFO, Canada'@en",skos:Concept,DFO USVs,DFOUSVs
+<http://codes.wmo.int/wmdr/ProgramAffiliation/DFOUVicGlider>,'Glider program operated by University of Victoria in collaboration with DFO'@en,skos:Concept,DFO/University of Victoria Glider program,DFOUVicGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/EANET>,'EANET'@en,skos:Concept,EANET,EANET
+<http://codes.wmo.int/wmdr/ProgramAffiliation/EARLINET>,'European Aerosol Research Lidar Network'@en,skos:Concept,EARLINET,EARLINET
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ECDB>,'Canada Drifting Buoys'@en,skos:Concept,EC DB,ECDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ECIABP>,'International Arctic Buoy Program'@en,skos:Concept,EC-IABP,ECIABP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ECMB>,'Canadian Moored Buoy Programme (MSC)'@en,skos:Concept,EC MB,ECMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/EEAGlider>,"'The Ellett Array uses moorings, gliders and ship-based hydrography to observe the warm-water pathways of the AMOC, located in the Rockall Trough and the Hatton-Rockall Basin.'@en",skos:Concept,Extended Ellett Array,EEAGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/EMEP>,'European Monitoring and Evaluation Programme'@en,skos:Concept,EMEP,EMEP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ESRLCCG>,'NOAA-ESRL (CCG)'@en,skos:Concept,ESRLCCG,ESRLCCG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/EUROARGO>,'European contribution to Argo program'@en,skos:Concept,EUROARGO,EUROARGO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/EuroARGORISE>,'Euro-Argo Research Infrastructure Sustainability and Enhancement project'@en,skos:Concept,Euro-Argo RISE,EuroARGORISE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/EurositesPlanier>,'NA'@en,skos:Concept,EUROSITES PLANIER,EurositesPlanier
+<http://codes.wmo.int/wmdr/ProgramAffiliation/FERHRITSU>,'Far Eastern Regional Hydrometeorological Research Institute Tsunameter Buoys'@en,skos:Concept,FERHRI-TSU,FERHRITSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/FMIGlider>,'Glider program operated by the Finish Institute of Meteorology. FMI operate gliders in the Baltic Sea.'@en,skos:Concept,FMI Glider Program,FMIGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/FranceGlider>,'Sustained programme of non-repeated National and International deployment of the French Gliders Facility'@en,skos:Concept,DTINSU international,FranceGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GALION>,'GAW Aerosol Lidar Observation Network'@en,skos:Concept,GALION,GALION
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GAWPFR>,'GAW Precision Filter Radiometer Network'@en,skos:Concept,GAW-PFR,GAWPFR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GAWglobal>,'Global GAW station'@en,skos:Concept,GAW Global,GAWglobal
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GAWlocal>,'Local GAW station'@en,skos:Concept,GAW Local,GAWlocal
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GAWnonAffiliated>,'Observing elements that are not affiliated with GAW or any of the co-sponsored programs'@en,skos:Concept,Non-affiliated,GAWnonAffiliated
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GAWregional>,'Regional GAW station'@en,skos:Concept,GAW Regional,GAWregional
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GBON>,'Global Basic Observing Network'@en,skos:Concept,GBON,GBON
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GCWCryoNet>,"'A GCW station measuring at least one variable of one cryosphere component, and meeting a set of defined requirements.'@en",skos:Concept,GCW CryoNet station,GCWCryoNet
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GCWaffiliated>,"'A station of an GCW affiliated network measuring at least one cryospheric variable, contributing to GCW in addition to CryoNet and GCW contributing stations.'@en",skos:Concept,GCW affiliated station,GCWaffiliated
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GCWcontributing>,'A GCW station which provides useful measurements of the cryosphere but does not meet all requirements for a CryoNet Station.'@en,skos:Concept,GCW Contributing station,GCWcontributing
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GDP>,"'The Global Drifter Program (GDP) operated by SIO\'s Lagrangian Drifter Laboratory (LDL), funded by NOAA, maintaining a global array.'@en",skos:Concept,Global Drifter Program (GDP),GDP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GDPMF>,'Global Drifter Program drifters with Meteo-France barometer upgrades'@en,skos:Concept,GDPMF,GDPMF
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GEOMARGlider>,'Glider program operated by GEOMAR. Regular cooperation with Cape Verde Oceanographic institute.'@en,skos:Concept,GEOMAR Glider program,GEOMARGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GINA>,'Glider program operated by CSIR in South Africa along the Agulhas current'@en,skos:Concept,Glider In The Agulhas,GINA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSCAL>,"'GLOSCAL is a French Project sponsored by ESA, which aims to calibrate and validate sea surface salinity (SSS) measurements carried out by satellite (e.g. SMOS and Aquarius).'@en",skos:Concept,GLOSCAL,GLOSCAL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSAO>,'Global Sea Level Observing System Tide Gauges - Angola'@en,skos:Concept,GLOSS AO,GLOSSAO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSAR>,'Global Sea Level Observing System Tide Gauges - Argentina'@en,skos:Concept,GLOSS AR,GLOSSAR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSAU>,'Global Sea Level Observing System Tide Gauges - Australia'@en,skos:Concept,GLOSS AU,GLOSSAU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSBD>,'Global Sea Level Observing System Tide Gauges - Bangladesh'@en,skos:Concept,GLOSS BD,GLOSSBD
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSBR>,'Global Sea Level Observing System Tide Gauges - Brasil'@en,skos:Concept,GLOSS BR,GLOSSBR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCA>,'Global Sea Level Observing System Tide Gauges - Canada'@en,skos:Concept,GLOSS CA,GLOSSCA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCG>,'Global Sea Level Observing System Tide Gauges - Republic of the Congo'@en,skos:Concept,GLOSS CG,GLOSSCG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCI>,'Global Sea Level Observing System Tide Gauges - Côte d\'Ivoire'@en,skos:Concept,GLOSS CI,GLOSSCI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCL>,'Global Sea Level Observing System Tide Gauges - Chile'@en,skos:Concept,GLOSS CL,GLOSSCL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCM>,'Global Sea Level Observing System Tide Gauges - Cameroon'@en,skos:Concept,GLOSS CM,GLOSSCM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCN>,'Global Sea Level Observing System Tide Gauges - China'@en,skos:Concept,GLOSS CN,GLOSSCN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCO>,'Global Sea Level Observing System Tide Gauges - Colombia'@en,skos:Concept,GLOSS CO,GLOSSCO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCR>,'Global Sea Level Observing System Tide Gauges - Costa Rica'@en,skos:Concept,GLOSS CR,GLOSSCR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSCU>,'Global Sea Level Observing System Tide Gauges - Cuba'@en,skos:Concept,GLOSS CU,GLOSSCU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSDE>,'Global Sea Level Observing System Tide Gauges - Germany'@en,skos:Concept,GLOSS DE,GLOSSDE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSDJ>,'Global Sea Level Observing System Tide Gauges - Djibouti'@en,skos:Concept,GLOSS DJ,GLOSSDJ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSDK>,'Global Sea Level Observing System Tide Gauges - Denmark'@en,skos:Concept,GLOSS DK,GLOSSDK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSEC>,'Global Sea Level Observing System Tide Gauges - Ecuador'@en,skos:Concept,GLOSS EC,GLOSSEC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSEG>,'Global Sea Level Observing System Tide Gauges - Egypt'@en,skos:Concept,GLOSS EG,GLOSSEG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSES>,'Global Sea Level Observing System Tide Gauges - Spain'@en,skos:Concept,GLOSS ES,GLOSSES
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSFR>,'Global Sea Level Observing System Tide Gauges - France'@en,skos:Concept,GLOSS FR,GLOSSFR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSGB>,'Global Sea Level Observing System Tide Gauges - United Kingdom'@en,skos:Concept,GLOSS GB,GLOSSGB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSGH>,'Global Sea Level Observing System Tide Gauges - Ghana'@en,skos:Concept,GLOSS GH,GLOSSGH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSGN>,'Global Sea Level Observing System Tide Gauges - Guinea'@en,skos:Concept,GLOSS GN,GLOSSGN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSHT>,'Global Sea Level Observing System Tide Gauges - Haiti'@en,skos:Concept,GLOSS HT,GLOSSHT
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSID>,'Global Sea Level Observing System Tide Gauges - Indonesia'@en,skos:Concept,GLOSS ID,GLOSSID
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSIE>,'Global Sea Level Observing System Tide Gauges - Ireland'@en,skos:Concept,GLOSS IE,GLOSSIE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSIL>,'Global Sea Level Observing System Tide Gauges - Israel'@en,skos:Concept,GLOSS IL,GLOSSIL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSIN>,'Global Sea Level Observing System Tide Gauges - India'@en,skos:Concept,GLOSS IN,GLOSSIN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSIR>,'Global Sea Level Observing System Tide Gauges - Iran'@en,skos:Concept,GLOSS IR,GLOSSIR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSIS>,'Global Sea Level Observing System Tide Gauges - Iceland'@en,skos:Concept,GLOSS IS,GLOSSIS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSJM>,'Global Sea Level Observing System Tide Gauges - Jamaica'@en,skos:Concept,GLOSS JM,GLOSSJM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSJP>,'Global Sea Level Observing System Tide Gauges - Japan'@en,skos:Concept,GLOSS JP,GLOSSJP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSKE>,'Global Sea Level Observing System Tide Gauges - Kenya'@en,skos:Concept,GLOSS KE,GLOSSKE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSKP>,'Global Sea Level Observing System Tide Gauges - North Korea'@en,skos:Concept,GLOSS KP,GLOSSKP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSKR>,'Global Sea Level Observing System Tide Gauges - South Korea'@en,skos:Concept,GLOSS KR,GLOSSKR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSLK>,'Global Sea Level Observing System Tide Gauges - Sri Lanka'@en,skos:Concept,GLOSS LK,GLOSSLK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSMA>,'Global Sea Level Observing System Tide Gauges - Morocco'@en,skos:Concept,GLOSS MA,GLOSSMA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSMG>,'Global Sea Level Observing System Tide Gauges - Madagascar'@en,skos:Concept,GLOSS MG,GLOSSMG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSMM>,'Global Sea Level Observing System Tide Gauges - Myanmar'@en,skos:Concept,GLOSS MM,GLOSSMM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSMU>,'Global Sea Level Observing System Tide Gauges - Mauritius'@en,skos:Concept,GLOSS MU,GLOSSMU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSMX>,'Global Sea Level Observing System Tide Gauges - Mexico'@en,skos:Concept,GLOSS MX,GLOSSMX
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSMY>,'Global Sea Level Observing System Tide Gauges - Malaysia'@en,skos:Concept,GLOSS MY,GLOSSMY
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSMZ>,'Global Sea Level Observing System Tide Gauges - Mozambique'@en,skos:Concept,GLOSS MZ,GLOSSMZ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSNA>,'Global Sea Level Observing System Tide Gauges - Namibia'@en,skos:Concept,GLOSS NA,GLOSSNA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSNG>,'Global Sea Level Observing System Tide Gauges - Nigeria'@en,skos:Concept,GLOSS NG,GLOSSNG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSNO>,'Global Sea Level Observing System Tide Gauges - Norway'@en,skos:Concept,GLOSS NO,GLOSSNO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSNZ>,'Global Sea Level Observing System Tide Gauges - New Zealand'@en,skos:Concept,GLOSS NZ,GLOSSNZ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSOM>,'Global Sea Level Observing System Tide Gauges - Oman'@en,skos:Concept,GLOSS OM,GLOSSOM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSPA>,'Global Sea Level Observing System Tide Gauges - Panama'@en,skos:Concept,GLOSS PA,GLOSSPA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSPE>,'Global Sea Level Observing System Tide Gauges - Peru'@en,skos:Concept,GLOSS PE,GLOSSPE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSPG>,'Global Sea Level Observing System Tide Gauges - Papua New Guinea'@en,skos:Concept,GLOSS PG,GLOSSPG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSPH>,'Global Sea Level Observing System Tide Gauges - Philippines'@en,skos:Concept,GLOSS PH,GLOSSPH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSPK>,'Global Sea Level Observing System Tide Gauges - Pakistan'@en,skos:Concept,GLOSS PK,GLOSSPK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSPT>,'Global Sea Level Observing System Tide Gauges - Portugal'@en,skos:Concept,GLOSS PT,GLOSSPT
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSRU>,'Global Sea Level Observing System Tide Gauges - Russia'@en,skos:Concept,GLOSS RU,GLOSSRU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSSC>,'Global Sea Level Observing System Tide Gauges - Seychelles'@en,skos:Concept,GLOSS SC,GLOSSSC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSSE>,'Global Sea Level Observing System Tide Gauges - Sweden'@en,skos:Concept,GLOSS SE,GLOSSSE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSSG>,'Global Sea Level Observing System Tide Gauges - Sinagpore'@en,skos:Concept,GLOSS SG,GLOSSSG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSSN>,'Global Sea Level Observing System Tide Gauges - Senegal'@en,skos:Concept,GLOSS SN,GLOSSSN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSSO>,'Global Sea Level Observing System Tide Gauges - Somalia'@en,skos:Concept,GLOSS SO,GLOSSSO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSSV>,'Global Sea Level Observing System Tide Gauges - El Salvador'@en,skos:Concept,GLOSS SV,GLOSSSV
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSTH>,'Global Sea Level Observing System Tide Gauges - Thailand'@en,skos:Concept,GLOSS TH,GLOSSTH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSTT>,'Global Sea Level Observing System Tide Gauges - Trinidad and Tobago'@en,skos:Concept,GLOSS TT,GLOSSTT
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSTZ>,'Global Sea Level Observing System Tide Gauges - Tanzania'@en,skos:Concept,GLOSS TZ,GLOSSTZ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSUS>,'Global Sea Level Observing System Tide Gauges - United states of America'@en,skos:Concept,GLOSS US,GLOSSUS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSUY>,'Global Sea Level Observing System Tide Gauges - Uruguay'@en,skos:Concept,GLOSS UY,GLOSSUY
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSVE>,'Global Sea Level Observing System Tide Gauges - Venezuela'@en,skos:Concept,GLOSS VE,GLOSSVE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSVN>,'Global Sea Level Observing System Tide Gauges - Vietnam'@en,skos:Concept,GLOSS VN,GLOSSVN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSVU>,'Global Sea Level Observing System Tide Gauges - Vanuatu'@en,skos:Concept,GLOSS VU,GLOSSVU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSYE>,'Global Sea Level Observing System Tide Gauges - Yemen'@en,skos:Concept,GLOSS YE,GLOSSYE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GLOSSZA>,'Global Sea Level Observing System Tide Gauges - South Africa'@en,skos:Concept,GLOSS ZA,GLOSSZA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GNSSradioOccultation>,'NA'@en,skos:Concept,GNSS radio-occultation system,GNSSradioOccultation
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GOMIX>,'GOMIX glider program lead by University of Texas'@en,skos:Concept,GOMIX,GOMIX
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GOMOGlider>,'GOMO provide and support high quality global ocean observations and research to improve our scientific understanding and inform society about the ocean\'s role in environmental change. GOMO glider is the glider component of GOMO.'@en,skos:Concept,Global Ocean Monitoring and Observing Program - Glider,GOMOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GOSGeneral>,'No affiliation to other GOS Surface networks'@en,skos:Concept,GOS General,GOSGeneral
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GOship>,'Global Ocean Ship-Based Hydrographic Investigations Programme'@en,skos:Concept,GO-SHIP,GOship
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GRUAN>,'GCOS Reference Upper-Air Network'@en,skos:Concept,GRUAN,GRUAN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GSN>,'GCOS Surface Network'@en,skos:Concept,GSN,GSN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GSRN>,'GCOS Surface Reference Network'@en,skos:Concept,GSRN,GSRN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GTOS>,'Global Terrestrial Observing System'@en,skos:Concept,GTOS,GTOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GUAN>,'GCOS Upper-Air Network'@en,skos:Concept,GUAN,GUAN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/GreatLakeGlider>,'Great Lakes Observing System Glider Program'@en,skos:Concept,Great Lakes Observing System Glider Program,GreatLakeGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/HCMRGlider>,'HCMR maintain the Cretan Line.'@en,skos:Concept,HCMR glider program,HCMRGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/HKOBSDB>,'Hong Kong Observatory Drifter Buoy'@en,skos:Concept,HK-OBS-DB,HKOBSDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/HZGGlider>,'Glider program operated by Helmholtz-Zentrum Geesthacht'@en,skos:Concept,HZG glider program,HZGGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/HurricaneGlider>,'NOAA Glider Hurricane Program aims at improving hurricane forecasting by assimilating observations from gliders situated in the passage of a a hurricane in the coastal seas of US.'@en,skos:Concept,NOAA Glider Hurricane Program,HurricaneGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IABP>,'International Arctic Buoy Programme (IABP)'@en,skos:Concept,IABP,IABP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IABPEC>,'NA'@en,skos:Concept,IABP-EC,IABPEC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IABPNIC>,'NA'@en,skos:Concept,IABP NIC,IABPNIC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IABPUS>,'Coordination/data management of the Intl Arctic Buoy program'@en,skos:Concept,IABP US,IABPUS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IABPUW>,'Intl Arctic Buoy Program (IABP) University of Washington (UW)'@en,skos:Concept,IABP-UW,IABPUW
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IABPcanada>,'ICE FLOE DRIFT'@en,skos:Concept,IABP CANADA,IABPcanada
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IAGOS>,'In-service Aircraft for a Global Observing System'@en,skos:Concept,IAGOS,IAGOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IBPIO>,'International Buoy Programme for the Indian Ocean (IBPIO)'@en,skos:Concept,IBPIO,IBPIO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ICOS>,"'Integrated Carbon Observation System, www.icos-cp.eu'@en",skos:Concept,ICOS,ICOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IDAF>,'IGAC/DEBITS Africa'@en,skos:Concept,IDAF,IDAF
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ILBD>,'Drifting buoy by Israel'@en,skos:Concept,IL-DB,ILBD
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ILMB>,'Moored buoys by Israel'@en,skos:Concept,IL-MB,ILMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IMARPEglider>,'IMARPE (Instituto del Mar del Perœ) glider program'@en,skos:Concept,IMARPE Glider Program,IMARPEglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IMOSCoastalWB>,'Australia Integrated Marine Observing System (IMOS) moored wave buoys'@en,skos:Concept,IMOS coastal wave buoys,IMOSCoastalWB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IMOSGlider>,'The Ocean Gliders facility operates a fleet of autonomous underwater ocean gliders that undertake measurements from shelf and boundary currents in Australian waters.'@en,skos:Concept,Integrated Marine Observing System - Glider,IMOSGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IMPROVE>,'IMPROVE Optical Aerosol'@en,skos:Concept,IMPROVE,IMPROVE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/INCOISTSU>,'Indian National Centre for Ocean Information Services Tsunameter buoys'@en,skos:Concept,INCOIS-TSU,INCOISTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/INDAAF>,"'International Network to study Deposition and Atmospheric composition in Africa, https://indaaf.obs-mip.fr/'@en",skos:Concept,INDAAF,INDAAF
+<http://codes.wmo.int/wmdr/ProgramAffiliation/INDIANIO>,'Collection of METOCEAN data in India Ocean'@en,skos:Concept,INDIA NIO,INDIANIO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/INOCARTSU>,'Instituto Oceanografico de la Armada Tsunameter buoys'@en,skos:Concept,INOCAR-TSU,INOCARTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/INTAROSGlider>,'Glider deployment run by CNRS in the Fram Strait during INTAROS project'@en,skos:Concept,INTAROS french glider program,INTAROSGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IPABUS>,'International Programme for Antarctic Buoys - US'@en,skos:Concept,IPABUS,IPABUS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ISMARGlider>,'Glider program operated by CNR ISMAR including repeated section between Sardinia and Balearic Island'@en,skos:Concept,CNR Ismar Glider Program,ISMARGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ITPWHOI>,'NA'@en,skos:Concept,ITP-WHOI,ITPWHOI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ITPdamocles>,'NA'@en,skos:Concept,ITP-DAMOCLES,ITPdamocles
+<http://codes.wmo.int/wmdr/ProgramAffiliation/IsraelGlider>,'3 SeaExplorer gliders purchased and operated under consortium agreement between the four institutes.'@en,skos:Concept,Israeli National Monitoring,IsraelGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/JAMSTECDB>,'Japan Agency for Marine-Earth Science and Technology Drifting Buoy'@en,skos:Concept,JAMSTECDB,JAMSTECDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/JAMSTECMB>,'Japan Agency for Marine-Earth Science and Technology Moored Buoy'@en,skos:Concept,JAMSTEC-MB,JAMSTECMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/JMADB>,'JMA Drifting Buoy'@en,skos:Concept,JMA DB,JMADB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/JMATSU>,'JMA Tsunameter buoys'@en,skos:Concept,JMA-TSU,JMATSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/KIOSTGlider>,'Glider program operated by KIOST. Storm tracking applications.'@en,skos:Concept,KIOST glider program,KIOSTGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/KMAMB>,'Korea Meteorological Department Moored Buoy programme'@en,skos:Concept,KMA MB,KMAMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/KUDB>,"'Drifting Buoys operated by Disaster Prevention Research Institute, Kyoto University (DPRI, KU)'@en",skos:Concept,KU DB,KUDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/KUGON>,'Korea Underwater Glider Observing Network'@en,skos:Concept,Korea Underwater Glider Observing Network,KUGON
+<http://codes.wmo.int/wmdr/ProgramAffiliation/LALINET>,'LALINET Latin America Lidar Network'@en,skos:Concept,LALINET,LALINET
+<http://codes.wmo.int/wmdr/ProgramAffiliation/LOCEAN>,'Laboratory of Oceanography and Climate: Experiments and Digital Approaches'@en,skos:Concept,LOCEAN,LOCEAN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/LTERGlider>,'The Long Term Ecological Research (LTER) program in Antarctica.'@en,skos:Concept,NSF Long Term Ecological Research,LTERGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/LargeLakeGlider>,'Large Lakes Observatory Glider Program'@en,skos:Concept,Large Lakes Observatory Glider Program,LargeLakeGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MAGIC>,'Mid Atlantic Glider Initiative and Collaboration'@en,skos:Concept,Mid Atlantic Glider Initiative and Collaboration,MAGIC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MARSGlider>,'UK sustained program for Autonomous Underwater Vehicles'@en,skos:Concept,Marine Autonomous and Robotic Systems,MARSGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MBARIGlider>,'MBARI and Naval Postgraduate School glider program'@en,skos:Concept,MBARI glider program,MBARIGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MEDARGO>,'NA'@en,skos:Concept,MEDARGO,MEDARGO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MERSEA>,'NA'@en,skos:Concept,MERSEA,MERSEA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MIGlider>,'Glider program operated by the Marine Institute (Ireland)'@en,skos:Concept,Marine Institute Glider Program,MIGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAEU>,'Monitoring the Oceans and Climate Change with Argo - EU'@en,skos:Concept,MOCCA-EU,MOCCAEU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAGER>,'Monitoring the Oceans and Climate Change with Argo - Germany'@en,skos:Concept,MOCCA-GER,MOCCAGER
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAIT>,'Monitoring the Oceans and Climate Change with Argo - Italy'@en,skos:Concept,MOCCA-IT,MOCCAIT
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCANETH>,'Monitoring the Oceans and Climate Change with Argo - Netherlands'@en,skos:Concept,MOCCA-NETH,MOCCANETH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MOCCAPOL>,'Monitoring the Oceans and Climate Change with Argo - Poland'@en,skos:Concept,MOCCA-POL,MOCCAPOL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MOOSEnvironment>,'Mediterranean Ocean Observing System for the Environment'@en,skos:Concept,Mediterranean Ocean Observing System for the Environment,MOOSEnvironment
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MPLNET>,'Micro-Pulse Lidar Network'@en,skos:Concept,MPLNET,MPLNET
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MUNGlider>,'Glider operation leaded by MUN'@en,skos:Concept,Memorial University of Newfoundland Glider program,MUNGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MeteoFranceDB>,'MF Drifters Atlantic and Indian Ocean'@en,skos:Concept,METEO FRANCE DB,MeteoFranceDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MeteoFranceMB>,'MF Drifters Atlantic and Indian Ocean'@en,skos:Concept,METEO FRANCE MB,MeteoFranceMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/MeteoFranceWB>,'Meteo-France waverider (operational)'@en,skos:Concept,METEO FRANCE WB,MeteoFranceWB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NADP>,'National Atmospheric Deposition Program'@en,skos:Concept,NADP,NADP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NAOSCanada>,'Canadian contribution to NAOS program'@en,skos:Concept,NAOS-Canada,NAOSCanada
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NAOSfrance>,'Novel Argo Ocean Observing System (NOAS) France project'@en,skos:Concept,NAOS-FRANCE,NAOSfrance
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NATOGlider>,'Sustained gliders scientific experiments from NATO'@en,skos:Concept,Scientific NATO glider experiment,NATOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NAVOCEANODBCP>,'Naval Oceanographic Office DBCP programme'@en,skos:Concept,Navoceano DBCP,NAVOCEANODBCP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NCCOOS>,'NA'@en,skos:Concept,NCCOOS,NCCOOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NCSUglider>,'Glider program of the NCSU (North Carolina State University) Ocean Observing and modelling group'@en,skos:Concept,NCSU Ocean Observing and Modeling Group Glider Program,NCSUglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDACC>,'Network for the Detection of Atmospheric Composition Change'@en,skos:Concept,NDACC,NDACC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCBP>,'NA'@en,skos:Concept,NDBC-BP,NDBCBP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCCOE>,'NA'@en,skos:Concept,NDBC-COE,NDBCCOE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCCSI>,'NA'@en,skos:Concept,NDBC-CSI,NDBCCSI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCMB>,'NA'@en,skos:Concept,NDBC-MB,NDBCMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCMBARI>,'NA'@en,skos:Concept,NDBC-MBARI,NDBCMBARI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCNASA>,'NA'@en,skos:Concept,NDBC-NASA,NDBCNASA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCNOAANWS>,'NA'@en,skos:Concept,NDBC-NOAA-NWS,NDBCNOAANWS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCTABS>,'NA'@en,skos:Concept,NDBC-TABS,NDBCTABS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCTSU>,'NDBC Tsunameter buoys'@en,skos:Concept,NDBC-TSU,NDBCTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDBCUSCG>,'NA'@en,skos:Concept,NDBC-USCG,NDBCUSCG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NDWCTSU>,'National Disaster Warning Center Tsunameter buoys'@en,skos:Concept,NDWC-TSU,NDWCTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NERACOOSMB>,"'Owned and maintained by Woods Hole Group/NERACOOS, Data provided by Scripps Institution of Oceanography'@en",skos:Concept,NERACOOS-MB,NERACOOSMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NICIABP>,'NA'@en,skos:Concept,NIC-IABP,NICIABP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NIWAGlider>,'Glider program operated by NIWA is New Zealand.'@en,skos:Concept,NIWA Glider Program,NIWAGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NOAACBIBS>,"'The National Oceanic and Atmospheric Administration\'s (NOAA) Chesapeake Bay Interpretive Buoy System (CBIBS) is a network of observing platforms (buoys) that collect meteorological, oceanographic, and water-quality data and relay that information using wireless technology to a variety of users.'@en",skos:Concept,NOAA-CBIBS,NOAACBIBS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NOAAGML>,'NOAA Global Monitoring Laboratory'@en,skos:Concept,NOAA-GML,NOAAGML
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NOAAOAPglider>,'NOAA\'s Ocean Acidification Program - Gliders'@en,skos:Concept,NOAA Ocean Acidification Program,NOAAOAPglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NOCLGlider>,'NOC Liverpool Glider Program covers the glider deployments lead by NOC_L that are not part of a sustained program.'@en,skos:Concept,NOC Liverpool Glider Program,NOCLGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NWSNDBCMB>,'NWS NDBC Moored buoy'@en,skos:Concept,NWS-NDBC-MB,NWSNDBCMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NWSNDBCWB>,'NWS NDBC Wave buoy'@en,skos:Concept,NWS-NDBC-WB,NWSNDBCWB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NZTSU>,'GNS Science is a New Zealand Crown Research Institute'@en,skos:Concept,NZ-TSU,NZTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NansenLegacyGlider>,'Nansen Legacy glider program Operated by NorGliders'@en,skos:Concept,NorGliders - Nansen Legacy,NansenLegacyGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NavoceanGlider>,'Glider program operated by NAVOCANO (Oceanographic component of the US navy).'@en,skos:Concept,US NAVY glider program,NavoceanGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NewZealandDB>,'NA'@en,skos:Concept,NEW ZEALAND DB,NewZealandDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NorEMSOGlider>,'Norwegian Glider program around EMSO sites'@en,skos:Concept,NorGlider - NorEMSO,NorEMSOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NorwayGlider>,"'Norwegian national facility for ocean gliders (NorGliders) is running glider missions along repeated section in outstanding sites of interest are the Svinøy Section, the Lofoten Basin of the Norwegian Sea, the Mohn ridge, as well as the Iceland and Greenland Seas.'@en",skos:Concept,NorGliders - other,NorwayGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/NorwayIMR>,'Institute of Marine Research Drifting Buoy Program'@en,skos:Concept,NORWAY-IMR,NorwayIMR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ODYSSEAGlider>,"'ODYSSEA developed, operate and demonstrate an interoperable and cost-effective platform that fully integrates networks of observing and forecasting systems across the Mediterranean basin, addressing both the open sea and the coastal zone. ODYSSEA program started in 2018 and finished in 2021.'@en",skos:Concept,ODYSSEA H2020 Glider program,ODYSSEAGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OGSGlider>,'Istituto Nazionale di Oceanografia e di Geofisica Sperimentale glider program'@en,skos:Concept,OGS glider program,OGSGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OOICGSNGlider>,"'The Ocean Observatories Initiative is funded by the National Science Foundation and is managed and coordinated by the OOI Program Management Office (PMO) at the Woods Hole Oceanographic Institution (WHOI) in Woods Hole, MA.'@en",skos:Concept,OOI - Coastal and Global Scale Nodes,OOICGSNGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OOIEnduranceGlider>,"'The OOI is funded by the National Science Foundation and is managed and coordinated by the OOI Program Management Office (PMO) at the Woods Hole Oceanographic Institution (WHOI) in Woods Hole, MA.'@en",skos:Concept,OOI - Coastal Endurance Array,OOIEnduranceGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OOIMB>,"'Station owned and maintained by Ocean Observatories Initiative, Buoy'@en",skos:Concept,OOI-MB,OOIMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSAWI>,'AWI OceanSITES program'@en,skos:Concept,OS-AWI,OSAWI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSBAS>,'NA'@en,skos:Concept,OS-BAS,OSBAS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSBCCR>,'NA'@en,skos:Concept,OS-BCCR,OSBCCR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSBIOS>,'NA'@en,skos:Concept,OS-BIOS,OSBIOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSCNR>,'NA'@en,skos:Concept,OS-CNR,OSCNR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSCNRISMAR>,"'Moorings operated by Istituto di Scienze MARine (ISMAR), Consiglio Nazionale delle Ricerche (CNR), Italy'@en",skos:Concept,OS-CNR-ISMAR,OSCNRISMAR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSCNRS>,'NA'@en,skos:Concept,OS-CNRS,OSCNRS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSCOM>,'NA'@en,skos:Concept,OS-CENTRE D'OCEANOLOGIE DE MARSEILLE,OSCOM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSCSIRO>,'NA'@en,skos:Concept,OS-CSIRO,OSCSIRO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSDFO>,'NA'@en,skos:Concept,OS-DFO,OSDFO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSDML>,'NA'@en,skos:Concept,OS-DML,OSDML
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSEUTHOR>,'NA'@en,skos:Concept,OS-EU-THOR,OSEUTHOR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSFSC>,'Program monitoring the Atlantic Inflow of the Shetland Branch. Faroe-Shetland Channel'@en,skos:Concept,OS-FSC,OSFSC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSGEOMAR>,'NA'@en,skos:Concept,OS-GEOMAR,OSGEOMAR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSHAV>,'NA'@en,skos:Concept,OS-HAV,OSHAV
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSHCMR>,'NA'@en,skos:Concept,OS-HELLENIC CENTRE FOR MARINE RESEARCH,OSHCMR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSICCMCanarias>,'NA'@en,skos:Concept,OS-ICCM - ACIISI - GOBIERNO DE CANARIAS,OSICCMCanarias
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIEO>,"'OceanSITES operated by IEO, Spain'@en",skos:Concept,OS-IEO,OSIEO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIFREMER>,'NA'@en,skos:Concept,OS-IFREMER,OSIFREMER
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIMARPE>,'NA'@en,skos:Concept,OS-IMARPE,OSIMARPE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIMR>,'NA'@en,skos:Concept,OS-INSTITUTE OF MARINE RESEARCH,OSIMR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIONTU>,'NA'@en,skos:Concept,OS-IO-NTU,OSIONTU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIOwarnemuende>,'NA'@en,skos:Concept,OS-IO-WARNEMUENDE,OSIOwarnemuende
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIRD>,'NA'@en,skos:Concept,OS-IRD,OSIRD
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSIceland>,'OceanSITES operated by Iceland'@en,skos:Concept,OS-ICELAND,OSIceland
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSJAMSTEC>,'NA'@en,skos:Concept,OS-JAMSTEC,OSJAMSTEC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSJMAJAMSTEC>,'Moorings Operated by JMA-JAMSTEC'@en,skos:Concept,OS-JMA/JAMSTEC,OSJMAJAMSTEC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSKIOST>,'NA'@en,skos:Concept,OS-KIOST,OSKIOST
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSKNMI>,"'Moorings operated by ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE (KNMI), the Netherlands'@en",skos:Concept,OS-KNMI,OSKNMI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSKORSPilot>,"'Korean Ocean Research Stations (KORS), coastal pilot sites operated jointly by Korea Hydrographic and Oceanographic Agency (KHOA)and Korea Institute of Ocean Science and Technology (KIOST), Republic of Korea'@en",skos:Concept,OS-KORS Pilot,OSKORSPilot
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSLDEO>,'NA'@en,skos:Concept,OS-LDEO,OSLDEO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSMARUM>,'NA'@en,skos:Concept,OS-MARUM,OSMARUM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSMBARI>,'NA'@en,skos:Concept,OS-MBARI,OSMBARI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSMBL>,"'Moorings operated by Marine Biological Lab, USA'@en",skos:Concept,OS-MBL,OSMBL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSMNR>,"'OceanSITES operated by Ministry of Natural Resources, China'@en",skos:Concept,OS-MNR,OSMNR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSMSS>,"'Shetland-branch monitoring in the Faroe-Shetland Channel, contributing to the Greenland-Scotland Ridge Transport Mooring Array within AtlantOS and the THOR, NACLIM and Blue-Action projects.'@en",skos:Concept,OS-MSS,OSMSS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNAPGlider>,"'Overturning in the Subpolar North Atlantic Program (OSNAP) is an international program designed to provide a continuous record of the full-water column, trans-basin fluxes of heat, mass and freshwater in the subpolar North Atlantic.'@en",skos:Concept,Overturning in the Subpolar North Atlantic Program,OSNAPGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNERSC>,'Long time series moorings by Nansen Environmental and Remote Sensing Center'@en,skos:Concept,OS-NERSC,OSNERSC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIO>,'NA'@en,skos:Concept,OS-NIO,OSNIO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIOT>,'NA'@en,skos:Concept,OS-NIOT,OSNIOT
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIOZ>,'NA'@en,skos:Concept,OS-ROYAL NETHERLANDS INSTITUTE FOR SEA RESEARCH (NIOZ),OSNIOZ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNIWA>,'NA'@en,skos:Concept,OS-NIWA,OSNIWA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOAA>,'Moorings operated generically by NOAA'@en,skos:Concept,OS-NOAA,OSNOAA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOAA-AOML>,'NA'@en,skos:Concept,OS-NOAA/AOML,OSNOAA-AOML
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOAA-PMEL>,'NA'@en,skos:Concept,OS-NOAA/PMEL,OSNOAA-PMEL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOAANDBC>,'Moorings operated by NDBC'@en,skos:Concept,OS-NOAA/NDBC,OSNOAANDBC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSNOC>,'NA'@en,skos:Concept,OS-NOC,OSNOC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSOCEANOR>,"'Moorings operated by OCEANOR, Greece'@en",skos:Concept,OS-OCEANOR,OSOCEANOR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSOGS>,'NA'@en,skos:Concept,OS-OGS,OSOGS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSSAM>,'Southwest Atlantic MOC'@en,skos:Concept,OS-SAM,OSSAM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSSAMSDML>,"'Moorings operated by SAMS, UK'@en",skos:Concept,OS-SAMS_DML,OSSAMSDML
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSSIO>,'NA'@en,skos:Concept,OS-SIO,OSSIO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSSNU>,'NA'@en,skos:Concept,OS-SNU,OSSNU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSSOA>,'NA'@en,skos:Concept,OS-SOA,OSSOA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSUDB>,"'Ice buoys operated by Oregon State University, USA, contributing to the International Arctic Buoy Progrmme.'@en",skos:Concept,OSU DB,OSUDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSUNhawaiiManoa>,'NA'@en,skos:Concept,OS-UN_HAWAII_MANOA,OSUNhawaiiManoa
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSUNmiami>,'NA'@en,skos:Concept,OS-UN_MIAMI,OSUNmiami
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSUSP>,'NA'@en,skos:Concept,OS-USP,OSUSP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSUTokyo>,'Cabled sites operated by Tokyo University'@en,skos:Concept,OS-UTokyo,OSUTokyo
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSUW>,'NA'@en,skos:Concept,OS-UW,OSUW
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSWHOI>,'NA'@en,skos:Concept,OS-WHOI,OSWHOI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OSWHOI-SIO-OSU>,'NA'@en,skos:Concept,OS-WHOI/SIO/OSU,OSWHOI-SIO-OSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OShamburgUniversity>,'NA'@en,skos:Concept,OS-HAMBURG UNIVERSITY,OShamburgUniversity
+<http://codes.wmo.int/wmdr/ProgramAffiliation/OVENSGlider>,'OVENS glider program operated by UiB'@en,skos:Concept,NorGliders - OVENS,OVENSGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/PHOTONS>,"'PHOTONS, federated to AERONET'@en",skos:Concept,PHOTONS,PHOTONS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/PLOCANGlider>,'Repeated Gliders deployments across the Macaronesian region'@en,skos:Concept,Macaronesian Marine and Maritime Observation Network,PLOCANGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/PMELMB>,'PMEL Moored Buoys'@en,skos:Concept,PMEL MB,PMELMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/PolarGlider>,'Polar Gliders in a glider program within the University of Gothenburg. It is led by Sebastiaan Swart and focuses on understanding the importance and variability of the upper ocean.'@en,skos:Concept,Polar Glider,PolarGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/PortugalMB>,'Portugal - Instituto Hidrografico (IH)'@en,skos:Concept,PORTUGAL-MB,PortugalMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ProVoLoGlider>,'ProVoLo glider program operated by UiB'@en,skos:Concept,NorGliders - ProVoLo,ProVoLoGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RAEONGlider>,'Canadian contribution of the great lake observation using gliders'@en,skos:Concept,Real-Time Aquatic Ecosystem Observation Network Glider program,RAEONGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBCN>,'Regional Basic Climatological Networks'@en,skos:Concept,RBCN,RBCN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBON>,'Regional Basic Observing Network'@en,skos:Concept,RBON,RBON
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBONpilot>,'Regional Basic Observing Network (pilot project)'@en,skos:Concept,RBON-Pilot Project,RBONpilot
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBSN>,'GOS Regional Basic Synoptic Networks'@en,skos:Concept,RBSN,RBSN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBSNp>,'Regional Basic Synoptic Network upper-air station (PILOT)'@en,skos:Concept,RBSN(P),RBSNp
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBSNs>,'Regional Basic Synoptic Network surface station (SYNOP)'@en,skos:Concept,RBSN(S),RBSNs
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBSNsp>,'NA'@en,skos:Concept,RBSN(SP),RBSNsp
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBSNst>,'Regional Basic Synoptic Network surface and upper-air station (SYNOP/TEMP)'@en,skos:Concept,RBSN(ST),RBSNst
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RBSNt>,'Regional Basic Synoptic Network upper-air station (TEMP)'@en,skos:Concept,RBSN(T),RBSNt
+<http://codes.wmo.int/wmdr/ProgramAffiliation/REFINE>,'Robots Explore plankton-driven Fluxes in the marine twIlight zoNE - Argo'@en,skos:Concept,REFINE,REFINE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RUCOOLColResGlider>,"'This project integrated a deep rated version of the Ion Sensitive Field Effect Transistor (ISFET)-based pH sensor, the Deep ISFET pH, into a Slocum Webb G2 glider.'@en",skos:Concept,RUCOOL - Collaborative Reasearch,RUCOOLColResGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/RUCOOLGlider>,'The Rutgers University Center for Ocean Observing Leadership (RUCOOL) Glider program.'@en,skos:Concept,Rutgers Center for Ocean Observing Leadership Glider Program,RUCOOLGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SASDB>,'Voluntary buoys deployed by Sailing for Science'@en,skos:Concept,SAS-DB,SASDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SAWSDB>,'South African Weather Service Drifting Buoys programme'@en,skos:Concept,SAWS DB,SAWSDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SBUMB>,'Owned and maintained by Stony Brook University Buoy'@en,skos:Concept,SBU-MB,SBUMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SCALE>,'Glider program operated by CSIR in the Antarctic/Southern Atlantic.'@en,skos:Concept,SCALE glider program,SCALE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SHADOZ>,'Southern Hemisphere ADditional Ozonesondes'@en,skos:Concept,SHADOZ,SHADOZ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SIODB>,'Scripps Institution of Oceanography Drifter Buoy'@en,skos:Concept,SIO-DB,SIODB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SIOSGlider>,'SIOS glider program operated by UiB'@en,skos:Concept,NorGliders - SIOS,SIOSGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SKIOGlider>,"'SKIO Glider Program is part of SECOORA\'s observatories to observe, understand, and increase awareness of our coastal ocean; promoting knowledge, economic and environmental health through strong regional partnerships.'@en",skos:Concept,SKIO Glider Program,SKIOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOCIBDB>,'Balearic Islands Coastal Observing and Forecasting System contribution to the Global Drifter Array'@en,skos:Concept,SOCIB-DB,SOCIBDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOCIBGDP>,"'Barometer upgraded drifting buoys managed by the Balearic Islands Coastal Observing and Forecasting System (SOCIB), Spain, supported by GDP/NOAA'@en",skos:Concept,SOCIB-GDP,SOCIBGDP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOCIBGlider>,"'SOCIB operational program is, covering the Eivissa channel (6 transects) and Mallorca channel (1 transect) from APR to MAY 2019, sampling physical and biogeochemical parameters (CTD, fluorescence and turbidity, and oxygen).'@en",skos:Concept,Balearic Islands Observatory,SOCIBGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOP>,'Ship Of Opportunity Programme'@en,skos:Concept,SOOP,SOOP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPAOMLTSG>,'AOML managed TSG systems'@en,skos:Concept,SOOP-AOML-TSG,SOOPAOMLTSG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPBOM>,'NA'@en,skos:Concept,SOOP-BOM,SOOPBOM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPFPVRECOPESCA>,'A new example of participative approach to collect in-situ environmental and fisheries data using fisheries vessels of opportunity'@en,skos:Concept,SOOP-FVP-RECOPESCA,SOOPFPVRECOPESCA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPFVPBDC>,"'SOOP-FVP-Beering Data Collective. Collaborative data collection as a service, using S/T probes on fishing equipment'@en",skos:Concept,SOOP-FVP-BDC,SOOPFVPBDC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPFVPCatchingData>,"'Collection of T/S data from fishing equipment, developed by the Fishing Vessel Industry in Netherland'@en",skos:Concept,SOOP-FVP-Catching Data,SOOPFVPCatchingData
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPFVPODN>,'Fishing Vessel observation program led by Ocean Data Network'@en,skos:Concept,SOOP-FVP-ODN,SOOPFVPODN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPFVPVistools>,'ILVO fishing Vessel Observation Activities'@en,skos:Concept,SOOP-FVP-Vistools,SOOPFVPVistools
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPIFREMERTSG>,'T/S underway data collection program from Ifremer operated TSG and similar instruments'@en,skos:Concept,SOOP-IFREMER-TSG,SOOPIFREMERTSG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPIRDTSG>,'T/S underway data collection program from IRD operated TSG and similar instruments'@en,skos:Concept,SOOP-IRD-TSG,SOOPIRDTSG
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOOPIRDXBT>,'XBT program from IRD institute'@en,skos:Concept,SOOP-IRD-XBT,SOOPIRDXBT
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SOSCEX>,'The Southern Ocean Seasonal Cycle Experiment glider program.'@en,skos:Concept,SOSCEx glider program,SOSCEX
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ScrippsGlider>,'The Scripps Glider Program is part of the Southern California Coastal Ocean Observing System (SCCOOS) is one of eleven regions that contributes to the national U.S. Integrated Ocean Observing System (IOOS).'@en,skos:Concept,Scripps Glider Program,ScrippsGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/SpainIEOMB>,'Moored Buoys Managed by Spanish Institute of Oceanography of the Ministry of Science and Technology'@en,skos:Concept,SPAIN-IEO-MB,SpainIEOMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/StonyBrookGlider>,'SoMas Glider Program is part of the CARICOOS program'@en,skos:Concept,Stony Brook Glider Program,StonyBrookGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/TAMDAR>,"'Tropospheric Aircraft Meteorological Data Relay (Commercial/Panasonic). Not currently open to GTS, contract with Panasonic and airline and/or NMHS'@en",skos:Concept,TAMDAR,TAMDAR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/TAMUMB>,"'Developed and maintained by Texas A&M University, Funding provided by the Texas General Land Office\'s Oil Spill Prevention & Response Program'@en",skos:Concept,TAMU-MB,TAMUMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/TCCON>,'Total Carbon Column Observing Network'@en,skos:Concept,TCCON,TCCON
+<http://codes.wmo.int/wmdr/ProgramAffiliation/TGGM>,'Tide gauges in Gambia'@en,skos:Concept,TG GM,TGGM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/TTUGlider>,'Estonian Glider program operated by Tallin University of Technology.'@en,skos:Concept,Tallin University Glider Program,TTUGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UBODB>,'Drifters funded by UBO (University of Western Brittany) and CNES.'@en,skos:Concept,UBO DB,UBODB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UCSDscripps>,'SIO/CICESE Sea of Cortez Drifters'@en,skos:Concept,UCSD-SCRIPPS,UCSDscripps
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UConnecticutglider>,'Glider observation program led by university of Connecticut'@en,skos:Concept,University of Connectuct Glider Program,UConnecticutglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UEAGlider>,'Glider program operated by UEA. UEA operated all over the world in area of interest for their science.'@en,skos:Concept,University of East Anglia Glider Program,UEAGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UKMODB>,'UK MetOffice Iridium Drifters'@en,skos:Concept,UK-MO DB,UKMODB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UKMOLV>,'UK Metoffice Light Vessel'@en,skos:Concept,UK-MO LV,UKMOLV
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UKMOMB>,'United Kingdom Met Office Moored Buoys'@en,skos:Concept,UK-MO MB,UKMOMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UKMOfixed>,'UK Metoffice Fixed station'@en,skos:Concept,UK-MO FIXED,UKMOfixed
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UKjerseyMB>,'NA'@en,skos:Concept,UK-JERSEY MB,UKjerseyMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UMasGlider>,'Program created for the deployment operated by the University of Massachusetts Dartmouth not registered under any other observation program.'@en,skos:Concept,University of Massachussetts Dartmouth Glider Program,UMasGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UNHMB>,"'Owned and maintained by the University of New Hampshire, Moored Buoy'@en",skos:Concept,UNH-MB,UNHMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/USACE>,"'Owned and maintained by U.S. Army Corps of Engineers, data provided by Scripps Institution of Oceanography, WaveRider Buoy'@en",skos:Concept,USACE,USACE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/USAMLRPGlider>,'U.S. Antarctic Marine Living Resources glider program'@en,skos:Concept,U.S. Antarctic Marine Living Resources Program,USAMLRPGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/USCGDB>,'USCG Drift Buoys'@en,skos:Concept,US-CG DB,USCGDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/USEPAGLGlider>,'US EPA Great Lakes National Glider Program.'@en,skos:Concept,US EPA Great Lakes National Program,USEPAGLGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/USFGlider>,'USF Glider Program is part of SECOORA monitoring program'@en,skos:Concept,University of South Florida Glider Program,USFGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/USMGlider>,'USM Glider Program is part of the Gulf of Mexico Coastal Ocean Observing System (GCOOS) is the Gulf of Mexico regional component of the U.S. Integrated Ocean Observing System (IOOS).'@en,skos:Concept,USM Glider Program,USMGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UWAPLglider>,"'Glider program supported by Integrative Observational Platforms Group, Applied Physics Laboratory, University of Washington'@en",skos:Concept,University of Washington Applied Physics Laboratory Glider Program,UWAPLglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UWURIglider>,'Glider program lead by UW in cooperation with University of Rhode Island.'@en,skos:Concept,UW-URI Glider Program,UWURIglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/Udelawareglider>,'University of Delaware glider program with the operational support of the Rutgers university collab Ocean Observation Lab.'@en,skos:Concept,University of Delaware Glider Program,Udelawareglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/Ugotebordglider>,'University of Gšteborg Glider Program'@en,skos:Concept,University of Gšteborg Glider Program,Ugotebordglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/Umaineglider>,'Glider program run by University of Main'@en,skos:Concept,University of Main Glider Program,Umaineglider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/UnivLasPalmasGlider>,'Glider program of SITMA-ULPGC'@en,skos:Concept,Univ las Palmas glider program,UnivLasPalmasGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VIMGlider>,'Glider deployment operated by VIMS with observation program.'@en,skos:Concept,Virginia Institute of Marine Science Glider Program,VIMGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOS3P>,'NA'@en,skos:Concept,VOS-3P,VOS3P
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSAR>,'Argentina\'s contribution to the Voluntary Observing Ships (VOS) program'@en,skos:Concept,VOS-AR,VOSAR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSAU>,'NA'@en,skos:Concept,VOS-AU,VOSAU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSCA>,'NA'@en,skos:Concept,VOS-CA,VOSCA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSCL>,'NA'@en,skos:Concept,VOS-CL,VOSCL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSCO>,'Colombian contribution to the Voluntary Observing Ships (VOS) program'@en,skos:Concept,VOS-CO,VOSCO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSDE>,'NA'@en,skos:Concept,VOS-DE,VOSDE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSDK>,'Danish VOS program'@en,skos:Concept,VOS-DK,VOSDK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSES>,'NA'@en,skos:Concept,VOS-ES,VOSES
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSEU>,'NA'@en,skos:Concept,VOS-EU,VOSEU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSFR>,'NA'@en,skos:Concept,VOS-FR,VOSFR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSGB>,'NA'@en,skos:Concept,VOS-GB,VOSGB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSGR>,'NA'@en,skos:Concept,VOS-GR,VOSGR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSHK>,'NA'@en,skos:Concept,VOS-HK,VOSHK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIE>,'NA'@en,skos:Concept,VOS-IE,VOSIE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIL>,'NA'@en,skos:Concept,VOS-IL,VOSIL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIN>,'NA'@en,skos:Concept,VOS-IN,VOSIN
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIR>,'Islamic Republic of Iran contribution to the Voluntary Observing Ships (VOS) program'@en,skos:Concept,VOS-IR,VOSIR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSIS>,'NA'@en,skos:Concept,VOS-IS,VOSIS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSJP>,'NA'@en,skos:Concept,VOS-JP,VOSJP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSKR>,'NA'@en,skos:Concept,VOS-KR,VOSKR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSMAERSK>,'Program for Voluntary Observing Ships (VOS) data gathered by Maersk-owned systems.'@en,skos:Concept,VOS-MAERSK,VOSMAERSK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSMY>,'NA'@en,skos:Concept,VOS-MY,VOSMY
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSNL>,'NA'@en,skos:Concept,VOS-NL,VOSNL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSNO>,'NA'@en,skos:Concept,VOS-NO,VOSNO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSNZ>,'NA'@en,skos:Concept,VOS-NZ,VOSNZ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSPL>,'Polish VOS program'@en,skos:Concept,VOS-PL,VOSPL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSRU>,'NA'@en,skos:Concept,VOS-RU,VOSRU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSSE>,'NA'@en,skos:Concept,VOS-SE,VOSSE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSSHIPMASK>,'Program created for platforms transmitting under \'SHIP\' GTS identifier'@en,skos:Concept,VOS-SHIP-MASK,VOSSHIPMASK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSSRoCS>,'Science Research on Commercial Ships - Voluntary Observing Ships (VOS)'@en,skos:Concept,VOS-SRoCS,VOSSRoCS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSTH>,'Thai VOS program'@en,skos:Concept,VOS-TH,VOSTH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSUS>,'NA'@en,skos:Concept,VOS-US,VOSUS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOSZA>,'NA'@en,skos:Concept,VOS-ZA,VOSZA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/VOTOGlider>,'Ocean Knowledge at Voice of the Ocean glider program'@en,skos:Concept,VOTO: Ocean Knowledge glider program,VOTOGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/WHOIGlider>,'Woods Hole Spray glider surveys of the Gulf Stream and other regions.'@en,skos:Concept,Woods Hole Spray glider Program,WHOIGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/WHYCOS>,'World Hydrological Cycle Observing System'@en,skos:Concept,WHYCOS,WHYCOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/WRO>,'GOS Weather Radar'@en,skos:Concept,WRO,WRO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/WhaleGlider>,'Whale Glider program in the Chukchi Sea.'@en,skos:Concept,Whale Glider Program,WhaleGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoAWI>,'ARGO AWI'@en,skos:Concept,ARGO AWI,argoAWI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoArgentina>,'ARGO ARGENTINA'@en,skos:Concept,ARGO ARGENTINA,argoArgentina
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoAustralia>,'ARGO AUSTRALIA'@en,skos:Concept,ARGO AUSTRALIA,argoAustralia
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoAustraliaEq>,'ARGO AUSTRALIA EQ.'@en,skos:Concept,ARGO AUSTRALIA EQ.,argoAustraliaEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoBGCAOML>,'NOAA/AOML Argo BGC float program'@en,skos:Concept,"Argo BGC, AOML",argoBGCAOML
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoBSH>,'ARGO BSH'@en,skos:Concept,ARGO BSH,argoBSH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoBrazil>,'ARGO BRAZIL'@en,skos:Concept,ARGO BRAZIL,argoBrazil
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoBrazilNavy>,'ARGO BRAZIL NAVY'@en,skos:Concept,ARGO BRAZIL NAVY,argoBrazilNavy
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoCanada>,'ARGO CANADA'@en,skos:Concept,ARGO CANADA,argoCanada
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoCanadaEq>,'Canadian Argo equivalent program'@en,skos:Concept,Argo CANADA eq.,argoCanadaEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoChile>,'ARGO CHILE'@en,skos:Concept,ARGO CHILE,argoChile
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoChina>,'ARGO CHINA'@en,skos:Concept,ARGO CHINA,argoChina
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoChinaSOA>,'ARGO CHINA SOA'@en,skos:Concept,ARGO CHINA SOA,argoChinaSOA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoCostaRica>,'ARGO COSTA RICA'@en,skos:Concept,ARGO COSTA RICA,argoCostaRica
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoDeepChina>,"'Deep Argo program led by QNLM (Qingdao pilot National Laboratory for Marine science and technology), China.'@en",skos:Concept,"Argo Deep, CHINA",argoDeepChina
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoDenmark>,'ARGO DENMARK'@en,skos:Concept,ARGO DENMARK,argoDenmark
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEcuador>,'ARGO ECUADOR'@en,skos:Concept,ARGO ECUADOR,argoEcuador
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqAOML>,'ARGO EQ. AOML'@en,skos:Concept,ARGO EQ. AOML,argoEqAOML
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqAWI>,'ARGO EQ. AWI'@en,skos:Concept,ARGO EQ. AWI,argoEqAWI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqBSH>,'ARGO EQ. BSH'@en,skos:Concept,ARGO EQ. BSH,argoEqBSH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqChina>,'ARGO EQ. CHINA'@en,skos:Concept,ARGO EQ. CHINA,argoEqChina
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqESPOMZ>,'ARGO EQ. ESP-OMZ'@en,skos:Concept,ARGO EQ. ESP-OMZ,argoEqESPOMZ
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqFERHRI>,'ARGO EQ. FERHRI'@en,skos:Concept,ARGO EQ. FERHRI,argoEqFERHRI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqFSU>,'ARGO EQ. FSU'@en,skos:Concept,ARGO EQ. FSU,argoEqFSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqHNFRI>,'ARGO EQ. HNFRI'@en,skos:Concept,ARGO EQ. HNFRI,argoEqHNFRI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqIFM>,'ARGO EQ. IFM'@en,skos:Concept,ARGO EQ. IFM,argoEqIFM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqIFM2>,'ARGO EQ. IFM2'@en,skos:Concept,ARGO EQ. IFM2,argoEqIFM2
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqIreland>,'ARGO EQ. IRELAND'@en,skos:Concept,ARGO EQ. IRELAND,argoEqIreland
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqJMA>,'ARGO EQ. JMA'@en,skos:Concept,ARGO EQ. JMA,argoEqJMA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqJamstec>,'ARGO EQ. JAMSTEC'@en,skos:Concept,ARGO EQ. JAMSTEC,argoEqJamstec
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNDBC>,'ARGO EQ. NDBC'@en,skos:Concept,ARGO EQ. NDBC,argoEqNDBC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNIPR>,'ARGO EQ. NIPR'@en,skos:Concept,ARGO EQ. NIPR,argoEqNIPR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNRIFS>,'ARGO EQ. NRIFS'@en,skos:Concept,ARGO EQ. NRIFS,argoEqNRIFS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqNavoceano>,'ARGO EQ. NAVOCEANO'@en,skos:Concept,ARGO EQ. NAVOCEANO,argoEqNavoceano
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqOIST>,'ARGO EQ. OIST'@en,skos:Concept,ARGO EQ. OIST,argoEqOIST
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqORI>,'ARGO EQ. ORI'@en,skos:Concept,ARGO EQ. ORI,argoEqORI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqPMEL>,'ARGO EQ. PMEL'@en,skos:Concept,ARGO EQ. PMEL,argoEqPMEL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqPomme>,'ARGO EQ. POMME'@en,skos:Concept,ARGO EQ. POMME,argoEqPomme
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqSage>,'ARGO EQ. SAGE'@en,skos:Concept,ARGO EQ. SAGE,argoEqSage
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqTNFRI>,'ARGO EQ. TNFRI'@en,skos:Concept,ARGO EQ. TNFRI,argoEqTNFRI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqTSK>,'ARGO EQ. TSK'@en,skos:Concept,ARGO EQ. TSK,argoEqTSK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqTU>,'ARGO EQ. TU'@en,skos:Concept,ARGO EQ. TU,argoEqTU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqUH>,'ARGO EQ. UH'@en,skos:Concept,ARGO EQ. UH,argoEqUH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqUHH>,'ARGO EQ. UHH'@en,skos:Concept,ARGO EQ. UHH,argoEqUHH
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqUMOSU>,'ARGO EQ. UM-OSU'@en,skos:Concept,ARGO EQ. UM-OSU,argoEqUMOSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqVocals>,'ARGO EQ. VOCALS'@en,skos:Concept,ARGO EQ. VOCALS,argoEqVocals
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoEqWHOI>,'ARGO EQ. WHOI'@en,skos:Concept,ARGO EQ. WHOI,argoEqWHOI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoFinland>,'ARGO FINLAND'@en,skos:Concept,ARGO FINLAND,argoFinland
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGOBGCSIO>,'SCRIPPS institute Argo BGC program'@en,skos:Concept,"Argo GO-BGC, SIO",argoGOBGCSIO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGOBGCUW>,'Argo BGC program of UW'@en,skos:Concept,"Argo GO-BGC, UW",argoGOBGCUW
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGOBGCWHOI>,'Woods Hole Oceanographic Institution Argo BGC program'@en,skos:Concept,"Argo GO-BGC, WHOI",argoGOBGCWHOI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGOMBoemEq>,'Gulf of Mexico US Argo research program'@en,skos:Concept,Argo GOM-BOEM eq.,argoGOMBoemEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGabon>,'ARGO GABON'@en,skos:Concept,ARGO GABON,argoGabon
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGermany>,'ARGO GERMANY'@en,skos:Concept,ARGO GERMANY,argoGermany
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGermany2025>,'German Argo 2025'@en,skos:Concept,Argo GERMANY 2025,argoGermany2025
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoGreece>,'ARGO GREECE'@en,skos:Concept,ARGO GREECE,argoGreece
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoHUEq>,'Hokkaido University contribution to Argo'@en,skos:Concept,Argo eq. HU,argoHUEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoIFMGeomar>,'ARGO IFM-GEOMAR'@en,skos:Concept,ARGO IFM-GEOMAR,argoIFMGeomar
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoIndia>,'ARGO INDIA'@en,skos:Concept,ARGO INDIA,argoIndia
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoIndonesia>,'Indonesian Argo program'@en,skos:Concept,Argo INDONESIA,argoIndonesia
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoIreland>,'ARGO IRELAND'@en,skos:Concept,ARGO IRELAND,argoIreland
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoItaly>,'ARGO ITALY'@en,skos:Concept,ARGO ITALY,argoItaly
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoJMA>,'ARGO JMA'@en,skos:Concept,ARGO JMA,argoJMA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoJamstec>,'ARGO JAMSTEC'@en,skos:Concept,ARGO JAMSTEC,argoJamstec
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoKenya>,'ARGO KENYA'@en,skos:Concept,ARGO KENYA,argoKenya
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoKiost>,'ARGO KIOST'@en,skos:Concept,ARGO KIOST,argoKiost
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoLebanon>,'ARGO LEBANON'@en,skos:Concept,ARGO LEBANON,argoLebanon
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoMIMRKMA>,'ARGO NIMR/KMA'@en,skos:Concept,ARGO NIMR/KMA,argoMIMRKMA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoMauritius>,'ARGO MAURITIUS'@en,skos:Concept,ARGO MAURITIUS,argoMauritius
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoMexCoUS>,'ARGO MEX-CO-US'@en,skos:Concept,ARGO MEX-CO-US,argoMexCoUS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoMexico>,'ARGO MEXICO'@en,skos:Concept,ARGO MEXICO,argoMexico
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoNetherlands>,'ARGO NETHERLANDS'@en,skos:Concept,ARGO NETHERLANDS,argoNetherlands
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoNewZealand>,'ARGO NEW ZEALAND'@en,skos:Concept,ARGO NEW ZEALAND,argoNewZealand
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoNorway>,'ARGO NORWAY'@en,skos:Concept,ARGO NORWAY,argoNorway
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoPMEL>,'ARGO PMEL'@en,skos:Concept,ARGO PMEL,argoPMEL
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoPoland>,'ARGO POLAND'@en,skos:Concept,ARGO POLAND,argoPoland
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoPortugal>,'Argo float deployment and scientific program in Portugal'@en,skos:Concept,Argo Portugal,argoPortugal
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoRussia>,'ARGO RUSSIA'@en,skos:Concept,ARGO RUSSIA,argoRussia
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIO>,'ARGO SIO'@en,skos:Concept,ARGO SIO,argoSIO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIOEqASIRI>,'ARGO SIO EQ (ASIRI)'@en,skos:Concept,ARGO SIO EQ (ASIRI),argoSIOEqASIRI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIOEqOKMC>,'ARGO SIO EQ. (OKMC)'@en,skos:Concept,ARGO SIO EQ. (OKMC),argoSIOEqOKMC
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIOEqSBE61NOPP>,'NOPP Deep Argo pilot'@en,skos:Concept,Argo SIO eq. (SBE61NOPP),argoSIOEqSBE61NOPP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSIOeqBGCSOLONOPP>,"'Side BioGeoChemical Argo program, National Oceanographic Partnership Program'@en",skos:Concept,Argo SIO .eq. (BGCSOLONOPP),argoSIOeqBGCSOLONOPP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSaudiArabia>,'ARGO SAUDI ARABIA'@en,skos:Concept,ARGO SAUDI ARABIA,argoSaudiArabia
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSouthAfrica>,'ARGO SOUTH AFRICA'@en,skos:Concept,ARGO SOUTH AFRICA,argoSouthAfrica
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSpain>,'ARGO SPAIN'@en,skos:Concept,ARGO SPAIN,argoSpain
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSriLanka>,'ARGO SRI LANKA'@en,skos:Concept,ARGO SRI LANKA,argoSriLanka
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoSweden>,'Swedish Argo program'@en,skos:Concept,Argo Sweden,argoSweden
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoTWREng>,'ARGO TWR ENGINEERING'@en,skos:Concept,ARGO TWR ENGINEERING,argoTWREng
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUK>,'ARGO UK'@en,skos:Concept,ARGO UK,argoUK
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUKBIO>,'ARGO UK BIO'@en,skos:Concept,ARGO UK BIO,argoUKBIO
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUKEq>,'ARGO UK EQ.'@en,skos:Concept,ARGO UK EQ.,argoUKEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUW>,'ARGO UW'@en,skos:Concept,ARGO UW,argoUW
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWAplEq>,'ARGO UW-APL EQ.'@en,skos:Concept,ARGO UW-APL EQ.,argoUWAplEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWEq>,'ARGO UW EQ.'@en,skos:Concept,ARGO UW EQ.,argoUWEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWMbariEq>,'ARGO UW-MBARI EQ.'@en,skos:Concept,ARGO UW-MBARI EQ.,argoUWMbariEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWSoccomEq>,'ARGO UW-SOCCOM EQ.'@en,skos:Concept,ARGO UW-SOCCOM EQ.,argoUWSoccomEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWSpursEq>,'ARGO UW-SPURS EQ.'@en,skos:Concept,ARGO UW-SPURS EQ.,argoUWSpursEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoUWUAEq>,'ARGO UW-UA EQ.'@en,skos:Concept,ARGO UW-UA EQ.,argoUWUAEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoWHOI>,'ARGO WHOI'@en,skos:Concept,ARGO WHOI,argoWHOI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoWHOIEqIR>,'ARGO WHOI EQ. IR'@en,skos:Concept,ARGO WHOI EQ. IR,argoWHOIEqIR
+<http://codes.wmo.int/wmdr/ProgramAffiliation/argoWHOIMRVEq>,'ARGO WHOI-MRV EQ.'@en,skos:Concept,ARGO WHOI-MRV EQ.,argoWHOIMRVEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/bioargoUMaine>,'BGC Argo contribution from University of Maine'@en,skos:Concept,BioArgo UMaine,bioargoUMaine
+<http://codes.wmo.int/wmdr/ProgramAffiliation/brazilPNBOIAINPE>,'Programa Nacional de Boias (PNBOIA) is the brazilian contribution to the Global Ocean Observation System (GOOS). Instituto Nacional de Pesquisas Espacias (INPE)'@en,skos:Concept,BRAZIL PNBOIA-INPE,brazilPNBOIAINPE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/ceilometers>,'Elastic lidar (ceilometer) networks'@en,skos:Concept,Ceilometers,ceilometers
+<http://codes.wmo.int/wmdr/ProgramAffiliation/centennialObservingstations>,"'Long-term meteorological observations are unique sources of past information about atmospheric parameters, thus are references for climate variability and change assessments. To highlight this importance, WMO has a mechanism to recognize centennial observing stations. By so doing, the Organization promotes sustainable observational standards and best practices that facilitate the generation of high-quality time series data.'@en",skos:Concept,Centennial Observing Stations,centennialObservingstations
+<http://codes.wmo.int/wmdr/ProgramAffiliation/colombiaTSU>,'Colombia Tsunameter buoy'@en,skos:Concept,COLOMBIA-TSU,colombiaTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/copernicusHRSSTFRM>,'COPERNICUS High Resolution SST Framework'@en,skos:Concept,COPERNICUS-HRSST-FRM,copernicusHRSSTFRM
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolis>,'CORIOLIS'@en,skos:Concept,CORIOLIS,coriolis
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisBioargo>,'NA'@en,skos:Concept,CORIOLIS-BIOARGO,coriolisBioargo
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisCanoa>,'NA'@en,skos:Concept,CORIOLIS-CANOA,coriolisCanoa
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisCongas>,'NA'@en,skos:Concept,CORIOLIS-CONGAS,coriolisCongas
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisDrake>,'ARGO South West Atlantic'@en,skos:Concept,CORIOLIS-DRAKE,coriolisDrake
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisEGEE>,'NA'@en,skos:Concept,CORIOLIS-EGEE,coriolisEGEE
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisEqypt>,'NA'@en,skos:Concept,CORIOLIS-EGYPT,coriolisEqypt
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFNOBJCOMMOPS>,"'CORIOLIS project under JCOMMOPS initiative, within a larger cooperation between the Fundacio Navegacio Oceanica Barcelona (FNOB)'@en",skos:Concept,CORIOLIS-FNOB-JCOMMOPS,coriolisFNOBJCOMMOPS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFlops>,'CORIOLIS project for FLOtteurs du Pacifique Sud-es'@en,skos:Concept,CORIOLIS-FLOPS,coriolisFlops
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFlostral>,'NA'@en,skos:Concept,CORIOLIS-FLOSTRAL,coriolisFlostral
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisFrontalis>,'NA'@en,skos:Concept,CORIOLIS-FRONTALIS,coriolisFrontalis
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisGoodHope>,'NA'@en,skos:Concept,CORIOLIS-GOOD HOPE,coriolisGoodHope
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisOvide>,'NA'@en,skos:Concept,CORIOLIS-OVIDE,coriolisOvide
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisPirata>,'NA'@en,skos:Concept,CORIOLIS-PIRATA,coriolisPirata
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisPrevimer>,'NA'@en,skos:Concept,CORIOLIS-PREVIMER,coriolisPrevimer
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisProsat>,'NA'@en,skos:Concept,CORIOLIS-PROSAT,coriolisProsat
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisRemocean>,'NA'@en,skos:Concept,CORIOLIS-REMOCEAN,coriolisRemocean
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisRemoceanEq>,'NA'@en,skos:Concept,CORIOLIS-REMOCEAN EQ.,coriolisRemoceanEq
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisSpice>,'NA'@en,skos:Concept,CORIOLIS-SPICE,coriolisSpice
+<http://codes.wmo.int/wmdr/ProgramAffiliation/coriolisTrack>,'NA'@en,skos:Concept,CORIOLIS-TRACK,coriolisTrack
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eAIMS>,'Euro-Argo Improvements for the GMES Marine Service'@en,skos:Concept,E-AIMS,eAIMS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eASAP>,'Eumetnet - Automated Shipboard Aerological Program'@en,skos:Concept,E-ASAP,eASAP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmar>,'EUMETNET Composite Observing System (EUCOS)Surface Marine Programme'@en,skos:Concept,E-SURFMAR,eSurfmar
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarGDP>,'Global Drifter Program drifters with E-SURFMAR barometer upgrades'@en,skos:Concept,E-SURFMAR GDP,eSurfmarGDP
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarIrishIMI>,'EUMETNET Composite Observing System (EUCOS)Surface Marine Programme and IRISH MARINE INSTITUTE (EUROPEAN CONTRIBUTION)'@en,skos:Concept,E-SURFMAR-IRISH IMI,eSurfmarIrishIMI
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarNOAA>,'NA'@en,skos:Concept,E-SURFMAR-NOAA,eSurfmarNOAA
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarUKFRMB>,'NA'@en,skos:Concept,E-SURFMAR-UK/FR MB,eSurfmarUKFRMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/eSurfmarUKMB>,'UKMO moored buoy programme'@en,skos:Concept,E-SURFMAR-UK MB,eSurfmarUKMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/euroSeaArgo>,'Argo part of the EuroSea project'@en,skos:Concept,EuroSea Argo,euroSeaArgo
+<http://codes.wmo.int/wmdr/ProgramAffiliation/germanAODnetwork>,'German Aerosol Optical Depth Network'@en,skos:Concept,German AOD network,germanAODnetwork
+<http://codes.wmo.int/wmdr/ProgramAffiliation/germanyMB>,'KIEL GEK BUOY'@en,skos:Concept,GERMANY MB,germanyMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/greeceMB>,'Moored buoys in the Greek Poseiden Network'@en,skos:Concept,GREECE MB,greeceMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/gyroscope>,"'GyroScope project is aimed to develop a European component of a global in situ observing system of ocean variability in the North Atlantic, as a contribution to the Argo project.'@en",skos:Concept,GYROSCOPE,gyroscope
+<http://codes.wmo.int/wmdr/ProgramAffiliation/indiaNIOT>,'Indian Ocean Observing Program'@en,skos:Concept,INDIA-NIOT,indiaNIOT
+<http://codes.wmo.int/wmdr/ProgramAffiliation/indiaNIOTSU>,'NIO Tsunameter buoys'@en,skos:Concept,INDIA NIO-TSU,indiaNIOTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/irishGlider>,'Irish deployment on sustained endurance line'@en,skos:Concept,Irish sustained glider deployment,irishGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/italyDB>,'Italian Drifting Buoys (EXPARGOS)'@en,skos:Concept,ITALY DB,italyDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/italyOGS>,'NA'@en,skos:Concept,ITALY-OGS,italyOGS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/lightningDetection>,'Surface-based lightning detection system'@en,skos:Concept,Lightning detection system,lightningDetection
+<http://codes.wmo.int/wmdr/ProgramAffiliation/marlinDB>,'NA'@en,skos:Concept,MARLIN-DB,marlinDB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/meridianGoodHope>,'NA'@en,skos:Concept,MERIDIAN GOODHOPE,meridianGoodHope
+<http://codes.wmo.int/wmdr/ProgramAffiliation/nonAffiliated>,'Observing elements that are not affiliated with WIGOS or any of the co-sponsored programs'@en,skos:Concept,Non-affiliated,nonAffiliated
+<http://codes.wmo.int/wmdr/ProgramAffiliation/pacIOOS>,'Pacific Islands Ocean Observing System Stations'@en,skos:Concept,PACIOOS,pacIOOS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/peruMB>,'Moored Buoys deployed by SENAMHI-Peru'@en,skos:Concept,Peru-MB,peruMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/petrobras>,'NA'@en,skos:Concept,PETROBRAS,petrobras
+<http://codes.wmo.int/wmdr/ProgramAffiliation/polarAOD>,'Polar Aerosol Optical Depth Measurement Network Project'@en,skos:Concept,PolarAOD,polarAOD
+<http://codes.wmo.int/wmdr/ProgramAffiliation/projetoAzul>,"'Project Azul is a cooperation between SHELL Brazil, the Laboratory of Computational Methods in Engineering (LAMCE) COPPE / UFRJ\'s and PROOCEANO, a Brazilian oceanographic technology company.'@en",skos:Concept,Projeto Azul,projetoAzul
+<http://codes.wmo.int/wmdr/ProgramAffiliation/saildrone>,'Autonomous Surface Vehicles deployed by NOAA as pilot'@en,skos:Concept,SAILDRONE,saildrone
+<http://codes.wmo.int/wmdr/ProgramAffiliation/scripps>,'NA'@en,skos:Concept,SCRIPPS,scripps
+<http://codes.wmo.int/wmdr/ProgramAffiliation/shell>,'SHELL Beaufort sea ice movement'@en,skos:Concept,SHELL,shell
+<http://codes.wmo.int/wmdr/ProgramAffiliation/shoaTSU>,'Chilean Navy Hydrographic And Oceanographic Service Tsunameter buoys'@en,skos:Concept,SHOA-TSU,shoaTSU
+<http://codes.wmo.int/wmdr/ProgramAffiliation/sibRad>,'SibRad'@en,skos:Concept,SibRad,sibRad
+<http://codes.wmo.int/wmdr/ProgramAffiliation/skynet>,'Aerosol-cloud-radiation interaction in the atmosphere project'@en,skos:Concept,SKYNET,skynet
+<http://codes.wmo.int/wmdr/ProgramAffiliation/soclim>,'Southern Ocean Climate: Field studies with innovative tools'@en,skos:Concept,SOCLIM,soclim
+<http://codes.wmo.int/wmdr/ProgramAffiliation/spainPDEMB>,'Puertos del EStado Spain Moored buoy'@en,skos:Concept,SPAIN-PDE MB,spainPDEMB
+<http://codes.wmo.int/wmdr/ProgramAffiliation/stratus>,'Woodshole IO OceanSITES'@en,skos:Concept,STRATUS,stratus
+<http://codes.wmo.int/wmdr/ProgramAffiliation/taoAtlas>,'TAO Array of ATLAS buoys in the Equatorial Ocean'@en,skos:Concept,TAO ATLAS,taoAtlas
+<http://codes.wmo.int/wmdr/ProgramAffiliation/taoPirata>,'Prediction and Research Moored Array in the Atlantic'@en,skos:Concept,TAO PIRATA,taoPirata
+<http://codes.wmo.int/wmdr/ProgramAffiliation/taoPirataUS>,'NA'@en,skos:Concept,TAO PIRATA US,taoPirataUS
+<http://codes.wmo.int/wmdr/ProgramAffiliation/taoRamaUSindia>,'Research Moored Array for African-Asian-Australian Monsoon Analysis and Prediction'@en,skos:Concept,TAO RAMA US-INDIA,taoRamaUSindia
+<http://codes.wmo.int/wmdr/ProgramAffiliation/taoTriton>,'Triton buoy network'@en,skos:Concept,TAO TRITON,taoTriton
+<http://codes.wmo.int/wmdr/ProgramAffiliation/texasUniversityGlider>,'Texas University Glider Program is part of GCOOS Regional Alliance. Gulf of Mexico regional component of the U.S. Integrated Ocean Observing System (IOOS).'@en,skos:Concept,Texas University Glider Program,texasUniversityGlider
+<http://codes.wmo.int/wmdr/ProgramAffiliation/unknown>,'The affiliation/programme is unknown.'@en,skos:Concept,unknown,unknown
+<http://codes.wmo.int/wmdr/ProgramAffiliation/windProfiler>,'Wind profilers for upper-air wind observations'@en,skos:Concept,Wind Profilers,windProfiler
