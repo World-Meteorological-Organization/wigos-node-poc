@@ -16,6 +16,8 @@ from publishing.tasks import request_publication
 
 from .models import Station, WIGOSNodeGroup
 
+from .tasks import publish_to_wis2
+
 logger = logging.getLogger(__name__)
 
 SCHEMA_PATH = Path(__file__).resolve().parent / "schemas" / "wmdr2-bundled.json"
@@ -138,12 +140,10 @@ def _save(station):
         raise StationError(f"The station could not be saved: {e}") from e
 
 
-def _publish(station):
-    """Publish the station once committed, so a rolled back batch update or dry
-    run publishes nothing. A failure to enqueue is logged and doesn't fail the
-    change: the station stays pending."""
-    # not a partial: logging a robust callback's failure needs its __qualname__
-    transaction.on_commit(lambda: request_publication(station.pk), robust=True)
+def _publish(wmdrv2):
+    """Publish the station to WIS2"""
+    publish_to_wis2.enqueue(wmdrv2=wmdrv2)
+
 
 
 def create_station(user, wmdrv2):
@@ -156,7 +156,7 @@ def create_station(user, wmdrv2):
     # after save so the station has a pk to attach object permissions to
     assign_perm("change_station", user, station)
     assign_issuer_groups(station, wsis)
-    _publish(station)
+    _publish(wmdrv2)
     return station
 
 
@@ -173,5 +173,5 @@ def update_station(user, station, wmdrv2):
     _save(station)  # owner is unchanged on update
     added = [wsi for wsi in new_wsis if issuer_of(wsi) not in {issuer_of(old) for old in old_wsis}]
     assign_issuer_groups(station, added)
-    _publish(station)
+    _publish(wmdrv2)
     return station

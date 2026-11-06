@@ -21,8 +21,19 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "django.contrib.postgres",
-    "guardian"
+    "guardian",
+    "django_tasks_db",
 ]
+
+# TASKS = {
+#     "default": {
+#         "BACKEND": "django_tasks_db.DatabaseBackend",
+#         "QUEUES": ["default"]
+#     }
+# }
+
+
+TASKS = {"default": {"BACKEND": "django.tasks.backends.immediate.ImmediateBackend"}}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
