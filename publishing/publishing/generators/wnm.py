@@ -2,8 +2,9 @@
 
 Spec: https://wmo-im.github.io/wis2-notification-message/standard/wis2-notification-message-STABLE.html
 
-Every version of a record is its own data granule: data_id carries the
-record's WIGOS identifier and its version (properties.updated, else
+Every version of a record is its own data granule, published under a new
+data_id (a random UUID) each time; metadata_id is the record's WIGOS
+identifier and datetime its version (properties.updated, else
 properties.created). The link, integrity and content describe the bytes the
 storage step stored, never a second rendering of the record."""
 
@@ -71,7 +72,10 @@ def create_wnm(wmdrv2, operation, href, centre_id, content=None, media_type=WMDR
     wigos_identifier, version = identity(wmdrv2)
     properties = {
         "pubtime": _rfc3339_utc(pubtime or datetime.now(timezone.utc)),
-        "data_id": f"wmdr2/{centre_id}/{wigos_identifier}/{version}",
+        # Only has to be unique for each publication, so a retry gets a new one.
+        # Derived alternative, the same for every send of the same version:
+        # "data_id": str(uuid.uuid5(uuid.NAMESPACE_URL, f"wmdr2/{centre_id}/{wigos_identifier}/{version}")),
+        "data_id": str(uuid.uuid4()),
         "metadata_id": wigos_identifier,
         "datetime": _rfc3339_utc(version),
     }
@@ -101,7 +105,8 @@ def create_wnm(wmdrv2, operation, href, centre_id, content=None, media_type=WMDR
 class WNMGenerator(MessageGenerator):
     """One WNM per stored record file among the earlier deliveries.
 
-    Options: centre_id (this node's WIS2 centre id, part of data_id),
+    Options: centre_id (this node's WIS2 centre id; unused while data_id is
+    random, kept for the derived data_id commented out in create_wnm),
     media_type (of the stored files to announce, default WMDR2) and
     skip_missing (default False: a create/update with no stored file raises
     PublishError; True logs a warning and announces nothing, for setups
@@ -133,8 +138,7 @@ class WNMGenerator(MessageGenerator):
                         centre_id=self.centre_id,
                         content=delivery.message.body,  # none needed for a deletion
                         media_type=self.media_type,
-                        # the same on every retry, so receivers can drop repeats
-                        # by data_id and pubtime
+                        # the record's version: the same on every retry
                         pubtime=event.occurred_at,
                     )
                 ).encode("utf-8"),

@@ -42,7 +42,8 @@ class CreateWnmTestCase(unittest.TestCase):
         self.assertEqual(message["type"], "Feature")
         self.assertEqual(message["conformsTo"], [WNM_CONFORMANCE_CLASS])
         self.assertEqual(message["geometry"], {"type": "Point", "coordinates": [-23, 22]})
-        self.assertEqual(message["properties"]["data_id"], "wmdr2/io-test/0-20000-0-123456/2026-08-07T11:13:00.000Z")
+        uuid.UUID(message["properties"]["data_id"])
+        self.assertNotEqual(message["properties"]["data_id"], message["id"])
         self.assertEqual(message["properties"]["metadata_id"], "0-20000-0-123456")
         self.assertEqual(message["properties"]["datetime"], "2026-08-07T11:13:00Z")
         self.assertRegex(message["properties"]["pubtime"], r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
@@ -52,7 +53,7 @@ class CreateWnmTestCase(unittest.TestCase):
 
     def test_version_falls_back_to_created(self):
         record = {**RECORD, "properties": {"created": "2026-01-02T03:04:05Z"}}
-        self.assertTrue(self.wnm(record=record)["properties"]["data_id"].endswith("/2026-01-02T03:04:05Z"))
+        self.assertEqual(self.wnm(record=record)["properties"]["datetime"], "2026-01-02T03:04:05Z")
 
     def test_missing_version_or_identifier_rejected(self):
         with self.assertRaises(ValueError):
@@ -135,9 +136,9 @@ class WNMGeneratorTestCase(unittest.TestCase):
     def test_deletion_of_something_never_announced_sends_nothing(self):
         self.assertEqual(self.generate(Operation.DELETE, []), [])
 
-    def test_a_retry_repeats_the_same_data_id_and_pubtime(self):
+    def test_a_retry_gets_a_new_data_id_but_the_same_pubtime(self):
         first, second = self.generate(Operation.UPDATE, [self.stored]) + self.generate(Operation.UPDATE, [self.stored])
-        self.assertEqual(first["properties"]["data_id"], second["properties"]["data_id"])
+        self.assertNotEqual(first["properties"]["data_id"], second["properties"]["data_id"])
         self.assertEqual(first["properties"]["pubtime"], "2026-10-28T00:00:00Z")  # when the change was made
         self.assertEqual(second["properties"]["pubtime"], first["properties"]["pubtime"])
 

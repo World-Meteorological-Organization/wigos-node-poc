@@ -174,9 +174,9 @@ Change both together.
   changes.
 - Versioning of WMDR2 records.
 - Using Keycloak to manage user sessions.
-- Upstream confirmation of WNMs. It waits on the real broker, topic and credentials.
-  Until then the WIS2 topic in `settings.py` is a placeholder and no station
-  reaches `published`.
+- Upstream confirmation of WNMs. It waits on the real broker and credentials.
+  Until then no station reaches `published`. WNMs go to
+  `origin/a/wigos/<centre id>/metadata`.
 - Deleting stations, including the deletion WNM.
 - Contacts shared between stations, in their own table.
 - Edit rights for stations with WIGOS identifiers from two issuers: today they need

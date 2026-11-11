@@ -108,7 +108,7 @@ TASKS = {"default": {"BACKEND": "django_tasks_db.DatabaseBackend"}}
 
 # WIS2 publishing (repo-root publishing/, built in publishing/publishers.py):
 # store each record file in web storage, then announce it with a WNM.
-WNM_CENTRE_ID = os.environ.get("WNM_CENTRE_ID", "io-wis2dev-test-wigosnode")
+WNM_CENTRE_ID = os.environ.get("WNM_CENTRE_ID", "int-wigosnode-test")
 # Options of publishing.transports.s3.S3Transport (the minio service by default)
 WNM_STORAGE = {
     "endpoint": os.environ.get("WNM_STORAGE_ENDPOINT", "minio:9000"),
@@ -128,8 +128,7 @@ WIS2_PUBLISH_WNM = os.environ.get("WIS2_PUBLISH_WNM", "true") == "true"
 WIS2_BROKER = {
     # default: the mosquitto service in docker-compose.yml
     "url": os.environ.get("WIS2_BROKER_URL", "mqtt://wis2:wis2@mosquitto:1883"),
-    # Placeholder: the WMDR2 topic is not decided yet
-    "topic": os.environ.get("WIS2_TOPIC", f"origin/a/wis2/{WNM_CENTRE_ID}/TBD-wmdr2"),
+    "topic": os.environ.get("WIS2_TOPIC", f"origin/a/wigos/{WNM_CENTRE_ID}/metadata"),
 }
 
 # Publishing logs to the console (docker compose logs publisher); INFO shows
