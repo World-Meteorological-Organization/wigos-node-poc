@@ -41,12 +41,12 @@ services:
     depends_on:
       db:
         condition: service_healthy
-      valkey:
-        condition: service_healthy
 
-  # Runs the publishing jobs, with the backend's image and settings. It doesn't
-  # reload on code changes: restart it after editing backend/ or publishing/.
-  worker:
+  # Runs the publishing jobs, with the backend's image and settings: 4
+  # processes, each running one job at a time, restarted if one exits. It
+  # doesn't reload on code changes: restart it after editing backend/ or
+  # publishing/.
+  publisher:
     build: *backend-build
     restart: unless-stopped
     environment: *backend-environment
@@ -54,17 +54,15 @@ services:
       - .env
     volumes: *backend-volumes
     # Not the backend's entrypoint: the backend runs the migrations, and this
-    # waits until they are applied. exec makes Celery PID 1, so docker stop's
-    # SIGTERM reaches it and it finishes its current jobs.
+    # waits until they are applied. exec makes run_publishers PID 1, so docker
+    # stop's SIGTERM reaches it and its processes finish their current jobs.
     entrypoint:
       - sh
       - -c
-      - until python manage.py migrate --check > /dev/null 2>&1; do sleep 2; done; exec celery -A publishing worker --concurrency=4 --loglevel=INFO
+      - until python manage.py migrate --check > /dev/null 2>&1; do sleep 2; done; exec python manage.py run_publishers --processes 4
     stop_grace_period: 30s
     depends_on:
       db:
-        condition: service_healthy
-      valkey:
         condition: service_healthy
       backend:
         condition: service_started
@@ -72,20 +70,6 @@ services:
         condition: service_healthy
       mosquitto:
         condition: service_healthy
-
-  # Celery's broker. It has no password, so it's only reachable from the other
-  # containers. Persistent, and never evicts: it holds queued jobs.
-  valkey:
-    image: valkey/valkey:8.1.11
-    restart: unless-stopped
-    command: valkey-server --appendonly yes --maxmemory-policy noeviction
-    volumes:
-      - valkey_data:/data
-    healthcheck:
-      test: ["CMD", "valkey-cli", "ping"]
-      interval: 5s
-      timeout: 1s
-      retries: 3
 
   # MQTT broker the WNMs are published to. A production deployment points
   # WIS2_BROKER_URL at its own broker, or sets WIS2_PUBLISH_WNM=false.
@@ -157,4 +141,3 @@ services:
 volumes:
   db_data:
   minio_data:
-  valkey_data:

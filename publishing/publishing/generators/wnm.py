@@ -4,8 +4,8 @@ Spec: https://wmo-im.github.io/wis2-notification-message/standard/wis2-notificat
 
 Every version of a record is its own data granule: data_id carries the
 record's WIGOS identifier and its version (properties.updated, else
-properties.created). The link, integrity and content describe the file as
-retrieved from storage, never a second rendering of the record."""
+properties.created). The link, integrity and content describe the bytes the
+storage step stored, never a second rendering of the record."""
 
 import base64
 import hashlib
@@ -63,7 +63,7 @@ def _inline(content):
 def create_wnm(wmdrv2, operation, href, centre_id, content=None, media_type=WMDR2_MEDIA_TYPE, pubtime=None):
     """A WNM (as a dict) announcing the record `wmdrv2`, stored at `href`.
 
-    `content` is the stored file as retrieved; integrity, length and inline
+    `content` is the stored file's bytes; integrity, length and inline
     content are computed over it. A deletion carries none of them."""
     if operation not in LINK_RELATIONS:
         raise ValueError(f"Unknown operation '{operation}', expected one of {tuple(LINK_RELATIONS)}")
@@ -113,10 +113,6 @@ class WNMGenerator(MessageGenerator):
         self.media_type = media_type
         self.skip_missing = skip_missing
 
-    def needs_content(self, event):
-        # a deletion carries no integrity, and the file may be gone
-        return event.operation != Operation.DELETE
-
     def generate(self, event, deliveries):
         files = [d for d in deliveries if d.location and d.message.media_type == self.media_type]
         if not files:
@@ -135,7 +131,7 @@ class WNMGenerator(MessageGenerator):
                         event.operation,
                         href=delivery.location.url,
                         centre_id=self.centre_id,
-                        content=delivery.content,
+                        content=delivery.message.body,  # none needed for a deletion
                         media_type=self.media_type,
                         # the same on every retry, so receivers can drop repeats
                         # by data_id and pubtime

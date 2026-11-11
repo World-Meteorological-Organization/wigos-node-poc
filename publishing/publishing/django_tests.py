@@ -6,14 +6,13 @@ import base64
 import copy
 import hashlib
 import json
+from contextlib import contextmanager
 from unittest import mock
 
-import redis
-from django.conf import settings
-from django.core.checks.registry import registry
+from django.db import OperationalError, connection, transaction
 from django.test import Client, SimpleTestCase, TestCase, override_settings
 from django.urls import reverse
-from kombu.exceptions import OperationalError
+from django_tasks_db.models import DBTaskResult
 from rest_framework.test import APITestCase
 
 from api import stations
@@ -21,11 +20,9 @@ from api.models import Station, WIGOSNodeGroup, WIGOSNodeUser
 
 from . import state, tasks
 from .base import DefaultPublisher, Delivery, Location, Message, MessageGenerator, PublishError, Step, TransportLayer
-from .checks import check_publishers
 from .generators.wmdr2 import RecordFileGenerator
 from .generators.wnm import WNMGenerator
 from .publishers import get_publishers
-from .registry import ConfigurationError
 from .transports.mqtt import MQTTTransport
 from .transports.s3 import S3Transport
 
@@ -43,40 +40,32 @@ def record(wsi, updated="2026-11-05T10:00:00Z", title="Publishing station"):
     return data
 
 
-class FakeLock:
-    def __init__(self, held, name):
-        self.held = held
-        self.name = name
-
-    def acquire(self):
-        if self.name in self.held:
-            return False
-        self.held.add(self.name)
-        return True
-
-    def release(self):
-        self.held.discard(self.name)
-
-    def locked(self):
-        return self.name in self.held
+def queued():
+    """Station ids of the queued publishing jobs, oldest first."""
+    return [job.args_kwargs["args"][0] for job in DBTaskResult.objects.order_by("enqueued_at")]
 
 
-class FakeValkey:
-    def __init__(self):
-        self.values = {}
-        self.held = set()
+def lock_is_free(station_id):
+    other = connection.copy()
+    try:
+        with other.cursor() as cursor:
+            cursor.execute("SELECT pg_try_advisory_lock(%s, %s)", [state.LOCK_NAMESPACE, station_id])
+            return cursor.fetchone()[0]
+    finally:
+        other.close()
 
-    def get(self, key):
-        return self.values.get(key)
 
-    def mget(self, keys):
-        return [self.values.get(key) for key in keys]
-
-    def set(self, key, value):
-        self.values[key] = value
-
-    def lock(self, name, **kwargs):
-        return FakeLock(self.held, name)
+@contextmanager
+def held_by_another_job(station_id):
+    """The station's lock, held from a second connection as a running job would:
+    the advisory lock can be taken again by the connection that holds it."""
+    other = connection.copy()
+    try:
+        with other.cursor() as cursor:
+            cursor.execute("SELECT pg_advisory_lock(%s, %s)", [state.LOCK_NAMESPACE, station_id])
+        yield
+    finally:
+        other.close()
 
 
 class MemoryStorage(TransportLayer):
@@ -120,15 +109,6 @@ class MemoryBroker(TransportLayer):
         self.sent.append(json.loads(message.body))
 
 
-class MemoryPublisher(DefaultPublisher):
-    def __init__(self, *args, storage, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.storage = storage
-
-    def retrieve(self, location):
-        return self.storage.files[location.url]
-
-
 class BrokenGenerator(MessageGenerator):
     def generate(self, event, deliveries):
         raise RuntimeError("boom")
@@ -136,23 +116,14 @@ class BrokenGenerator(MessageGenerator):
 
 class JobTestCase(TestCase):
     def setUp(self):
-        self.valkey = FakeValkey()
-        patcher = mock.patch.object(state, "client", return_value=self.valkey)
-        patcher.start()
-        self.addCleanup(patcher.stop)
-
-        self.delay = mock.patch.object(tasks.publish_station, "delay").start()
-        self.addCleanup(mock.patch.stopall)
-
         self.storage = MemoryStorage()
         self.broker = MemoryBroker()
-        self.publisher = MemoryPublisher(
+        self.publisher = DefaultPublisher(
             "wis2",
             [
                 Step("storage", RecordFileGenerator(centre_id="io-test"), self.storage),
                 Step("wnm", WNMGenerator(centre_id="io-test"), self.broker),
             ],
-            storage=self.storage,
         )
         self.use_publishers(self.publisher)
 
@@ -164,15 +135,30 @@ class JobTestCase(TestCase):
         self.addCleanup(patcher.stop)
 
     def station(self, wsi="0-756-0-job1", **kwargs):
-        return stations.create_station(self.user, record(wsi, **kwargs))
+        station = stations.create_station(self.user, record(wsi, **kwargs))
+        DBTaskResult.objects.all().delete()  # the tests run its job themselves
+        return station
 
     def status_of(self, station):
         return Station.objects.values_list("publication_status", flat=True).get(pk=station.pk)
 
+    def run_job(self, station):
+        """The job a save of the station's current record queues."""
+        tasks.publish_station.call(station.pk, Station.objects.get(pk=station.pk).wmdrv2)
+
+    def test_publishes_the_record_it_was_given(self):
+        station = self.station()
+        given = record("0-756-0-job1", title="As saved")
+
+        tasks.publish_station.call(station.pk, given)
+
+        [stored] = self.storage.files.values()
+        self.assertEqual(json.loads(stored)["properties"]["title"], "As saved")
+
     def test_publishes_the_file_then_its_wnm(self):
         station = self.station()
 
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.PROCESSED)
         [url] = self.storage.files
@@ -184,28 +170,28 @@ class JobTestCase(TestCase):
         saved = state.load(station.pk)
         self.assertEqual([d["step"] for d in saved["deliveries"]], ["storage", "wnm"])
         self.assertEqual(saved["deliveries"][0]["url"], url)
-        self.assertEqual((saved["error"], saved["leftovers"]), ("", []))
+        self.assertEqual(saved["error"], "")
         self.assertIsNotNone(saved["finished_at"])
-        self.assertFalse(state.is_locked(station.pk))
-        self.delay.assert_not_called()
+        self.assertTrue(lock_is_free(station.pk))
+        self.assertEqual(queued(), [])
 
     def test_the_next_publication_is_an_update(self):
         station = self.station()
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         self.assertEqual([w["links"][0]["rel"] for w in self.broker.sent], ["canonical", "update"])
 
     def test_pubtime_is_the_records_updated_value_on_every_attempt(self):
         station = self.station(updated="2026-11-05T10:00:00Z")
         self.broker.failures = 1
-        tasks.publish_station(station.pk)
+        self.run_job(station)
         self.assertEqual(self.status_of(station), Status.FAILED)
 
         Station.objects.filter(pk=station.pk).update(publication_status=Status.PENDING)
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         [wnm] = self.broker.sent
         self.assertEqual(wnm["properties"]["pubtime"], "2026-11-05T10:00:00Z")
@@ -214,7 +200,7 @@ class JobTestCase(TestCase):
         station = self.station()
         self.broker.failures = 1
 
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertEqual(self.storage.files, {})
@@ -225,62 +211,41 @@ class JobTestCase(TestCase):
     def test_a_create_that_failed_is_still_announced_as_canonical(self):
         station = self.station()
         self.broker.failures = 1
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         [wnm] = self.broker.sent
         self.assertEqual(wnm["links"][0]["rel"], "canonical")
 
     def test_a_failure_keeps_the_last_success_and_its_file(self):
         station = self.station()
-        tasks.publish_station(station.pk)
+        self.run_job(station)
         [url] = self.storage.files
 
         # the same `updated`, so the same file name
         Station.objects.filter(pk=station.pk).update(publication_status=Status.PENDING)
         self.broker.failures = 1
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertIn(url, self.storage.files)
         self.assertEqual(state.load(station.pk)["deliveries"][0]["url"], url)
 
-    def test_a_failed_undo_leaves_a_leftover_removed_on_the_next_attempt(self):
+    def test_a_failed_undo_is_reported_and_the_file_stays(self):
         station = self.station()
         self.broker.failures = 1
         self.storage.fail_remove = True
-        tasks.publish_station(station.pk)
+        with self.assertLogs("publishing", "ERROR") as logs:
+            self.run_job(station)
 
-        saved = state.load(station.pk)
-        self.assertEqual(saved["error"], "wis2:wnm: broker down\nundo wis2: storage down")
-        [leftover] = saved["leftovers"]
-        self.assertIn(leftover["url"], self.storage.files)
+        self.assertEqual(self.status_of(station), Status.FAILED)
+        self.assertEqual(state.load(station.pk)["error"], "wis2:wnm: broker down\nundo wis2: storage down")
+        [url] = self.storage.files
+        self.assertIn(url, "\n".join(logs.output))  # so someone can remove it
 
-        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
-        self.storage.fail_remove = False
-        tasks.publish_station(station.pk)
-
-        self.assertEqual(self.status_of(station), Status.PROCESSED)
-        self.assertNotIn(leftover["url"], self.storage.files)
-        self.assertEqual(state.load(station.pk)["leftovers"], [])
-
-    def test_a_leftover_that_still_cant_be_removed_is_kept(self):
-        station = self.station()
-        self.broker.failures = 1
-        self.storage.fail_remove = True
-        tasks.publish_station(station.pk)
-        [leftover] = state.load(station.pk)["leftovers"]
-
-        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
-        with self.assertLogs("publishing", "ERROR"):
-            tasks.publish_station(station.pk)
-
-        self.assertEqual(self.status_of(station), Status.PROCESSED)
-        self.assertEqual(state.load(station.pk)["leftovers"], [leftover])
-
-    def test_a_save_during_the_job_stays_pending_and_gets_a_new_job(self):
+    def test_a_save_during_the_job_is_left_to_its_own_job(self):
         station = self.station()
 
         def saved_meanwhile():
@@ -288,49 +253,55 @@ class JobTestCase(TestCase):
             stations.update_station(self.user, Station.objects.get(pk=station.pk), record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
 
         self.broker.before_send = saved_meanwhile
-        tasks.publish_station(station.pk)
+        self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.PENDING)
-        self.delay.assert_called_once_with(station.pk)
-        self.assertFalse(state.is_locked(station.pk))  # or the new job would stop at it
+        self.assertEqual(queued(), [station.pk])  # the save's own, waiting for the lock
+        self.assertTrue(lock_is_free(station.pk))
 
-    def test_a_job_finding_the_station_locked_stops(self):
+        self.run_job(station)
+        self.assertEqual(self.status_of(station), Status.PROCESSED)
+        self.assertEqual(len(self.broker.sent), 2)
+
+    def test_a_job_waits_for_a_running_job_of_the_same_station(self):
         station = self.station()
-        self.assertTrue(state.station_lock(station.pk).acquire())
 
-        tasks.publish_station(station.pk)
+        with held_by_another_job(station.pk):
+            with self.assertRaises(OperationalError), transaction.atomic():
+                with connection.cursor() as cursor:
+                    cursor.execute("SET LOCAL lock_timeout = '200ms'")  # instead of waiting forever
+                self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.PENDING)
         self.assertEqual(self.broker.sent, [])
-        self.assertTrue(state.is_locked(station.pk))  # still the first job's
 
-    def test_a_second_job_finds_nothing_to_do(self):
+    def test_every_job_publishes_even_the_same_record_again(self):
         station = self.station()
-        tasks.publish_station(station.pk)
-        tasks.publish_station(station.pk)
-        self.assertEqual(len(self.broker.sent), 1)
-        self.delay.assert_not_called()
+        self.run_job(station)
+        self.run_job(station)
+        self.assertEqual([w["links"][0]["rel"] for w in self.broker.sent], ["canonical", "update"])
+        self.assertEqual(queued(), [])
 
     def test_a_deleted_station_is_ignored(self):
-        tasks.publish_station(999999)
+        tasks.publish_station.call(999999, record("0-756-0-gone"))
         self.assertEqual(self.broker.sent, [])
 
     def test_a_crashed_job_releases_the_lock(self):
         station = self.station()
-        with mock.patch.object(tasks, "_publish", side_effect=RuntimeError("valkey down")):
+        with mock.patch.object(tasks, "_publish", side_effect=RuntimeError("boom")):
             with self.assertRaises(RuntimeError):
-                tasks.publish_station(station.pk)
-        self.assertFalse(state.is_locked(station.pk))
+                self.run_job(station)
+        self.assertTrue(lock_is_free(station.pk))
         self.assertEqual(self.status_of(station), Status.PROCESSING)  # a user's retry takes it from here
 
     def test_publishers_are_independent(self):
         other_storage = MemoryStorage()
-        other = MemoryPublisher("other", [Step("storage", BrokenGenerator(), other_storage)], storage=other_storage)
+        other = DefaultPublisher("other", [Step("storage", BrokenGenerator(), other_storage)])
         self.use_publishers(other, self.publisher)
         station = self.station()
 
         with self.assertLogs("publishing", "ERROR"):
-            tasks.publish_station(station.pk)
+            self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertEqual(len(self.broker.sent), 1)  # wis2 still published
@@ -345,26 +316,14 @@ class JobTestCase(TestCase):
         Station.objects.filter(pk=station.pk).update(wmdrv2=wmdrv2)
 
         with self.assertLogs("publishing", "ERROR"):
-            tasks.publish_station(station.pk)
+            self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertIn("properties.updated", state.load(station.pk)["error"])
 
 
-LOG = "publishing.transports.log.LogTransport"
-BROKEN = [
-    {"NAME": "files", "STEPS": [
-        {"NAME": "store", "GENERATOR": {"CLASS": "publishing.generators.wmdr2.RecordFileGenerator"}, "TRANSPORT": {"CLASS": LOG}},
-    ]},
-    {"NAME": "files", "STEPS": [
-        {"NAME": "store", "GENERATOR": {"CLASS": "nowhere.Generator"}, "TRANSPORT": {"CLASS": LOG}},
-    ]},
-]
-
-
-class PublishersSettingTestCase(SimpleTestCase):
-    def test_configured_publishers_build(self):
-        self.assertEqual(check_publishers(None), [])
+class PublishersTestCase(SimpleTestCase):
+    def test_the_wis2_publisher_stores_then_announces(self):
         [publisher] = get_publishers()
         storage, wnm = publisher.steps
         self.assertEqual((publisher.name, storage.name, wnm.name), ("wis2", "storage", "wnm"))
@@ -377,32 +336,11 @@ class PublishersSettingTestCase(SimpleTestCase):
     def test_publishers_are_built_once(self):
         self.assertIs(get_publishers()[0], get_publishers()[0])
 
-    def test_the_check_is_registered(self):
-        self.assertIn(check_publishers, registry.get_checks())
-
-    @override_settings(PUBLISHERS=BROKEN)
-    def test_check_reports_every_problem(self):
-        errors = check_publishers(None)
-        self.assertEqual([e.id for e in errors], ["publishing.E001", "publishing.E001"])
-        self.assertIn("centre_id", errors[0].msg)
-        self.assertIn("NAME is used more than once", errors[1].msg)
-        with self.assertRaises(ConfigurationError):
-            get_publishers()
-
-    def test_changed_setting_rebuilds(self):
-        default = get_publishers()
-        with override_settings(PUBLISHERS=[]):
-            self.assertEqual(get_publishers(), [])
-        self.assertEqual([p.name for p in get_publishers()], [p.name for p in default])
-
-    @override_settings()
-    def test_missing_setting_means_no_publishers(self):
-        del settings.PUBLISHERS
-        # deleting a setting sends no setting_changed, so reset by hand
-        get_publishers.cache_clear()
-        self.addCleanup(get_publishers.cache_clear)
-        self.assertEqual(check_publishers(None), [])
-        self.assertEqual(get_publishers(), [])
+    def test_wnms_can_be_switched_off_and_the_setting_rebuilds(self):
+        with override_settings(WIS2_PUBLISH_WNM=False):
+            [publisher] = get_publishers()
+            self.assertEqual([step.name for step in publisher.steps], ["storage"])
+        self.assertEqual(len(get_publishers()[0].steps), 2)
 
 
 class ReadBackReceiptsTestCase(SimpleTestCase):
@@ -420,9 +358,8 @@ class OpenedPublishersTestCase(TestCase):
         tasks._opened = None
 
     def test_open_once_per_process_and_closed_on_shutdown(self):
-        storage = MemoryStorage()
         broker = MemoryBroker()
-        publisher = MemoryPublisher("wis2", [Step("wnm", WNMGenerator(centre_id="io-test"), broker)], storage=storage)
+        publisher = DefaultPublisher("wis2", [Step("wnm", WNMGenerator(centre_id="io-test"), broker)])
 
         with mock.patch.object(tasks, "get_publishers", return_value=[publisher]):
             self.assertEqual(tasks.opened_publishers(), [publisher])
@@ -439,21 +376,14 @@ class EnqueueTestCase(APITestCase):
     """The explicit call in api.stations."""
 
     def setUp(self):
-        self.delay = mock.patch.object(tasks.publish_station, "delay").start()
-        self.addCleanup(mock.patch.stopall)
         self.member = WIGOSNodeUser.objects.create_user(username="enq_member", email="enq_member@example.com", password="pw")
         self.member.groups.add(WIGOSNodeGroup.objects.get(issuer_identifier=756).group)
         self.admin = WIGOSNodeUser.objects.create_superuser(username="enq_admin", email="enq_admin@example.com", password="pw")
 
-    def test_a_create_is_pending_names_the_user_and_enqueues_after_commit(self):
-        with self.captureOnCommitCallbacks() as callbacks:
-            station = stations.create_station(self.member, record("0-756-0-enq1"))
-        self.delay.assert_not_called()
+    def test_a_create_is_pending_names_the_user_and_enqueues(self):
+        station = stations.create_station(self.member, record("0-756-0-enq1"))
 
-        for callback in callbacks:
-            callback()
-
-        self.delay.assert_called_once_with(station.pk)
+        self.assertEqual(queued(), [station.pk])
         station.refresh_from_db()
         self.assertEqual(station.publication_status, Status.PENDING)
         self.assertEqual(station.last_changed_by, self.member)
@@ -465,40 +395,22 @@ class EnqueueTestCase(APITestCase):
         station = stations.create_station(self.member, record("0-756-0-enq2"))
         Station.objects.filter(pk=station.pk).update(publication_status=Status.PROCESSED)
         station.refresh_from_db()
+        DBTaskResult.objects.all().delete()
 
-        with self.captureOnCommitCallbacks(execute=True):
-            stations.update_station(colleague, station, record("0-756-0-enq2", title="New"))
+        stations.update_station(colleague, station, record("0-756-0-enq2", title="New"))
 
         station.refresh_from_db()
         self.assertEqual(station.publication_status, Status.PENDING)
         self.assertEqual(station.last_changed_by, colleague)
         self.assertEqual(station.owner, self.member)
-        self.delay.assert_called_once_with(station.pk)
+        self.assertEqual(queued(), [station.pk])
 
-    def test_a_failure_to_enqueue_is_logged_and_keeps_the_change(self):
-        self.delay.side_effect = OSError("valkey down")
-        with self.assertLogs("django.test", "ERROR"):  # where the test helper logs it
-            with self.captureOnCommitCallbacks(execute=True):
-                station = stations.create_station(self.member, record("0-756-0-enq8"))
-        station.refresh_from_db()
-        self.assertEqual(station.publication_status, Status.PENDING)
-
-    def test_after_the_broker_fails_only_the_first_save_tries_for_a_while(self):
-        self.addCleanup(setattr, tasks, "_broker_down_until", 0.0)
-        self.delay.side_effect = OperationalError("valkey down")
-
-        with self.assertLogs("publishing", "ERROR"):
-            tasks.request_publication(1)
-        with self.assertLogs("publishing", "WARNING"):
-            tasks.request_publication(2)
-        self.delay.assert_called_once_with(1)
-
-        # the window is over and the broker is back
-        tasks._broker_down_until = 0.0
-        self.delay.side_effect = None
-        self.delay.reset_mock()
-        tasks.request_publication(3)
-        self.delay.assert_called_once_with(3)
+    def test_a_save_whose_job_cant_be_queued_isnt_saved(self):
+        failing = mock.Mock(**{"enqueue.side_effect": RuntimeError("boom")})
+        with mock.patch.object(stations, "publish_station", failing):
+            with self.assertRaises(RuntimeError):
+                stations.create_station(self.member, record("0-756-0-enq8"))
+        self.assertFalse(Station.objects.filter(wigos_identifier="0-756-0-enq8").exists())
 
     def test_superusers_are_not_named(self):
         station = stations.create_station(self.admin, record("0-756-0-enq3"))
@@ -506,11 +418,10 @@ class EnqueueTestCase(APITestCase):
         self.assertIsNone(station.last_changed_by)
 
     def test_a_rejected_save_enqueues_nothing(self):
-        stations.create_station(self.member, record("0-756-0-enq4"))
-        with self.captureOnCommitCallbacks(execute=True) as callbacks:
-            with self.assertRaises(stations.StationError):
-                stations.create_station(self.member, record("0-756-0-enq4"))  # WSI taken
-        self.assertEqual(callbacks, [])
+        first = stations.create_station(self.member, record("0-756-0-enq4"))
+        with self.assertRaises(stations.StationError):
+            stations.create_station(self.member, record("0-756-0-enq4"))  # WSI taken
+        self.assertEqual(queued(), [first.pk])
 
     def post_batch(self, updates, dry_run=False):
         self.client.force_authenticate(self.member)
@@ -518,21 +429,21 @@ class EnqueueTestCase(APITestCase):
 
     def test_a_batch_dry_run_enqueues_nothing(self):
         station = stations.create_station(self.member, record("0-756-0-enq5"))
-        with self.captureOnCommitCallbacks(execute=True) as callbacks:
-            response = self.post_batch([{"station_id": station.pk, "wmdrv2": record("0-756-0-enq5", title="New")}], dry_run=True)
+        DBTaskResult.objects.all().delete()
+        response = self.post_batch([{"station_id": station.pk, "wmdrv2": record("0-756-0-enq5", title="New")}], dry_run=True)
         self.assertEqual(response.json()["summary"], {"ok": 1, "error": 0})
-        self.assertEqual(callbacks, [])
+        self.assertEqual(queued(), [])
 
     def test_a_batch_enqueues_only_the_accepted_updates(self):
         ok = stations.create_station(self.member, record("0-756-0-enq6"))
         other = stations.create_station(self.member, record("0-756-0-enq7"))
-        with self.captureOnCommitCallbacks(execute=True):
-            response = self.post_batch([
-                {"station_id": ok.pk, "wmdrv2": record("0-756-0-enq6", title="New")},
-                {"station_id": other.pk, "wmdrv2": record("0-756-0-enq6", title="Clash")},  # WSI of the first station
-            ])
+        DBTaskResult.objects.all().delete()
+        response = self.post_batch([
+            {"station_id": ok.pk, "wmdrv2": record("0-756-0-enq6", title="New")},
+            {"station_id": other.pk, "wmdrv2": record("0-756-0-enq6", title="Clash")},  # WSI of the first station
+        ])
         self.assertEqual(response.json()["summary"], {"ok": 1, "error": 1})
-        self.delay.assert_called_once_with(ok.pk)
+        self.assertEqual(queued(), [ok.pk])
 
 
 class PublicationsApiTestCase(APITestCase):
@@ -540,11 +451,6 @@ class PublicationsApiTestCase(APITestCase):
     their jobs ended, then what each kind of user sees and can do."""
 
     def setUp(self):
-        self.valkey = FakeValkey()
-        mock.patch.object(state, "client", return_value=self.valkey).start()
-        self.delay = mock.patch.object(tasks.publish_station, "delay").start()
-        self.addCleanup(mock.patch.stopall)
-
         self.author = self.user("uc_author", 756)
         self.colleague = self.user("uc_colleague", 756)  # same group, didn't make the change
         self.foreigner = self.user("uc_foreigner", 76)
@@ -663,16 +569,14 @@ class PublicationsApiTestCase(APITestCase):
         state.save(station.pk, {
             "deliveries": [
                 {"publisher": "wis2", "step": "storage", "name": "f", "media_type": "t", "topic": None,
-                 "url": "https://public/f", "internal_url": "http://minio:9000/secret/f"},
-                {"publisher": "wis2", "step": "wnm", "name": None, "media_type": "t", "topic": None,
-                 "url": None, "internal_url": None},
+                 "url": "https://public/f"},
+                {"publisher": "wis2", "step": "wnm", "name": None, "media_type": "t", "topic": None, "url": None},
             ],
-            "leftovers": [],
             "error": "wis2:wnm: broker down",
             "finished_at": "2026-11-05T10:00:05+00:00",
         })
 
-    def test_a_row_says_who_and_what_without_internals(self):
+    def test_a_row_says_who_and_what(self):
         station = self.create("0-756-0-uc9", updated="2026-11-05T10:00:00Z", title="Ninth")
         self.update(station, record("0-756-0-uc9", updated="2026-11-05T10:00:00Z", title="Ninth"), self.colleague)
         self.set_status(station, Status.FAILED)
@@ -692,8 +596,6 @@ class PublicationsApiTestCase(APITestCase):
             "files": ["https://public/f"],
             "can_retry": True,
         })
-        self.assertNotIn("minio", json.dumps(row))
-
     def test_a_newer_save_hides_the_old_error_but_keeps_the_files(self):
         station = self.create("0-756-0-uc10")
         self.saved_failure(station)
@@ -708,14 +610,6 @@ class PublicationsApiTestCase(APITestCase):
         [row] = self.listed(self.colleague)
         self.assertIsNone(row["changed_by"])
 
-    def test_the_list_works_without_valkey(self):
-        station = self.create("0-756-0-uc12")
-        self.set_status(station, Status.FAILED)
-        with mock.patch.object(self.valkey, "mget", side_effect=redis.ConnectionError("down")):
-            with self.assertLogs("publishing", "ERROR"):
-                [row] = self.listed()
-        self.assertEqual((row["status"], row["last_error"], row["files"]), ("failed", "", []))
-
     def test_only_a_processed_station_cant_be_retried(self):
         rows = {}
         for status in (Status.PENDING, Status.PROCESSING, Status.FAILED, Status.PROCESSED):
@@ -724,26 +618,28 @@ class PublicationsApiTestCase(APITestCase):
             rows[status] = station
         flags = {row["status"]: row["can_retry"] for row in self.listed()}
         self.assertEqual(flags, {"pending": True, "processing": True, "failed": True, "processed": False})
+        DBTaskResult.objects.all().delete()
 
         response = self.retry(rows[Status.PROCESSED])
         self.assertEqual(response.status_code, 409)
         self.assertIn("already published", response.json()["detail"])
         self.assertEqual(self.status_of(rows[Status.PROCESSED]), Status.PROCESSED)
-        self.delay.assert_not_called()
+        self.assertEqual(queued(), [])
 
         for status in (Status.PENDING, Status.PROCESSING, Status.FAILED):
             self.assertEqual(self.retry(rows[status]).status_code, 200, status)
             self.assertEqual(self.status_of(rows[status]), Status.PENDING)
-            self.delay.assert_called_with(rows[status].pk)
+            self.assertEqual(queued()[-1], rows[status].pk)
 
     def test_a_colleague_can_retry_but_someone_who_cant_edit_cant(self):
         station = self.create("0-756-0-uc13")
         self.set_status(station, Status.FAILED)
+        DBTaskResult.objects.all().delete()
 
         for user in (self.foreigner, self.outsider):
             self.assertEqual(self.retry(station, user).status_code, 404, user.username)
         self.assertEqual(self.status_of(station), Status.FAILED)
-        self.delay.assert_not_called()
+        self.assertEqual(queued(), [])
 
         response = self.retry(station, self.colleague)
         self.assertEqual(response.status_code, 200, response.content)
@@ -763,37 +659,17 @@ class PublicationsApiTestCase(APITestCase):
         self.client.force_authenticate(self.author)
         self.assertEqual(self.client.get(reverse("publication-retry", args=[station.pk])).status_code, 405)
 
-    def test_a_retry_while_locked_is_refused(self):
+    def test_a_retry_while_the_job_runs_queues_one_that_waits_for_it(self):
         station = self.create("0-756-0-uc16")
         self.set_status(station, Status.PROCESSING)
-        self.assertTrue(state.station_lock(station.pk).acquire())
+        DBTaskResult.objects.all().delete()
 
-        response = self.retry(station)
+        with held_by_another_job(station.pk):
+            response = self.retry(station)
 
-        self.assertEqual(response.status_code, 409)
-        self.assertIn("may still be running", response.json()["detail"])
-        self.assertEqual(self.status_of(station), Status.PROCESSING)
-        self.delay.assert_not_called()
-
-    def test_a_retry_without_valkey_says_so_and_changes_nothing(self):
-        station = self.create("0-756-0-uc17")
-        self.set_status(station, Status.FAILED)
-        with mock.patch.object(state, "is_locked", side_effect=redis.ConnectionError("down")):
-            with self.assertLogs("publishing", "ERROR"):
-                response = self.retry(station)
-        self.assertEqual(response.status_code, 503)
-        self.assertEqual(self.status_of(station), Status.FAILED)
-
-    def test_a_retry_that_cant_enqueue_says_so_and_can_be_retried(self):
-        station = self.create("0-756-0-uc18")
-        self.set_status(station, Status.FAILED)
-        self.delay.side_effect = OperationalError("down")
-        with self.assertLogs("publishing", "ERROR"):
-            self.assertEqual(self.retry(station).status_code, 503)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(self.status_of(station), Status.PENDING)
-
-        self.delay.side_effect = None
-        self.assertEqual(self.retry(station).status_code, 200)
+        self.assertEqual(queued(), [station.pk])
 
     def test_my_stations_gives_the_status_only_to_those_who_can_edit(self):
         station = self.create("0-756-0-uc19")

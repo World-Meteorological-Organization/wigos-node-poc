@@ -12,7 +12,7 @@ from django.db import IntegrityError, transaction
 from guardian.shortcuts import assign_perm, get_objects_for_user
 from jsonschema import Draft202012Validator
 
-from publishing.tasks import request_publication
+from publishing.tasks import publish_station
 
 from .models import Station, WIGOSNodeGroup
 
@@ -139,13 +139,14 @@ def _save(station):
 
 
 def _publish(station):
-    """Publish the station once committed, so a rolled back batch update or dry
-    run publishes nothing. A failure to enqueue is logged and doesn't fail the
-    change: the station stays pending."""
-    # not a partial: logging a robust callback's failure needs its __qualname__
-    transaction.on_commit(lambda: request_publication(station.pk), robust=True)
+    """Queue the station's job, with the record as saved, in the same
+    transaction as the change: the job is a row in the database, so a rolled
+    back batch update or dry run queues nothing, and a saved change always has
+    its job."""
+    publish_station.enqueue(station.pk, station.wmdrv2)
 
 
+@transaction.atomic
 def create_station(user, wmdrv2):
     validate(wmdrv2)
     wsis = wsis_of(wmdrv2)
@@ -160,6 +161,7 @@ def create_station(user, wmdrv2):
     return station
 
 
+@transaction.atomic
 def update_station(user, station, wmdrv2):
     if not user.has_perm("change_station", station):
         raise StationError("You do not have permission to change this station.", status=403)

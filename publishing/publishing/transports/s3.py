@@ -30,25 +30,21 @@ class S3Transport(TransportLayer):
 
     Options: endpoint (host:port), bucket, access_key, secret_key, secure
     (TLS, default True), region, prefix (prepended to object names),
-    public_url (base URL the objects are served at, used in the WNM),
-    internal_url (base URL this node retrieves them from; both default to
+    public_url (base URL the objects are served at, used in the WNM; default
     <endpoint>/<bucket>), create_bucket (default False: for development,
     create a missing bucket with anonymous read on the first send) and
     timeout (seconds per request, default 30; with the retries a call
     gives up well within the job's lock, unlike the client's default)."""
 
     def __init__(self, *, endpoint, bucket, access_key=None, secret_key=None, secure=True, region=None,
-                 prefix="", public_url=None, internal_url=None, create_bucket=False, timeout=30, **options):
+                 prefix="", public_url=None, create_bucket=False, timeout=30, **options):
         super().__init__(
             endpoint=endpoint, bucket=bucket, secure=secure, region=region, prefix=prefix,
-            public_url=public_url, internal_url=internal_url, create_bucket=create_bucket, timeout=timeout,
-            **options,
+            public_url=public_url, create_bucket=create_bucket, timeout=timeout, **options,
         )  # the credentials are kept out of self.options
         self.bucket = bucket
         self.prefix = prefix
-        default_url = f"{'https' if secure else 'http'}://{endpoint}/{bucket}"
-        self.public_url = (public_url or default_url).rstrip("/")
-        self.internal_url = (internal_url or default_url).rstrip("/")
+        self.public_url = (public_url or f"{'https' if secure else 'http'}://{endpoint}/{bucket}").rstrip("/")
         self.create_bucket = create_bucket
         # connects on use, so open() can't fail on the network
         http_client = urllib3.PoolManager(
@@ -90,8 +86,7 @@ class S3Transport(TransportLayer):
             length=len(message.body),
             content_type=message.media_type,
         )
-        path = quote(object_name)
-        return Location(f"{self.public_url}/{path}", f"{self.internal_url}/{path}")
+        return Location(f"{self.public_url}/{quote(object_name)}")
 
     def remove(self, location):
         base = f"{self.public_url}/"

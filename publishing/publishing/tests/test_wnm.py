@@ -5,7 +5,7 @@ import unittest
 import uuid
 from datetime import datetime, timezone
 
-from publishing.base import Delivery, Location, Message, Operation, PublishError, Step
+from publishing.base import DefaultPublisher, Delivery, Location, Message, Operation, PublishError, Step
 from publishing.generators.wmdr2 import RecordFileGenerator
 from publishing.generators.wnm import (
     MAX_INLINE_CONTENT_SIZE,
@@ -15,7 +15,7 @@ from publishing.generators.wnm import (
 )
 from publishing.wmdr2 import record_file_name, render_record
 
-from .test_base import FakeRetrievalPublisher, RecordingTransport, make_event
+from .test_base import RecordingTransport, make_event
 
 RECORD = {
     "id": "0-20000-0-123456",
@@ -99,12 +99,7 @@ class CreateWnmTestCase(unittest.TestCase):
 class WNMGeneratorTestCase(unittest.TestCase):
     def setUp(self):
         self.generator = WNMGenerator(centre_id="io-test")
-        self.stored = Delivery(
-            "wis2-storage",
-            Message(CONTENT, "application/geo+json", name="f.json"),
-            Location(HREF, "http://minio:9000/webstorage/f.json"),
-            content=CONTENT,
-        )
+        self.stored = Delivery("wis2-storage", Message(CONTENT, "application/geo+json", name="f.json"), Location(HREF))
 
     def generate(self, operation, deliveries):
         return [json.loads(m.body) for m in self.generator.generate(make_event(operation, wmdrv2=RECORD), deliveries)]
@@ -116,7 +111,7 @@ class WNMGeneratorTestCase(unittest.TestCase):
         self.assertEqual(wnm["properties"]["integrity"]["value"], sha512(CONTENT))
 
     def test_ignores_deliveries_without_location_or_of_other_types(self):
-        other = Delivery("x", Message(b"<a/>", "application/xml", name="a.xml"), Location("https://e/a.xml"), b"<a/>")
+        other = Delivery("x", Message(b"<a/>", "application/xml", name="a.xml"), Location("https://e/a.xml"))
         note = Delivery("y", Message(b"{}", "application/geo+json"))
         self.assertEqual(len(self.generate(Operation.CREATE, [other, note, self.stored])), 1)
 
@@ -133,9 +128,8 @@ class WNMGeneratorTestCase(unittest.TestCase):
         self.assertEqual(len(self.generate(Operation.UPDATE, [self.stored])), 1)
 
     def test_deletion_needs_no_content(self):
-        self.assertTrue(self.generator.needs_content(make_event(Operation.UPDATE)))
-        self.assertFalse(self.generator.needs_content(make_event(Operation.DELETE)))
-        [wnm] = self.generate(Operation.DELETE, [Delivery("wis2-storage", self.stored.message, self.stored.location)])
+        read_back = Delivery("wis2-storage", Message(None, "application/geo+json", name="f.json"), self.stored.location)
+        [wnm] = self.generate(Operation.DELETE, [read_back])
         self.assertEqual(wnm["links"][0], {"href": HREF, "rel": "deletion", "type": "application/geo+json"})
 
     def test_deletion_of_something_never_announced_sends_nothing(self):
@@ -154,25 +148,24 @@ class WNMGeneratorTestCase(unittest.TestCase):
 
 
 class StorageThenWnmTestCase(unittest.TestCase):
-    """The steps as configured: the WNM describes what storage serves, even
-    when that differs from what was uploaded."""
+    """The steps as configured: the WNM describes the bytes storage was sent."""
 
-    def test_integrity_comes_from_the_retrieved_file(self):
+    def test_integrity_comes_from_the_stored_bytes(self):
         url = f"http://store/{record_file_name(RECORD, 'io-test')}"
-        served = CONTENT + b"\n"  # e.g. a storage that appends a newline
+        storage = RecordingTransport(url="http://store")
         notifications = RecordingTransport()
-        publisher = FakeRetrievalPublisher(
+        publisher = DefaultPublisher(
             "wis2",
             [
-                Step("storage", RecordFileGenerator(centre_id="io-test"), RecordingTransport(url="http://store")),
+                Step("storage", RecordFileGenerator(centre_id="io-test"), storage),
                 Step("wnm", WNMGenerator(centre_id="io-test"), notifications),
             ],
-            files={url: served},
         )
 
         publisher.publish(make_event(Operation.CREATE, wmdrv2=RECORD))
 
+        [stored] = storage.sent
         [wnm] = [json.loads(m.body) for m in notifications.sent]
         self.assertEqual(wnm["links"][0]["href"], url)
-        self.assertEqual(wnm["links"][0]["length"], len(served))
-        self.assertEqual(wnm["properties"]["integrity"]["value"], sha512(served))
+        self.assertEqual(wnm["links"][0]["length"], len(stored.body))
+        self.assertEqual(wnm["properties"]["integrity"]["value"], sha512(stored.body))

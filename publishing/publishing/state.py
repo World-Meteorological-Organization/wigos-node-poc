@@ -1,57 +1,56 @@
-"""The publication state of each station kept in Valkey: everything apart from
-the status, which lives on the station. Losing it costs the file links and the
-last error until the next publication, and the next WNM goes out as canonical."""
+"""The publication state of each station apart from its status, which lives on the
+station: the per-station lock and what the last job left (StationPublication)."""
 
-import json
-from functools import cache
+from contextlib import contextmanager
 
-import redis
+from django.db import connection
 
 from .base import Delivery, Location, Message
-from .celery import app
+from .models import StationPublication
 
-# Longer than any real job. If a process dies, its lock frees itself after this.
-LOCK_TIMEOUT = 300  # seconds
-SOCKET_TIMEOUT = 5  # seconds
-
-
-@cache
-def client():
-    # With timeouts, so an unreachable Valkey can't hang a web request
-    return redis.Redis.from_url(app.conf.broker_url, socket_connect_timeout=SOCKET_TIMEOUT, socket_timeout=SOCKET_TIMEOUT)
+# First key of the two-key advisory locks, so they can't clash with any other
+# use of advisory locks in this database; the second is the station id.
+LOCK_NAMESPACE = 7001
 
 
+@contextmanager
 def station_lock(station_id):
-    """Held while a job runs for the station, so that no second job runs
-    alongside it. acquire() doesn't wait: a job finding it taken stops, and the
-    running job picks up any newer save when it finishes."""
-    return client().lock(f"publication-lock:{station_id}", timeout=LOCK_TIMEOUT, blocking=False)
+    """Held while a job runs for the station: a second job for it waits here
+    until the first one ends. A Postgres advisory lock on the worker's
+    connection, so it's freed when the job ends or its process dies."""
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT pg_advisory_lock(%s, %s)", [LOCK_NAMESPACE, station_id])
+    try:
+        yield
+    finally:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT pg_advisory_unlock(%s, %s)", [LOCK_NAMESPACE, station_id])
 
 
-def is_locked(station_id):
-    return station_lock(station_id).locked()
-
-
-def _parse(saved):
-    return json.loads(saved) if saved else {"deliveries": [], "leftovers": [], "error": "", "finished_at": None}
+def _as_record(publication):
+    if publication is None:
+        return {"deliveries": [], "error": "", "finished_at": None}
+    return {
+        "deliveries": publication.deliveries,
+        "error": publication.error,
+        "finished_at": publication.finished_at.isoformat() if publication.finished_at else None,
+    }
 
 
 def load(station_id):
-    """{"deliveries": [...], "leftovers": [...], "error": str, "finished_at": str | None}"""
-    return _parse(client().get(f"publication:{station_id}"))
+    """{"deliveries": [...], "error": str, "finished_at": str | None}"""
+    return _as_record(StationPublication.objects.filter(station_id=station_id).first())
 
 
 def load_many(station_ids):
-    """{station_id: its record, as load() returns it}, in one round trip."""
+    """{station_id: its record, as load() returns it}, in one query."""
     station_ids = list(station_ids)
-    if not station_ids:
-        return {}
-    values = client().mget([f"publication:{station_id}" for station_id in station_ids])
-    return {station_id: _parse(saved) for station_id, saved in zip(station_ids, values)}
+    found = StationPublication.objects.in_bulk(station_ids)
+    return {station_id: _as_record(found.get(station_id)) for station_id in station_ids}
 
 
 def save(station_id, record):
-    client().set(f"publication:{station_id}", json.dumps(record))
+    StationPublication.objects.update_or_create(station_id=station_id, defaults=record)
 
 
 def dump_delivery(delivery):
@@ -64,7 +63,6 @@ def dump_delivery(delivery):
         "media_type": delivery.message.media_type,
         "topic": delivery.message.topic,
         "url": location.url if location else None,
-        "internal_url": location.internal_url if location else None,
     }
 
 
@@ -72,6 +70,6 @@ def load_delivery(data):
     return Delivery(
         publisher=data["publisher"],
         message=Message(body=None, media_type=data["media_type"], name=data["name"], topic=data["topic"]),
-        location=Location(data["url"], data["internal_url"]) if data["url"] else None,
+        location=Location(data["url"]) if data["url"] else None,
         step=data["step"],
     )

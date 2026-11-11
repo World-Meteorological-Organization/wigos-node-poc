@@ -5,7 +5,6 @@ from unittest import mock
 import paho.mqtt.client as paho
 
 from publishing.base import Location, Message, PublishError
-from publishing.registry import ConfigurationError, build_publishers
 from publishing.transports import mqtt
 from publishing.transports.mqtt import MQTTTransport
 
@@ -92,20 +91,11 @@ class MQTTTransportTestCase(unittest.TestCase):
         self.assertEqual(t.port, 8883)
         self.assertTrue(t.client.tls)
 
-    def test_a_bad_url_is_a_configuration_error_without_the_password(self):
-        with self.assertRaises(ConfigurationError) as caught:
-            build_publishers([{
-                "NAME": "wnm",
-                "STEPS": [{
-                    "NAME": "send",
-                    "GENERATOR": {"CLASS": "publishing.generators.wmdr2.RecordFileGenerator",
-                                  "OPTIONS": {"centre_id": "c"}},
-                    "TRANSPORT": {"CLASS": "publishing.transports.mqtt.MQTTTransport",
-                                  "OPTIONS": {"url": "http://user:secret@broker"}},
-                }],
-            }])
-        self.assertIn("url must look like", caught.exception.errors[0])
-        self.assertNotIn("secret", caught.exception.errors[0])
+    def test_a_bad_url_is_an_error_without_the_password(self):
+        with self.assertRaises(ValueError) as caught:
+            MQTTTransport(url="http://user:secret@broker")
+        self.assertIn("url must look like", str(caught.exception))
+        self.assertNotIn("secret", str(caught.exception))
 
     def test_creating_it_makes_no_connection(self):
         self.assertEqual(transport().client.calls, [])

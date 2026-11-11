@@ -20,44 +20,47 @@ Station records follow WMDR2, version 1.99dev2, using the JSON schema from
 flowchart LR
     browser[Browser] --> frontend["frontend<br>Vue + Vuetify<br>builds WMDR2 records"]
     frontend -- /api --> backend["backend<br>Django + DRF"]
-    backend --> db[("db<br>PostGIS")]
-    backend -- "queues a job,<br>reads publication details" --> valkey[("valkey<br>queue + state")]
-    valkey --> worker["worker<br>Celery"]
-    worker --> db
-    worker -- record file --> minio[("minio<br>web storage")]
-    worker -- WNM --> mosquitto["mosquitto<br>MQTT broker"]
+    backend -- "saves a station<br>and queues its job" --> db[("db<br>PostGIS<br>stations + job queue")]
+    db --> publisher["publisher<br>Django Tasks, 4 processes"]
+    publisher -- "status and<br>publication details" --> db
+    publisher -- record file --> minio[("minio<br>web storage")]
+    publisher -- WNM --> mosquitto["mosquitto<br>MQTT broker"]
 ```
 
 | Service | Role | Port |
 |---|---|---|
 | `frontend` | Vite dev server for the Vue app | 5173 |
 | `backend` | REST API and Django admin | 8000 |
-| `db` | Stations, users and groups (PostgreSQL + PostGIS) | 5432 |
-| `valkey` | Job queue, plus each station's last publication details | internal |
-| `worker` | Runs the publishing jobs, with 4 processes | none |
+| `db` | Stations, users, groups, the job queue and publication details (PostgreSQL + PostGIS) | 5432 |
+| `publisher` | Runs the publishing jobs: 4 processes, one job at a time each, restarted if one exits | none |
 | `minio` | Web storage for the record files | 9000, console 9001 |
 | `mosquitto` | MQTT broker for the WNMs | 1883 |
 
 **Publishing a station:**
 
 1. Creating or changing a station through the API (the form or the batch wizard)
-   sets its `publication_status` to `pending` and, after commit, queues a job with
-   the station's id. Saves from the Django admin or the shell aren't published.
-2. The worker takes the station's lock and publishes its current record: it stores
-   the file, then sends the WNM. Several quick saves can result in one WNM.
+   sets its `publication_status` to `pending` and, in the same transaction, queues
+   a job with the station's id and the record as saved. Saves from the Django
+   admin or the shell aren't published.
+2. A publisher process takes the station's lock and publishes the job's record: it stores
+   the file, then sends the WNM, whose integrity is computed over the stored bytes.
+   Every save gets its own WNM, in the order the jobs run.
 3. The station ends as `processed` or `failed`. A failure removes the stored file,
    and a user can retry from the Publishing page. Retries are manual.
 
-A failure to publish never fails the save. If Valkey can't be reached, the save
-still goes through and the station stays `pending` until someone retries it.
+A failure to publish never fails the save. The save and its job are committed
+together, so a saved change always has its job.
+
+Finished jobs stay in the queue table until they are pruned with
+`python manage.py prune_db_task_results`. Nothing runs it yet.
 
 Stations saved before publishing existed have no status. They show as Unknown,
 aren't on the Publishing page and have no Retry, so saving them again is the only
 way to publish them.
 
-Publishers are configured in `PUBLISHERS` in `backend/config/settings.py`. Each is an
-ordered list of steps, and each step pairs a generator with a transport. The list
-is checked when Django starts.
+Publishers are built in `publishing/publishing/publishers.py` from the options in
+`backend/config/settings.py` (`WNM_STORAGE`, `WIS2_BROKER`). Each is an ordered list
+of steps, and each step pairs a generator with a transport.
 
 ## How to run
 
@@ -84,13 +87,13 @@ codes.wmo.int and keeps the existing files if that fails. For testing purposes d
 - the sample stations in `test_data/`
 
 > **Development only.** The defaults are not for production: the passwords and
-> secret key in `.env.example`, the users created by migrations, Valkey with no
-> password, and the Celery worker running as root.
+> secret key in `.env.example`, the users created by migrations, and the publisher
+> running as root.
 
-The backend and frontend reload on code changes. The worker doesn't:
+The backend and frontend reload on code changes. The publisher doesn't:
 
 ```sh
-docker compose restart worker
+docker compose restart publisher
 ```
 
 **Tests:**
@@ -130,15 +133,13 @@ backend/
 publishing/
   publishing/
     base.py          Plugin interfaces: Event, MessageGenerator, TransportLayer, Publisher
-    registry.py      Builds publishers from settings
-    publishers.py    The configured publishers, built once per process
-    checks.py        Startup check of PUBLISHERS
+    publishers.py    The publishers, built once per process
     wmdr2.py         Renders a record as the published file
     generators/      Record file and WNM
     transports/      S3 storage, MQTT and a log transport for development
-    celery.py        Celery app
-    tasks.py         The publishing job and retry
-    state.py         Locks and publication details in Valkey
+    models.py        Publication details of each station
+    tasks.py         The publishing job (a Django task) and retry
+    state.py         Per-station locks and publication details
     views.py         Publication API under /api/publications/
     django_tests.py  Tests that need Django
     tests/           Plugin tests, plain unittest
@@ -162,8 +163,8 @@ Change both together.
 **Good places to start:**
 
 - A station save: `backend/api/stations.py`, then `publishing/publishing/tasks.py`.
-- A new publishing format or channel: add a generator or transport, then list it in
-  `PUBLISHERS`.
+- A new publishing format or channel: add a generator or transport, then use it in
+  `publishing/publishing/publishers.py`.
 
 ## To do
 
