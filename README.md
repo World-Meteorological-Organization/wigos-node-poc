@@ -55,8 +55,11 @@ Finished jobs stay in the queue table until they are pruned with
 `python manage.py prune_db_task_results`. Nothing runs it yet.
 
 Stations saved before publishing existed have no status. They show as Unknown,
-aren't on the Publishing page and have no Retry, so saving them again is the only
-way to publish them.
+aren't on the Publishing page and have no Retry, so saving a change to them is the
+only way to publish them.
+
+A save that changes nothing apart from `updated` and the `self` link is ignored:
+no new version, no publication. The form keeps Save off until something changes.
 
 Publishers are built in `publishing/publishing/publishers.py` from the options in
 `backend/config/settings.py` (`WNM_STORAGE`, `WIS2_BROKER`). Each is an ordered list

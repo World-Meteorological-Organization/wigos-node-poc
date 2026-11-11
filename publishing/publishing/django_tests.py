@@ -179,7 +179,7 @@ class JobTestCase(TestCase):
         station = self.station()
         self.run_job(station)
 
-        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
+        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z", title="Changed"))
         self.run_job(station)
 
         self.assertEqual([w["links"][0]["rel"] for w in self.broker.sent], ["canonical", "update"])
@@ -213,7 +213,7 @@ class JobTestCase(TestCase):
         self.broker.failures = 1
         self.run_job(station)
 
-        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
+        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z", title="Changed"))
         self.run_job(station)
 
         [wnm] = self.broker.sent
@@ -250,7 +250,7 @@ class JobTestCase(TestCase):
 
         def saved_meanwhile():
             self.broker.before_send = None
-            stations.update_station(self.user, Station.objects.get(pk=station.pk), record("0-756-0-job1", updated="2026-11-05T11:00:00Z"))
+            stations.update_station(self.user, Station.objects.get(pk=station.pk), record("0-756-0-job1", updated="2026-11-05T11:00:00Z", title="Changed"))
 
         self.broker.before_send = saved_meanwhile
         self.run_job(station)
@@ -405,6 +405,23 @@ class EnqueueTestCase(APITestCase):
         self.assertEqual(station.last_changed_by, colleague)
         self.assertEqual(station.owner, self.member)
         self.assertEqual(queued(), [station.pk])
+
+    def test_a_save_that_only_changes_updated_and_the_self_link_changes_nothing(self):
+        station = stations.create_station(self.member, record("0-756-0-enq9"))
+        Station.objects.filter(pk=station.pk).update(publication_status=Status.PROCESSED)
+        station.refresh_from_db()
+        DBTaskResult.objects.all().delete()
+        colleague = WIGOSNodeUser.objects.create_user(username="enq_same", email="enq_same@example.com", password="pw")
+        colleague.groups.add(WIGOSNodeGroup.objects.get(issuer_identifier=756).group)
+        same = record("0-756-0-enq9", updated="2026-11-06T09:00:00Z")
+        same["links"] = [{"rel": "self", "href": "http://elsewhere/api/wmdrv2/wsi/0-756-0-enq9"}, *same.get("links", [])]
+
+        stations.update_station(colleague, station, same)
+
+        station.refresh_from_db()
+        self.assertEqual(station.wmdrv2["properties"]["updated"], "2026-11-05T10:00:00Z")
+        self.assertEqual((station.publication_status, station.last_changed_by), (Status.PROCESSED, self.member))
+        self.assertEqual(queued(), [])
 
     def test_a_save_whose_job_cant_be_queued_isnt_saved(self):
         failing = mock.Mock(**{"enqueue.side_effect": RuntimeError("boom")})
@@ -579,7 +596,9 @@ class PublicationsApiTestCase(APITestCase):
 
     def test_a_row_says_who_and_what(self):
         station = self.create("0-756-0-uc9", updated="2026-11-05T10:00:00Z", title="Ninth")
-        self.update(station, record("0-756-0-uc9", updated="2026-11-05T10:00:00Z", title="Ninth"), self.colleague)
+        changed = record("0-756-0-uc9", updated="2026-11-05T10:00:00Z", title="Ninth")
+        changed["properties"]["description"] = "Changed by a colleague"
+        self.update(station, changed, self.colleague)
         self.set_status(station, Status.FAILED)
         self.saved_failure(station)
 

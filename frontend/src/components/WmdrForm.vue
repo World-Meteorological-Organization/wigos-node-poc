@@ -70,6 +70,12 @@ const issuerCountries = ref([]);
 const territoryNames = ref([]);
 // IDs the station had when loaded for editing; they belong to it, so they aren't checked for availability.
 const ownIds = ref([]);
+// The record as last loaded or saved, built the way a save builds it but at a
+// fixed time, so `updated` doesn't count; saving stays off until the form
+// differs from it. Null for a new station.
+const COMPARE_AT = new Date(0);
+const savedRecord = ref(null);
+const comparable = (state) => JSON.stringify(buildWmdrRecord(state, { now: COMPARE_AT }));
 
 getCodelist("FacilityType").then((options) => (facilityTypes.value = options)).catch(() => {});
 getCodelist("WMORegion").then((options) => (wmoRegions.value = options)).catch(() => {});
@@ -82,6 +88,7 @@ if (isEditing) {
   getStation(props.stationId)
     .then((record) => {
       const parsed = parseWmdrRecord(record);
+      savedRecord.value = comparable(parsed);
       form.value = parsed;
       ownIds.value = [parsed.id, ...parsed.additionalIds].filter(Boolean);
       loadState.value = { status: "success" };
@@ -109,12 +116,14 @@ const schemaErrors = computed(() => validateWmdrRecord(record.value));
 const schemaValid = computed(() => schemaErrors.value.length === 0);
 const valid = computed(() => schemaValid.value && !idsBlocked.value);
 const recordJson = computed(() => JSON.stringify(record.value, null, 2));
+const unchanged = computed(() => savedRecord.value !== null && savedRecord.value === comparable(form.value));
 
 async function handleSubmit() {
-  if (!valid.value) return;
+  if (!valid.value || unchanged.value) return;
   submitState.value = { status: "loading" };
   try {
     const data = await saveStation(props.stationId, record.value);
+    if (isEditing) savedRecord.value = comparable(form.value);
     submitState.value = { status: "success", data };
     emit("saved", data.station_id);
   } catch (err) {
@@ -241,10 +250,17 @@ const submitLabel = computed(() => (isEditing ? "Save changes" : "Save WMDR reco
         </v-card>
 
         <div class="d-flex ga-3 align-center">
-          <v-btn type="submit" color="primary" size="large" :disabled="!valid" :loading="submitState.status === 'loading'">
+          <v-btn
+            type="submit"
+            color="primary"
+            size="large"
+            :disabled="!valid || unchanged"
+            :loading="submitState.status === 'loading'"
+          >
             {{ submitLabel }}
           </v-btn>
           <v-btn variant="outlined" size="large" @click="emit('cancel')">Cancel</v-btn>
+          <span v-if="unchanged" class="text-caption text-medium-emphasis">No changes to save.</span>
         </div>
 
         <v-alert v-if="submitState.status === 'success'" class="mt-4" type="success" variant="tonal">

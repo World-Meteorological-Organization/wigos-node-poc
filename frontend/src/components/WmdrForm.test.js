@@ -86,6 +86,29 @@ describe("WmdrForm", () => {
     expect(vueWarnings()).toEqual([]);
   });
 
+  it("keeps Save off for a loaded station until something is edited", async () => {
+    getStation.mockResolvedValue(allFields);
+    mountForm({ stationId: 7 });
+    await flushPromises();
+    const save = () => wrapper.findAll("button").find((b) => b.text() === "Save changes");
+
+    expect(save().attributes("disabled")).toBeDefined();
+    expect(wrapper.text()).toContain("No changes to save.");
+
+    await inputByLabel("Title *").setValue("Renamed");
+    expect(wrapper.text()).not.toContain("No changes to save.");
+    // Back to the loaded value: nothing to save again
+    await inputByLabel("Title *").setValue(allFields.properties.title);
+    expect(wrapper.text()).toContain("No changes to save.");
+    expect(vueWarnings()).toEqual([]);
+  });
+
+  it("never blocks a new station as unchanged", async () => {
+    mountForm();
+    await flushPromises();
+    expect(wrapper.text()).not.toContain("No changes to save.");
+  });
+
   it("edits the station's interval with a read-back and an Ongoing box", async () => {
     mountForm();
     await flushPromises();

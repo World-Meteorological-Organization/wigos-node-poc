@@ -161,8 +161,19 @@ def create_station(user, wmdrv2):
     return station
 
 
+def _without_node_fields(wmdrv2):
+    """The record without what the frontend sets anew on every save:
+    properties.updated and the self link."""
+    properties = {key: value for key, value in (wmdrv2.get("properties") or {}).items() if key != "updated"}
+    links = [link for link in wmdrv2.get("links") or [] if not (isinstance(link, dict) and link.get("rel") == "self")]
+    return {**wmdrv2, "properties": properties, "links": links}
+
+
 @transaction.atomic
 def update_station(user, station, wmdrv2):
+    """Saves and publishes the new record. One that differs from the stored
+    record only in `updated` and the self link changes nothing: no save, no
+    new version, no publication."""
     if not user.has_perm("change_station", station):
         raise StationError("You do not have permission to change this station.", status=403)
     validate(wmdrv2)
@@ -170,6 +181,8 @@ def update_station(user, station, wmdrv2):
     new_wsis = wsis_of(wmdrv2)
     # Old and new: the primary and additional IDs may both change.
     check_issuers(user, old_wsis + new_wsis, "update")
+    if _without_node_fields(wmdrv2) == _without_node_fields(station.wmdrv2):
+        return station
     station.wmdrv2 = wmdrv2  # save() updates the index fields
     _mark_changed(station, user)
     _save(station)  # owner is unchanged on update
