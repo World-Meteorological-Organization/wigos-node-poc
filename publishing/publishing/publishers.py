@@ -6,8 +6,6 @@ and transport and add a publisher here."""
 from functools import cache
 
 from django.conf import settings
-from django.core.signals import setting_changed
-from django.dispatch import receiver
 
 from .base import DefaultPublisher, Step
 from .generators.wmdr2 import RecordFileGenerator
@@ -23,10 +21,3 @@ def get_publishers():
     if settings.WIS2_PUBLISH_WNM:
         steps.append(Step("wnm", WNMGenerator(centre_id=settings.WNM_CENTRE_ID), MQTTTransport(**settings.WIS2_BROKER)))
     return [DefaultPublisher("wis2", steps)]
-
-
-@receiver(setting_changed)
-def _reset(setting, **kwargs):
-    # override_settings in tests
-    if setting in ("WNM_CENTRE_ID", "WNM_STORAGE", "WIS2_PUBLISH_WNM", "WIS2_BROKER"):
-        get_publishers.cache_clear()

@@ -79,8 +79,7 @@ Then open:
 - Django admin: http://localhost:8000/admin/
 - MinIO console: http://localhost:9001
 
-Migrations run when `backend` starts, which also refreshes the codelists from
-codes.wmo.int and keeps the existing files if that fails. For testing purposes during initial development, migrations also create:
+Migrations run when `backend` starts. For testing purposes during initial development, migrations also create:
 
 - a superuser, `admin` / `admin`, who owns the sample stations
 - a test user, `test_user1` / `test_password1`, in the Switzerland and Brazil groups
@@ -127,9 +126,8 @@ backend/
     stations.py      Rules for creating and changing a station; asks for publication
     views.py         REST endpoints
     auth.py          Login endpoints for the frontend
-    management/      populate_codelists command
     schemas/         WMDR2 JSON schema (keep identical to the frontend copy)
-    codelists/       Cached WMO codelists
+    codelists/       WMO codelists, committed and served as they are
 publishing/
   publishing/
     base.py          Plugin interfaces: Event, MessageGenerator, TransportLayer, Publisher

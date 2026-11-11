@@ -1,6 +1,6 @@
 import { getCodelist } from "./api";
 
-// Codelists (cached by the backend, see populate_codelists) behind each
+// Codelists (static files served by the backend, api/codelists/) behind each
 // concept field: a scheme name for a single list, or labelled schemes for a
 // field whose concepts come from several lists, shown as option groups.
 export const CODELISTS = {

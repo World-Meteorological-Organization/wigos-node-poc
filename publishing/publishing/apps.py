@@ -6,6 +6,3 @@ class PublishingConfig(AppConfig):
     Station)."""
 
     name = "publishing"
-
-    def ready(self):
-        from . import publishers  # noqa: F401 (registers the cache reset)
