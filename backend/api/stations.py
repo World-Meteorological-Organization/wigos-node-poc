@@ -12,7 +12,7 @@ from django.db import IntegrityError, transaction
 from guardian.shortcuts import assign_perm, get_objects_for_user
 from jsonschema import Draft202012Validator
 
-from publishing.tasks import publish_station
+from publishing.tasks import request_publication
 
 from .models import Station, WIGOSNodeGroup
 
@@ -143,7 +143,7 @@ def _publish(station):
     transaction as the change: the job is a row in the database, so a rolled
     back batch update or dry run queues nothing, and a saved change always has
     its job."""
-    publish_station.enqueue(station.pk, station.wmdrv2)
+    request_publication(station.pk, station.wmdrv2)
 
 
 @transaction.atomic

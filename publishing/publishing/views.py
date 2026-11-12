@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from api.models import Station
 from api.stations import editable_station_ids
 
-from . import state, tasks
+from . import tasks
 
 Status = Station.PublicationStatus
 
@@ -27,16 +27,18 @@ def visible_stations(user):
         Station.objects.filter(pk__in=editable_station_ids(user))
         .exclude(publication_status="")
         .annotate(updated=KT("wmdrv2__properties__updated"))
-        .select_related("last_changed_by")
+        .select_related("last_changed_by", "publication")
         .defer("wmdrv2", "location")
         .order_by(F("updated").desc(nulls_last=True), "-id")
     )
 
 
-def station_data(station, saved):
-    """`saved` is the station's record, as state.load returns it. The error and
-    the finish time are those of the last job, which a newer save makes out of
-    date."""
+def station_data(station):
+    """The error and the finish time are those of the last job, which a newer
+    save makes out of date. A station whose job hasn't finished yet has no
+    publication record."""
+    publication = getattr(station, "publication", None)
+    finished_at = publication.finished_at.isoformat() if publication and publication.finished_at else None
     finished = station.publication_status in (Status.PROCESSED, Status.FAILED)
     return {
         "station_id": station.pk,
@@ -46,9 +48,9 @@ def station_data(station, saved):
         "updated": station.updated,
         # username, not get_username(), which is the email; never set for superusers
         "changed_by": station.last_changed_by.username if station.last_changed_by else None,
-        "finished_at": saved["finished_at"] if finished else None,
-        "last_error": saved["error"] if station.publication_status == Status.FAILED else "",
-        "files": [d["url"] for d in saved["deliveries"] if d["url"]],
+        "finished_at": finished_at if finished else None,
+        "last_error": publication.error if publication and station.publication_status == Status.FAILED else "",
+        "files": [d["url"] for d in publication.deliveries if d["url"]] if publication else [],
         "can_retry": station.publication_status in tasks.RETRYABLE,
     }
 
@@ -63,8 +65,7 @@ class PublicationListView(APIView):
 
         paginator = PublicationPagination()
         page = paginator.paginate_queryset(stations, request, view=self)
-        records = state.load_many(s.pk for s in page)
-        return paginator.get_paginated_response([station_data(s, records[s.pk]) for s in page])
+        return paginator.get_paginated_response([station_data(s) for s in page])
 
 
 class PublicationRetryView(APIView):
@@ -78,4 +79,4 @@ class PublicationRetryView(APIView):
             tasks.retry_publication(station_id)
         except tasks.RetryRefused as e:
             return Response({"detail": f"This station can't be retried: {e}."}, status=409)
-        return Response(station_data(stations.get(), state.load(station_id)))
+        return Response(station_data(stations.get()))

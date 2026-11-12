@@ -18,10 +18,11 @@ from rest_framework.test import APITestCase
 from api import stations
 from api.models import Station, WIGOSNodeGroup, WIGOSNodeUser
 
-from . import state, tasks
-from .base import DefaultPublisher, Delivery, Location, Message, MessageGenerator, PublishError, Step, TransportLayer
+from . import tasks
+from .base import DefaultPublisher, Location, MessageGenerator, Operation, PublishError, Step, TransportLayer
 from .generators.wmdr2 import RecordFileGenerator
 from .generators.wnm import WNMGenerator
+from .models import StationPublication
 from .publishers import get_publishers
 from .transports.mqtt import MQTTTransport
 from .transports.s3 import S3Transport
@@ -45,11 +46,19 @@ def queued():
     return [job.args_kwargs["args"][0] for job in DBTaskResult.objects.order_by("enqueued_at")]
 
 
+def saved(station_id):
+    """What the last job left for the station."""
+    publication = StationPublication.objects.filter(station_id=station_id).first()
+    if publication is None:
+        return {"deliveries": [], "error": "", "finished_at": None}
+    return {"deliveries": publication.deliveries, "error": publication.error, "finished_at": publication.finished_at}
+
+
 def lock_is_free(station_id):
     other = connection.copy()
     try:
         with other.cursor() as cursor:
-            cursor.execute("SELECT pg_try_advisory_lock(%s, %s)", [state.LOCK_NAMESPACE, station_id])
+            cursor.execute("SELECT pg_try_advisory_lock(%s, %s)", [tasks._LOCK_NAMESPACE, station_id])
             return cursor.fetchone()[0]
     finally:
         other.close()
@@ -62,7 +71,7 @@ def held_by_another_job(station_id):
     other = connection.copy()
     try:
         with other.cursor() as cursor:
-            cursor.execute("SELECT pg_advisory_lock(%s, %s)", [state.LOCK_NAMESPACE, station_id])
+            cursor.execute("SELECT pg_advisory_lock(%s, %s)", [tasks._LOCK_NAMESPACE, station_id])
         yield
     finally:
         other.close()
@@ -143,14 +152,18 @@ class JobTestCase(TestCase):
         return Station.objects.values_list("publication_status", flat=True).get(pk=station.pk)
 
     def run_job(self, station):
-        """The job a save of the station's current record queues."""
-        tasks.publish_station.call(station.pk, Station.objects.get(pk=station.pk).wmdrv2)
+        """Queue the job a save of the station's current record queues, then run
+        it here instead of in a worker."""
+        tasks.request_publication(station.pk, Station.objects.get(pk=station.pk).wmdrv2)
+        job = DBTaskResult.objects.order_by("-enqueued_at").first()
+        job.delete()
+        tasks.publish_station.call(*job.args_kwargs["args"])
 
     def test_publishes_the_record_it_was_given(self):
         station = self.station()
         given = record("0-756-0-job1", title="As saved")
 
-        tasks.publish_station.call(station.pk, given)
+        tasks.publish_station.call(station.pk, given, Operation.CREATE)
 
         [stored] = self.storage.files.values()
         self.assertEqual(json.loads(stored)["properties"]["title"], "As saved")
@@ -167,7 +180,7 @@ class JobTestCase(TestCase):
         digest = base64.b64encode(hashlib.sha512(self.storage.files[url]).digest()).decode()
         self.assertEqual(wnm["properties"]["integrity"]["value"], digest)
 
-        saved = state.load(station.pk)
+        saved = saved(station.pk)
         self.assertEqual([d["step"] for d in saved["deliveries"]], ["storage", "wnm"])
         self.assertEqual(saved["deliveries"][0]["url"], url)
         self.assertEqual(saved["error"], "")
@@ -204,7 +217,7 @@ class JobTestCase(TestCase):
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertEqual(self.storage.files, {})
-        saved = state.load(station.pk)
+        saved = saved(station.pk)
         self.assertEqual(saved["error"], "wis2:wnm: broker down")
         self.assertEqual(saved["deliveries"], [])
 
@@ -224,14 +237,13 @@ class JobTestCase(TestCase):
         self.run_job(station)
         [url] = self.storage.files
 
-        # the same `updated`, so the same file name
-        Station.objects.filter(pk=station.pk).update(publication_status=Status.PENDING)
+        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z", title="Changed"))
         self.broker.failures = 1
         self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
-        self.assertIn(url, self.storage.files)
-        self.assertEqual(state.load(station.pk)["deliveries"][0]["url"], url)
+        self.assertEqual(list(self.storage.files), [url])  # the failed version's file is removed
+        self.assertEqual(saved(station.pk)["deliveries"][0]["url"], url)
 
     def test_a_failed_undo_is_reported_and_the_file_stays(self):
         station = self.station()
@@ -241,7 +253,7 @@ class JobTestCase(TestCase):
             self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
-        self.assertEqual(state.load(station.pk)["error"], "wis2:wnm: broker down\nundo wis2: storage down")
+        self.assertEqual(saved(station.pk)["error"], "wis2:wnm: broker down\nundo wis2: storage down")
         [url] = self.storage.files
         self.assertIn(url, "\n".join(logs.output))  # so someone can remove it
 
@@ -283,7 +295,7 @@ class JobTestCase(TestCase):
         self.assertEqual(queued(), [])
 
     def test_a_deleted_station_is_ignored(self):
-        tasks.publish_station.call(999999, record("0-756-0-gone"))
+        tasks.publish_station.call(999999, record("0-756-0-gone"), Operation.CREATE)
         self.assertEqual(self.broker.sent, [])
 
     def test_a_crashed_job_releases_the_lock(self):
@@ -305,7 +317,7 @@ class JobTestCase(TestCase):
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertEqual(len(self.broker.sent), 1)  # wis2 still published
-        saved = state.load(station.pk)
+        saved = saved(station.pk)
         self.assertEqual(saved["error"], "other:storage: boom")
         self.assertEqual({d["publisher"] for d in saved["deliveries"]}, {"wis2"})
 
@@ -319,7 +331,7 @@ class JobTestCase(TestCase):
             self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
-        self.assertIn("properties.updated", state.load(station.pk)["error"])
+        self.assertIn("properties.updated", saved(station.pk)["error"])
 
 
 class PublishersTestCase(SimpleTestCase):
@@ -343,14 +355,6 @@ class PublishersTestCase(SimpleTestCase):
             [publisher] = get_publishers()
         self.assertEqual([step.name for step in publisher.steps], ["storage"])
 
-
-class ReadBackReceiptsTestCase(SimpleTestCase):
-    def test_a_read_back_receipt_has_no_body(self):
-        delivery = Delivery("wis2", Message(b"secret", "text/plain", name="f"), Location("http://f"), step="storage")
-        loaded = state.load_delivery(state.dump_delivery(delivery))
-        self.assertIsNone(loaded.message.body)
-        self.assertEqual(loaded.location, delivery.location)
-        self.assertEqual((loaded.publisher, loaded.step, loaded.message.name), ("wis2", "storage", "f"))
 
 
 class OpenedPublishersTestCase(TestCase):
@@ -424,8 +428,7 @@ class EnqueueTestCase(APITestCase):
         self.assertEqual(queued(), [])
 
     def test_a_save_whose_job_cant_be_queued_isnt_saved(self):
-        failing = mock.Mock(**{"enqueue.side_effect": RuntimeError("boom")})
-        with mock.patch.object(stations, "publish_station", failing):
+        with mock.patch.object(stations, "request_publication", side_effect=RuntimeError("boom")):
             with self.assertRaises(RuntimeError):
                 stations.create_station(self.member, record("0-756-0-enq8"))
         self.assertFalse(Station.objects.filter(wigos_identifier="0-756-0-enq8").exists())
@@ -584,7 +587,7 @@ class PublicationsApiTestCase(APITestCase):
         self.assertIsNotNone(body["next"])
 
     def saved_failure(self, station):
-        state.save(station.pk, {
+        StationPublication.objects.update_or_create(station_id=station.pk, defaults={
             "deliveries": [
                 {"publisher": "wis2", "step": "storage", "name": "f", "media_type": "t", "topic": None,
                  "url": "https://public/f"},

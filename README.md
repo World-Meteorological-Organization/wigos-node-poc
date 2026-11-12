@@ -139,8 +139,7 @@ publishing/
     generators/      Record file and WNM
     transports/      S3 storage, MQTT and a log transport for development
     models.py        Publication details of each station
-    tasks.py         The publishing job (a Django task) and retry
-    state.py         Per-station locks and publication details
+    tasks.py         The publishing job (a Django task), its per-station lock and retry
     views.py         Publication API under /api/publications/
     django_tests.py  Tests that need Django
     tests/           Plugin tests, plain unittest
