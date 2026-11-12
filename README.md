@@ -42,11 +42,14 @@ flowchart LR
    sets its `publication_status` to `pending` and, in the same transaction, queues
    a job with the station's id and the record as saved. Saves from the Django
    admin or the shell aren't published.
-2. A publisher process takes the station's lock and publishes the job's record: it stores
-   the file, then sends the WNM, whose integrity is computed over the stored bytes.
-   Every save gets its own WNM, in the order the jobs run.
-3. The station ends as `processed` or `failed`. A failure removes the stored file,
-   and a user can retry from the Publishing page. Retries are manual.
+2. A publisher process publishes the job's record: it stores the file, then sends the
+   WNM, whose integrity is computed over the stored bytes. Only a job whose record is
+   still the station's current one updates the station's status and publication
+   details, so they always end with the newest version. WNMs of two jobs of the
+   same station can go out in either order.
+3. The station ends as `processed` or `failed`, always for its newest version. A
+   failure removes the stored file, and a user can retry from the Publishing page.
+   Retries are manual.
 
 A failure to publish never fails the save. The save and its job are committed
 together, so a saved change always has its job.
@@ -139,7 +142,7 @@ publishing/
     generators/      Record file and WNM
     transports/      S3 storage, MQTT and a log transport for development
     models.py        Publication details of each station
-    tasks.py         The publishing job (a Django task), its per-station lock and retry
+    tasks.py         The publishing job (a Django task) and retry
     views.py         Publication API under /api/publications/
     django_tests.py  Tests that need Django
     tests/           Plugin tests, plain unittest

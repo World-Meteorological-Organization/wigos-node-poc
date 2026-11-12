@@ -6,10 +6,8 @@ import base64
 import copy
 import hashlib
 import json
-from contextlib import contextmanager
 from unittest import mock
 
-from django.db import OperationalError, connection, transaction
 from django.test import Client, SimpleTestCase, TestCase, override_settings
 from django.urls import reverse
 from django_tasks_db.models import DBTaskResult
@@ -46,35 +44,12 @@ def queued():
     return [job.args_kwargs["args"][0] for job in DBTaskResult.objects.order_by("enqueued_at")]
 
 
-def saved(station_id):
+def publication_of(station_id):
     """What the last job left for the station."""
     publication = StationPublication.objects.filter(station_id=station_id).first()
     if publication is None:
         return {"deliveries": [], "error": "", "finished_at": None}
     return {"deliveries": publication.deliveries, "error": publication.error, "finished_at": publication.finished_at}
-
-
-def lock_is_free(station_id):
-    other = connection.copy()
-    try:
-        with other.cursor() as cursor:
-            cursor.execute("SELECT pg_try_advisory_lock(%s, %s)", [tasks._LOCK_NAMESPACE, station_id])
-            return cursor.fetchone()[0]
-    finally:
-        other.close()
-
-
-@contextmanager
-def held_by_another_job(station_id):
-    """The station's lock, held from a second connection as a running job would:
-    the advisory lock can be taken again by the connection that holds it."""
-    other = connection.copy()
-    try:
-        with other.cursor() as cursor:
-            cursor.execute("SELECT pg_advisory_lock(%s, %s)", [tasks._LOCK_NAMESPACE, station_id])
-        yield
-    finally:
-        other.close()
 
 
 class MemoryStorage(TransportLayer):
@@ -159,14 +134,33 @@ class JobTestCase(TestCase):
         job.delete()
         tasks.publish_station.call(*job.args_kwargs["args"])
 
-    def test_publishes_the_record_it_was_given(self):
+    def test_an_out_of_date_job_publishes_but_leaves_the_station_alone(self):
         station = self.station()
-        given = record("0-756-0-job1", title="As saved")
+        first = Station.objects.get(pk=station.pk).wmdrv2
+        stations.update_station(self.user, station, record("0-756-0-job1", updated="2026-11-05T11:00:00Z", title="Changed"))
 
-        tasks.publish_station.call(station.pk, given, Operation.CREATE)
+        tasks.publish_station.call(station.pk, first, Operation.CREATE)  # the first save's job, run late
 
-        [stored] = self.storage.files.values()
-        self.assertEqual(json.loads(stored)["properties"]["title"], "As saved")
+        self.assertEqual((len(self.storage.files), len(self.broker.sent)), (1, 1))
+        self.assertEqual(self.status_of(station), Status.PENDING)  # left to the newer save's job
+        self.assertFalse(StationPublication.objects.filter(station_id=station.pk).exists())
+
+    def test_a_job_that_became_out_of_date_while_running_saves_nothing(self):
+        station = self.station()
+        self.run_job(station)  # published once
+        before = publication_of(station.pk)
+
+        def saved_meanwhile():
+            self.broker.before_send = None
+            stations.update_station(self.user, Station.objects.get(pk=station.pk), record("0-756-0-job1", updated="2026-11-05T11:00:00Z", title="Changed"))
+
+        self.broker.before_send = saved_meanwhile
+        self.broker.failures = 1  # this job fails, but the newer save's job decides the outcome
+        with self.assertLogs("publishing", "ERROR"):
+            self.run_job(station)
+
+        self.assertEqual(self.status_of(station), Status.PENDING)
+        self.assertEqual(publication_of(station.pk), before)
 
     def test_publishes_the_file_then_its_wnm(self):
         station = self.station()
@@ -180,12 +174,11 @@ class JobTestCase(TestCase):
         digest = base64.b64encode(hashlib.sha512(self.storage.files[url]).digest()).decode()
         self.assertEqual(wnm["properties"]["integrity"]["value"], digest)
 
-        saved = saved(station.pk)
+        saved = publication_of(station.pk)
         self.assertEqual([d["step"] for d in saved["deliveries"]], ["storage", "wnm"])
         self.assertEqual(saved["deliveries"][0]["url"], url)
         self.assertEqual(saved["error"], "")
         self.assertIsNotNone(saved["finished_at"])
-        self.assertTrue(lock_is_free(station.pk))
         self.assertEqual(queued(), [])
 
     def test_the_next_publication_is_an_update(self):
@@ -217,7 +210,7 @@ class JobTestCase(TestCase):
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertEqual(self.storage.files, {})
-        saved = saved(station.pk)
+        saved = publication_of(station.pk)
         self.assertEqual(saved["error"], "wis2:wnm: broker down")
         self.assertEqual(saved["deliveries"], [])
 
@@ -243,7 +236,7 @@ class JobTestCase(TestCase):
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertEqual(list(self.storage.files), [url])  # the failed version's file is removed
-        self.assertEqual(saved(station.pk)["deliveries"][0]["url"], url)
+        self.assertEqual(publication_of(station.pk)["deliveries"][0]["url"], url)
 
     def test_a_failed_undo_is_reported_and_the_file_stays(self):
         station = self.station()
@@ -253,7 +246,7 @@ class JobTestCase(TestCase):
             self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
-        self.assertEqual(saved(station.pk)["error"], "wis2:wnm: broker down\nundo wis2: storage down")
+        self.assertEqual(publication_of(station.pk)["error"], "wis2:wnm: broker down\nundo wis2: storage down")
         [url] = self.storage.files
         self.assertIn(url, "\n".join(logs.output))  # so someone can remove it
 
@@ -268,24 +261,11 @@ class JobTestCase(TestCase):
         self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.PENDING)
-        self.assertEqual(queued(), [station.pk])  # the save's own, waiting for the lock
-        self.assertTrue(lock_is_free(station.pk))
+        self.assertEqual(queued(), [station.pk])  # the save's own job
 
         self.run_job(station)
         self.assertEqual(self.status_of(station), Status.PROCESSED)
         self.assertEqual(len(self.broker.sent), 2)
-
-    def test_a_job_waits_for_a_running_job_of_the_same_station(self):
-        station = self.station()
-
-        with held_by_another_job(station.pk):
-            with self.assertRaises(OperationalError), transaction.atomic():
-                with connection.cursor() as cursor:
-                    cursor.execute("SET LOCAL lock_timeout = '200ms'")  # instead of waiting forever
-                self.run_job(station)
-
-        self.assertEqual(self.status_of(station), Status.PENDING)
-        self.assertEqual(self.broker.sent, [])
 
     def test_every_job_publishes_even_the_same_record_again(self):
         station = self.station()
@@ -298,12 +278,11 @@ class JobTestCase(TestCase):
         tasks.publish_station.call(999999, record("0-756-0-gone"), Operation.CREATE)
         self.assertEqual(self.broker.sent, [])
 
-    def test_a_crashed_job_releases_the_lock(self):
+    def test_a_crashed_job_leaves_the_station_processing(self):
         station = self.station()
         with mock.patch.object(tasks, "_publish", side_effect=RuntimeError("boom")):
             with self.assertRaises(RuntimeError):
                 self.run_job(station)
-        self.assertTrue(lock_is_free(station.pk))
         self.assertEqual(self.status_of(station), Status.PROCESSING)  # a user's retry takes it from here
 
     def test_publishers_are_independent(self):
@@ -317,7 +296,7 @@ class JobTestCase(TestCase):
 
         self.assertEqual(self.status_of(station), Status.FAILED)
         self.assertEqual(len(self.broker.sent), 1)  # wis2 still published
-        saved = saved(station.pk)
+        saved = publication_of(station.pk)
         self.assertEqual(saved["error"], "other:storage: boom")
         self.assertEqual({d["publisher"] for d in saved["deliveries"]}, {"wis2"})
 
@@ -331,7 +310,7 @@ class JobTestCase(TestCase):
             self.run_job(station)
 
         self.assertEqual(self.status_of(station), Status.FAILED)
-        self.assertIn("properties.updated", saved(station.pk)["error"])
+        self.assertIn("properties.updated", publication_of(station.pk)["error"])
 
 
 class PublishersTestCase(SimpleTestCase):
@@ -682,13 +661,12 @@ class PublicationsApiTestCase(APITestCase):
         self.client.force_authenticate(self.author)
         self.assertEqual(self.client.get(reverse("publication-retry", args=[station.pk])).status_code, 405)
 
-    def test_a_retry_while_the_job_runs_queues_one_that_waits_for_it(self):
+    def test_a_station_left_processing_can_be_retried(self):
         station = self.create("0-756-0-uc16")
         self.set_status(station, Status.PROCESSING)
         DBTaskResult.objects.all().delete()
 
-        with held_by_another_job(station.pk):
-            response = self.retry(station)
+        response = self.retry(station)
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(self.status_of(station), Status.PENDING)
