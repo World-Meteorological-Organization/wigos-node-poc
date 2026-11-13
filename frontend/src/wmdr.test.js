@@ -102,8 +102,9 @@ describe("buildWmdrRecord", () => {
     expect(buildWmdrRecord(form).properties.observations[0].contacts).toEqual(contacts);
   });
 
-  it("drops a stored resolution on the station's time, so the record can be saved", () => {
-    const rebuilt = roundTrip({ ...allFields, time: { interval: ["2020-01", ".."], resolution: "PT1H" } });
+  it("keeps only the interval of the station's time, dropping a stored date, timestamp or resolution", () => {
+    const time = { date: "2020-01-01", timestamp: "2020-01-01T00:00:37.000Z", interval: ["2020-01", ".."], resolution: "PT1H" };
+    const rebuilt = roundTrip({ ...allFields, time });
     expect(rebuilt.time).toEqual({ interval: ["2020-01", ".."] });
     expect(validateWmdrRecord(rebuilt)).toEqual([]);
   });

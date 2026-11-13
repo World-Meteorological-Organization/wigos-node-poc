@@ -3,7 +3,6 @@ import unittest
 
 from publishing.base import Location, Message, Operation
 from publishing.generators.wmdr2 import RecordFileGenerator
-from publishing.registry import ConfigurationError, build_publishers
 from publishing.transports.log import LogTransport
 from publishing.wmdr2 import record_file_name, render_record
 
@@ -62,19 +61,9 @@ class RecordFileGeneratorTestCase(unittest.TestCase):
     def test_delete_gives_nothing(self):
         self.assertEqual(self.generator.generate(make_event(Operation.DELETE, wmdrv2=RECORD), []), [])
 
-    def test_centre_id_is_required_in_config(self):
-        with self.assertRaises(ConfigurationError) as caught:
-            build_publishers([
-                {
-                    "NAME": "files",
-                    "STEPS": [{
-                        "NAME": "store",
-                        "GENERATOR": {"CLASS": "publishing.generators.wmdr2.RecordFileGenerator"},
-                        "TRANSPORT": {"CLASS": "publishing.transports.log.LogTransport"},
-                    }],
-                }
-            ])
-        self.assertIn("centre_id", caught.exception.errors[0])
+    def test_centre_id_is_required(self):
+        with self.assertRaisesRegex(TypeError, "centre_id"):
+            RecordFileGenerator()
 
 
 class LogTransportTestCase(unittest.TestCase):
@@ -96,8 +85,8 @@ class LogTransportTestCase(unittest.TestCase):
         with self.assertLogs("publishing", "INFO"):
             self.assertIsNone(LogTransport().send(message))
             self.assertIsNone(LogTransport(url="https://pub/").send(Message(b"{}", "application/json")))
-            location = LogTransport(url="https://pub/", internal_url="http://int").send(message)
-        self.assertEqual(location, Location("https://pub/a%20b.json", "http://int/a%20b.json"))
+            location = LogTransport(url="https://pub/").send(message)
+        self.assertEqual(location, Location("https://pub/a%20b.json"))
 
     def test_remove_logs(self):
         with self.assertLogs("publishing", "INFO") as logs:

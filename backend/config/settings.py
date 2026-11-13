@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -7,11 +8,19 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "insecure-dev-key-change-me")
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "true").lower() == "true"
 
+# Where the node is reached (through Traefik), e.g. https://node.example.org,
+# as wis2box's WIS2BOX_URL. It's an allowed host and a trusted origin, the
+# default base of the WNM links (<url>/data) and the base of every saved
+# record's self link.
+WIGOS_NODE_URL = os.environ.get("WIGOS_NODE_URL", "http://localhost").rstrip("/")
+
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,backend").split(",")
+ALLOWED_HOSTS.append(urlsplit(WIGOS_NODE_URL).hostname or "localhost")
 
 INSTALLED_APPS = [
     "api.apps.ApiConfig",
     "publishing.apps.PublishingConfig",
+    "django_tasks_db",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -100,68 +109,40 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     "CSRF_TRUSTED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
 ).split(",")
+# Behind Traefik Django sees plain http, so the https origin must be listed.
+CSRF_TRUSTED_ORIGINS.append(WIGOS_NODE_URL)
 
-# WIS2 publishing (repo-root publishing/): this node's WIS2 centre id, and the
-# web storage (the minio service by default) the record files are stored in.
-# WNM_STORAGE_URL is where the public reaches the files (the WNM links);
-# the node itself retrieves them from WNM_STORAGE_INTERNAL_URL, by default
-# the endpoint and bucket.
-WNM_CENTRE_ID = os.environ.get("WNM_CENTRE_ID", "io-wis2dev-test-wigosnode")
-WNM_STORAGE_URL = os.environ.get("WNM_STORAGE_URL", "https://wigosnode.test.wis2dev.io/webstorage")
-WNM_STORAGE_SECURE = os.environ.get("WNM_STORAGE_SECURE", "false").lower() == "true"
+# Publishing jobs are kept in the database and run by `manage.py run_publishers`
+# (several `db_worker` processes).
+TASKS = {"default": {"BACKEND": "django_tasks_db.DatabaseBackend"}}
 
-# Publishers the Celery worker runs for every station change. Each is one process
-# from start to end, and they don't depend on each other.
-# Classes are dotted paths into any installed package (publishing.registry).
-PUBLISHERS = [
-    {
-        # WIS2, from start to end: store the record file, then announce it
-        "NAME": "wis2",
-        "STEPS": [
-            {
-                "NAME": "storage",
-                "GENERATOR": {
-                    "CLASS": "publishing.generators.wmdr2.RecordFileGenerator",
-                    "OPTIONS": {"centre_id": WNM_CENTRE_ID},
-                },
-                "TRANSPORT": {
-                    "CLASS": "publishing.transports.s3.S3Transport",
-                    "OPTIONS": {
-                        "endpoint": os.environ.get("WNM_STORAGE_ENDPOINT", "minio:9000"),
-                        "bucket": os.environ.get("WNM_STORAGE_BUCKET", "webstorage"),
-                        # defaults: the minio service's root user in docker-compose.yml
-                        "access_key": os.environ.get("WNM_STORAGE_ACCESS_KEY", "minioadmin"),
-                        "secret_key": os.environ.get("WNM_STORAGE_SECRET_KEY", "minioadmin"),
-                        "secure": WNM_STORAGE_SECURE,
-                        "public_url": WNM_STORAGE_URL,
-                        "internal_url": os.environ.get("WNM_STORAGE_INTERNAL_URL") or None,
-                        # development: create the bucket with anonymous read if missing
-                        "create_bucket": os.environ.get("WNM_STORAGE_CREATE_BUCKET", str(DEBUG)).lower() == "true",
-                    },
-                },
-            },
-            {
-                "NAME": "wnm",
-                "GENERATOR": {
-                    "CLASS": "publishing.generators.wnm.WNMGenerator",
-                    "OPTIONS": {"centre_id": WNM_CENTRE_ID},
-                },
-                "TRANSPORT": {
-                    "CLASS": "publishing.transports.mqtt.MQTTTransport",
-                    "OPTIONS": {
-                        # default: the mosquitto service in docker-compose.yml
-                        "url": os.environ.get("WIS2_BROKER_URL", "mqtt://wis2:wis2@mosquitto:1883"),
-                        # Placeholder: the WMDR2 topic is not decided yet
-                        "topic": os.environ.get("WIS2_TOPIC", f"origin/a/wis2/{WNM_CENTRE_ID}/TBD-wmdr2"),
-                    },
-                },
-                "ENABLED": os.environ.get("WIS2_PUBLISH_WNM", "true") == "true",
-            },
-        ],
-    },
-]
+# WIS2 publishing (repo-root publishing/, built in publishing/publishers.py):
+# store each record file in web storage, then announce it with a WNM.
+WNM_CENTRE_ID = os.environ.get("WNM_CENTRE_ID", "int-wigosnode-test")
+# Options of publishing.transports.s3.S3Transport (the minio service by default)
+WNM_STORAGE = {
+    "endpoint": os.environ.get("WNM_STORAGE_ENDPOINT", "minio:9000"),
+    "bucket": os.environ.get("WNM_STORAGE_BUCKET", "webstorage"),
+    # defaults: the minio service's root user in docker-compose.yml
+    "access_key": os.environ.get("WNM_STORAGE_ACCESS_KEY", "minioadmin"),
+    "secret_key": os.environ.get("WNM_STORAGE_SECRET_KEY", "minioadmin"),
+    "secure": os.environ.get("WNM_STORAGE_SECURE", "false").lower() == "true",
+    # where the public reaches the files (the WNM links); Traefik serves the
+    # bucket at <WIGOS_NODE_URL>/data
+    "public_url": os.environ.get("WNM_STORAGE_URL", f"{WIGOS_NODE_URL}/data"),
+    # development: create the bucket with anonymous read if missing
+    "create_bucket": os.environ.get("WNM_STORAGE_CREATE_BUCKET", str(DEBUG)).lower() == "true",
+}
+# Options of publishing.transports.mqtt.MQTTTransport; false stores the files
+# but sends no WNMs
+WIS2_PUBLISH_WNM = os.environ.get("WIS2_PUBLISH_WNM", "true") == "true"
+WIS2_BROKER = {
+    # default: the mosquitto service in docker-compose.yml
+    "url": os.environ.get("WIS2_BROKER_URL", "mqtt://wis2:wis2@mosquitto:1883"),
+    "topic": os.environ.get("WIS2_TOPIC", f"origin/a/wigos/{WNM_CENTRE_ID}/metadata"),
+}
 
-# Publishing logs to the console (docker compose logs worker); INFO shows
+# Publishing logs to the console (docker compose logs publisher); INFO shows
 # every published station and, with the log transports, every message.
 PUBLISHING_LOG_LEVEL = os.environ.get("PUBLISHING_LOG_LEVEL", "INFO")
 LOGGING = {
@@ -170,7 +151,6 @@ LOGGING = {
     "formatters": {"plain": {"format": "%(asctime)s %(levelname)s %(name)s: %(message)s"}},
     "handlers": {"console": {"class": "logging.StreamHandler", "formatter": "plain"}},
     "loggers": {
-        # no propagating: the Celery worker adds its own root handler
         "publishing": {"handlers": ["console"], "level": PUBLISHING_LOG_LEVEL, "propagate": False},
     },
 }

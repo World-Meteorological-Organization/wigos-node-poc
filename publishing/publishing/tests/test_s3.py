@@ -58,19 +58,17 @@ MESSAGE = Message(body=b'{"id":"0-1-2-3"}', media_type="application/geo+json", n
 
 
 class S3TransportTestCase(unittest.TestCase):
-    def test_stores_the_message_and_reports_both_urls(self):
-        t = transport(public_url="https://node.example/webstorage/", internal_url="http://minio:9000/webstorage")
+    def test_stores_the_message_and_reports_its_public_url(self):
+        t = transport(public_url="https://node.example/webstorage/")
 
         location = t.send(MESSAGE)
 
         self.assertEqual(t.client.objects, {("webstorage", "wmdr2 a.json"): (MESSAGE.body, "application/geo+json")})
-        self.assertEqual(location, Location(
-            "https://node.example/webstorage/wmdr2%20a.json", "http://minio:9000/webstorage/wmdr2%20a.json"
-        ))
+        self.assertEqual(location, Location("https://node.example/webstorage/wmdr2%20a.json"))
 
-    def test_urls_default_to_the_endpoint_and_bucket(self):
+    def test_url_defaults_to_the_endpoint_and_bucket(self):
         self.assertEqual(transport().send(MESSAGE).url, "https://minio:9000/webstorage/wmdr2%20a.json")
-        self.assertEqual(transport(secure=False).send(MESSAGE).internal_url, "http://minio:9000/webstorage/wmdr2%20a.json")
+        self.assertEqual(transport(secure=False).send(MESSAGE).url, "http://minio:9000/webstorage/wmdr2%20a.json")
 
     def test_prefix_is_part_of_the_object_name(self):
         t = transport(prefix="wmdr2/")

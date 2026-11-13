@@ -7,16 +7,14 @@ Deliveries (receipts) of the steps before it in the same publisher. Publishers
 know nothing about each other, and one failing doesn't affect the others.
 
 Byte-level consistency: a storage transport returns the Location of what it
-stored. Before a generator that needs_content() runs, its Publisher
-retrieves every earlier Location and hands over the file actually served, so
-e.g. a WNM's integrity always describes the stored file.
+stored, and later steps get the message it stored, body included. A WNM's
+integrity is computed over those bytes, so it describes the stored file.
 
 Each worker process has its own instance of each plugin and runs one job at a
 time, so plugins don't have to be thread-safe."""
 
-import urllib.request
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from datetime import datetime
 from enum import StrEnum
 
@@ -41,7 +39,7 @@ class Event:
 
 @dataclass(frozen=True)
 class Message:
-    body: bytes | None  # None in a receipt read back from Valkey: it isn't kept
+    body: bytes | None  # None in a receipt read back from the database: it isn't kept
     media_type: str
     name: str | None = None  # file name for storage transports
     topic: str | None = None  # overrides the transport's default topic
@@ -53,23 +51,17 @@ class Location:
     """Where a storage transport put a message."""
 
     url: str  # public link, e.g. a WNM href
-    internal_url: str | None = None  # where this node retrieves it; default url
-
-    @property
-    def retrieve_url(self):
-        return self.internal_url or self.url
 
 
 @dataclass(frozen=True)
 class Delivery:
     """Receipt of one sent message, handed to the later steps of its publisher.
-    For the stored file use `content` (see needs_content()), not message.body:
-    a receipt read back from Valkey has no body."""
+    message.body is what was sent; a receipt read back from the database has
+    none."""
 
     publisher: str  # name of the publisher that sent it
     message: Message
     location: Location | None = None  # storage transports only
-    content: bytes | None = None  # the file retrieved from location, see needs_content()
     step: str | None = None  # name of the step that sent it
 
 
@@ -81,10 +73,6 @@ class PublishError(Exception):
 class MessageGenerator(ABC):
     def __init__(self, **options):
         self.options = options
-
-    def needs_content(self, event: Event) -> bool:
-        """True to get the earlier deliveries with `content` filled in."""
-        return False
 
     @abstractmethod
     def generate(self, event: Event, deliveries: list[Delivery]) -> list[Message]:
@@ -137,8 +125,6 @@ class Publisher(ABC):
     Subclasses decide which events they publish, and may override publish() for
     special flows."""
 
-    retrieve_timeout = 30  # seconds
-
     def __init__(self, name: str, steps: list[Step]):
         self.name = name
         self.steps = list(steps)
@@ -155,24 +141,11 @@ class Publisher(ABC):
         for step in reversed(self.steps):
             step.transport.close()
 
-    def retrieve(self, location: Location) -> bytes:
-        """The file served at the location's internal URL."""
-        try:
-            with urllib.request.urlopen(location.retrieve_url, timeout=self.retrieve_timeout) as response:
-                return response.read()
-        except (OSError, ValueError) as e:  # URLError and HTTPError are OSErrors
-            raise PublishError(f"Could not retrieve {location.retrieve_url}: {e}") from e
-
     def run_step(self, step: Step, event: Event, deliveries: list[Delivery]) -> list[Delivery]:
         """Run one generator and its transport; returns the step's receipts."""
-        if step.generator.needs_content(event):
-            deliveries = [
-                replace(d, content=self.retrieve(d.location)) if d.location else d
-                for d in deliveries
-            ]
         messages = step.generator.generate(event, deliveries)
         if any(message.body is None for message in messages):
-            raise PublishError(f"Step {step.name} made a message without a body; use a delivery's content, not its body")
+            raise PublishError(f"Step {step.name} made a message without a body, e.g. from a read-back receipt")
         locations = step.transport.send_many(messages)
         return [Delivery(self.name, m, location, step=step.name) for m, location in zip(messages, locations)]
 

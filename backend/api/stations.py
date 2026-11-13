@@ -8,10 +8,13 @@ import logging
 from functools import cache
 from pathlib import Path
 
+from django.conf import settings
 from django.db import IntegrityError, transaction
+from django.urls import reverse
 from guardian.shortcuts import assign_perm, get_objects_for_user
 from jsonschema import Draft202012Validator
 
+from publishing.base import Operation
 from publishing.tasks import request_publication
 
 from .models import Station, WIGOSNodeGroup
@@ -138,16 +141,31 @@ def _save(station):
         raise StationError(f"The station could not be saved: {e}") from e
 
 
-def _publish(station):
-    """Publish the station once committed, so a rolled back batch update or dry
-    run publishes nothing. A failure to enqueue is logged and doesn't fail the
-    change: the station stays pending."""
-    # not a partial: logging a robust callback's failure needs its __qualname__
-    transaction.on_commit(lambda: request_publication(station.pk), robust=True)
+def publish(station, operation=Operation.UPDATE):
+    """Queue the station's job, with the record as saved, in the same
+    transaction as the change: the job is a row in the database, so a rolled
+    back batch update or dry run queues nothing, and a saved change always has
+    its job. The record is announced as new only by the save that created the
+    station."""
+    request_publication(station.pk, station.wmdrv2, operation)
 
 
+def _is_self_link(link):
+    return isinstance(link, dict) and link.get("rel") == "self"
+
+
+def with_self_link(wmdrv2):
+    """The record with its self link at the node's public URL (WIGOS_NODE_URL),
+    replacing the frontend's, which only knows the browser's address."""
+    links = [link for link in wmdrv2.get("links") or [] if not _is_self_link(link)]
+    href = settings.WIGOS_NODE_URL + reverse("wmdrv2-wsi", args=[wmdrv2["id"]])
+    return {**wmdrv2, "links": [{"rel": "self", "href": href, "type": "application/geo+json"}, *links]}
+
+
+@transaction.atomic
 def create_station(user, wmdrv2):
     validate(wmdrv2)
+    wmdrv2 = with_self_link(wmdrv2)
     wsis = wsis_of(wmdrv2)
     check_issuers(user, wsis, "create")
     station = Station(wmdrv2=wmdrv2, owner=user)
@@ -156,22 +174,37 @@ def create_station(user, wmdrv2):
     # after save so the station has a pk to attach object permissions to
     assign_perm("change_station", user, station)
     assign_issuer_groups(station, wsis)
-    _publish(station)
+    publish(station, Operation.CREATE)
     return station
 
 
+def _without_node_fields(wmdrv2):
+    """The record without what the frontend sets anew on every save:
+    properties.updated and the self link."""
+    properties = {key: value for key, value in (wmdrv2.get("properties") or {}).items() if key != "updated"}
+    links = [link for link in wmdrv2.get("links") or [] if not _is_self_link(link)]
+    return {**wmdrv2, "properties": properties, "links": links}
+
+
+@transaction.atomic
 def update_station(user, station, wmdrv2):
+    """Saves and publishes the new record. One that differs from the stored
+    record only in `updated` and the self link changes nothing: no save, no
+    new version, no publication."""
     if not user.has_perm("change_station", station):
         raise StationError("You do not have permission to change this station.", status=403)
     validate(wmdrv2)
+    wmdrv2 = with_self_link(wmdrv2)
     old_wsis = station.get_wigos_identifiers()
     new_wsis = wsis_of(wmdrv2)
     # Old and new: the primary and additional IDs may both change.
     check_issuers(user, old_wsis + new_wsis, "update")
+    if _without_node_fields(wmdrv2) == _without_node_fields(station.wmdrv2):
+        return station
     station.wmdrv2 = wmdrv2  # save() updates the index fields
     _mark_changed(station, user)
     _save(station)  # owner is unchanged on update
     added = [wsi for wsi in new_wsis if issuer_of(wsi) not in {issuer_of(old) for old in old_wsis}]
     assign_issuer_groups(station, added)
-    _publish(station)
+    publish(station)
     return station

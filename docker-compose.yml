@@ -11,7 +11,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-app_user} -d ${POSTGRES_DB:-app_db}"]
       interval: 5s
@@ -37,16 +37,16 @@ services:
       - ./publishing:/publishing
       - ./test_data:/test_data
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     depends_on:
       db:
         condition: service_healthy
-      valkey:
-        condition: service_healthy
 
-  # Runs the publishing jobs, with the backend's image and settings. It doesn't
-  # reload on code changes: restart it after editing backend/ or publishing/.
-  worker:
+  # Runs the publishing jobs, with the backend's image and settings: 4
+  # processes, each running one job at a time, restarted if one exits. It
+  # doesn't reload on code changes: restart it after editing backend/ or
+  # publishing/.
+  publisher:
     build: *backend-build
     restart: unless-stopped
     environment: *backend-environment
@@ -54,17 +54,15 @@ services:
       - .env
     volumes: *backend-volumes
     # Not the backend's entrypoint: the backend runs the migrations, and this
-    # waits until they are applied. exec makes Celery PID 1, so docker stop's
-    # SIGTERM reaches it and it finishes its current jobs.
+    # waits until they are applied. exec makes run_publishers PID 1, so docker
+    # stop's SIGTERM reaches it and its processes finish their current jobs.
     entrypoint:
       - sh
       - -c
-      - until python manage.py migrate --check > /dev/null 2>&1; do sleep 2; done; exec celery -A publishing worker --concurrency=4 --loglevel=INFO
+      - until python manage.py migrate --check > /dev/null 2>&1; do sleep 2; done; exec python manage.py run_publishers --processes 4
     stop_grace_period: 30s
     depends_on:
       db:
-        condition: service_healthy
-      valkey:
         condition: service_healthy
       backend:
         condition: service_started
@@ -72,20 +70,6 @@ services:
         condition: service_healthy
       mosquitto:
         condition: service_healthy
-
-  # Celery's broker. It has no password, so it's only reachable from the other
-  # containers. Persistent, and never evicts: it holds queued jobs.
-  valkey:
-    image: valkey/valkey:8.1.11
-    restart: unless-stopped
-    command: valkey-server --appendonly yes --maxmemory-policy noeviction
-    volumes:
-      - valkey_data:/data
-    healthcheck:
-      test: ["CMD", "valkey-cli", "ping"]
-      interval: 5s
-      timeout: 1s
-      retries: 3
 
   # MQTT broker the WNMs are published to. A production deployment points
   # WIS2_BROKER_URL at its own broker, or sets WIS2_PUBLISH_WNM=false.
@@ -102,12 +86,18 @@ services:
         touch /mosquitto/passwd
         chmod 600 /mosquitto/passwd
         mosquitto_passwd -b /mosquitto/passwd "$$MQTT_USERNAME" "$$MQTT_PASSWORD"
+        mosquitto_passwd -b /mosquitto/passwd everyone everyone
         chown mosquitto:mosquitto /mosquitto/passwd
+        # the publisher's user can do anything; the public WIS2 user
+        # everyone/everyone can only subscribe, to the node's topics
+        printf 'user %s\ntopic readwrite #\n\nuser everyone\ntopic read origin/a/wigos/#\n' "$$MQTT_USERNAME" > /mosquitto/acl
+        chmod 600 /mosquitto/acl
+        chown mosquitto:mosquitto /mosquitto/acl
         exec mosquitto -c /mosquitto/config/mosquitto.conf
     volumes:
       - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
     ports:
-      - "1883:1883"
+      - "127.0.0.1:1883:1883"
     healthcheck:
       test: ["CMD-SHELL", "nc -z localhost 1883"]
       interval: 5s
@@ -132,8 +122,8 @@ services:
     volumes:
       - minio_data:/data
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 5s
@@ -146,15 +136,39 @@ services:
     environment:
       VITE_API_URL: ""
       VITE_PROXY_TARGET: http://backend:8000
+      WIGOS_NODE_URL: ${WIGOS_NODE_URL:-http://localhost}
     volumes:
       - ./frontend:/app
       - /app/node_modules
     ports:
-      - "5173:5173"
+      - "127.0.0.1:5173:5173"
     depends_on:
       - backend
+
+  # The only service reachable from outside, on 80 or 443 depending on
+  # WIGOS_NODE_URL's scheme; routes and TLS in traefik/entrypoint.sh. The other
+  # services' ports are bound to 127.0.0.1 (the server itself, or an SSH tunnel).
+  traefik:
+    image: traefik:v3.6
+    restart: unless-stopped
+    environment:
+      WIGOS_NODE_URL: ${WIGOS_NODE_URL:-http://localhost}
+      WNM_STORAGE_BUCKET: ${WNM_STORAGE_BUCKET:-webstorage}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-}
+    entrypoint: ["sh", "/traefik/entrypoint.sh"]
+    volumes:
+      - ./traefik/entrypoint.sh:/traefik/entrypoint.sh:ro
+      - letsencrypt:/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
+      - minio
+      - mosquitto
 
 volumes:
   db_data:
   minio_data:
-  valkey_data:
+  letsencrypt:

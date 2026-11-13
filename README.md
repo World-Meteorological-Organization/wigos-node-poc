@@ -20,44 +20,57 @@ Station records follow WMDR2, version 1.99dev2, using the JSON schema from
 flowchart LR
     browser[Browser] --> frontend["frontend<br>Vue + Vuetify<br>builds WMDR2 records"]
     frontend -- /api --> backend["backend<br>Django + DRF"]
-    backend --> db[("db<br>PostGIS")]
-    backend -- "queues a job,<br>reads publication details" --> valkey[("valkey<br>queue + state")]
-    valkey --> worker["worker<br>Celery"]
-    worker --> db
-    worker -- record file --> minio[("minio<br>web storage")]
-    worker -- WNM --> mosquitto["mosquitto<br>MQTT broker"]
+    backend -- "saves a station<br>and queues its job" --> db[("db<br>PostGIS<br>stations + job queue")]
+    db --> publisher["publisher<br>Django Tasks, 4 processes"]
+    publisher -- "publication<br>status" --> db
+    publisher -- record file --> minio[("minio<br>web storage")]
+    publisher -- WNM --> mosquitto["mosquitto<br>MQTT broker"]
 ```
 
 | Service | Role | Port |
 |---|---|---|
 | `frontend` | Vite dev server for the Vue app | 5173 |
 | `backend` | REST API and Django admin | 8000 |
-| `db` | Stations, users and groups (PostgreSQL + PostGIS) | 5432 |
-| `valkey` | Job queue, plus each station's last publication details | internal |
-| `worker` | Runs the publishing jobs, with 4 processes | none |
+| `db` | Stations with their publication status, users, groups and the job queue (PostgreSQL + PostGIS) | 5432 |
+| `publisher` | Runs the publishing jobs: 4 processes, one job at a time each, restarted if one exits | none |
 | `minio` | Web storage for the record files | 9000, console 9001 |
 | `mosquitto` | MQTT broker for the WNMs | 1883 |
 
 **Publishing a station:**
 
 1. Creating or changing a station through the API (the form or the batch wizard)
-   sets its `publication_status` to `pending` and, after commit, queues a job with
-   the station's id. Saves from the Django admin or the shell aren't published.
-2. The worker takes the station's lock and publishes its current record: it stores
-   the file, then sends the WNM. Several quick saves can result in one WNM.
-3. The station ends as `processed` or `failed`. A failure removes the stored file,
-   and a user can retry from the Publishing page. Retries are manual.
+   sets its `publication_status` to `pending` and, in the same transaction, queues
+   a job with the station's id and the record as saved. The save that creates the
+   station announces it as new (`canonical`), every later one as an `update`. Saves
+   from the Django admin or the shell aren't published.
+2. A publisher process publishes the job's record: it stores the file, then sends the
+   WNM, whose integrity is computed over the stored bytes, and writes the outcome to
+   the station's status. Jobs of the same station aren't kept apart: the last to
+   finish sets the status, even if its record is older, and their WNMs can go out in
+   either order. The station's record is always right, so republishing it fixes
+   whatever such a race leaves wrong.
+3. The station ends as `processed` or `failed`. The status is the only record of
+   the outcome; why a job failed is in the publisher's
+   log (`docker compose logs publisher`). A failure removes the stored file, and a
+   user can retry it from the Publishing page, which publishes the current record
+   again as an update. Retries are manual.
 
-A failure to publish never fails the save. If Valkey can't be reached, the save
-still goes through and the station stays `pending` until someone retries it.
+A failure to publish never fails the save. The save and its job are committed
+together, so a saved change always has its job.
+
+Finished jobs stay in the queue table until they are pruned with
+`python manage.py prune_db_task_results`. Nothing runs it yet.
 
 Stations saved before publishing existed have no status. They show as Unknown,
-aren't on the Publishing page and have no Retry, so saving them again is the only
-way to publish them.
+aren't on the Publishing page and have no Retry, so saving a change to them is the
+only way to publish them.
 
-Publishers are configured in `PUBLISHERS` in `backend/config/settings.py`. Each is an
-ordered list of steps, and each step pairs a generator with a transport. The list
-is checked when Django starts.
+A save that changes nothing apart from `updated` and the `self` link is ignored:
+no new version, no publication. The form keeps Save off until something changes.
+
+Publishers are built in `publishing/publishing/publishers.py` from the options in
+`backend/config/settings.py` (`WNM_STORAGE`, `WIS2_BROKER`). Each is an ordered list
+of steps, and each step pairs a generator with a transport.
 
 ## How to run
 
@@ -76,21 +89,20 @@ Then open:
 - Django admin: http://localhost:8000/admin/
 - MinIO console: http://localhost:9001
 
-Migrations run when `backend` starts, which also refreshes the codelists from
-codes.wmo.int and keeps the existing files if that fails. For testing purposes during initial development, migrations also create:
+Migrations run when `backend` starts. For testing purposes during initial development, migrations also create:
 
 - a superuser, `admin` / `admin`, who owns the sample stations
 - a test user, `test_user1` / `test_password1`, in the Switzerland and Brazil groups
 - the sample stations in `test_data/`
 
 > **Development only.** The defaults are not for production: the passwords and
-> secret key in `.env.example`, the users created by migrations, Valkey with no
-> password, and the Celery worker running as root.
+> secret key in `.env.example`, the users created by migrations, and the publisher
+> running as root.
 
-The backend and frontend reload on code changes. The worker doesn't:
+The backend and frontend reload on code changes. The publisher doesn't:
 
 ```sh
-docker compose restart worker
+docker compose restart publisher
 ```
 
 **Tests:**
@@ -122,24 +134,19 @@ backend/
   api/
     models.py        Station, users and issuer groups
     stations.py      Rules for creating and changing a station; asks for publication
+    publications.py  Publication API under /api/publications/: status list and retry
     views.py         REST endpoints
     auth.py          Login endpoints for the frontend
-    management/      populate_codelists command
     schemas/         WMDR2 JSON schema (keep identical to the frontend copy)
-    codelists/       Cached WMO codelists
+    codelists/       WMO codelists, committed and served as they are
 publishing/
   publishing/
     base.py          Plugin interfaces: Event, MessageGenerator, TransportLayer, Publisher
-    registry.py      Builds publishers from settings
-    publishers.py    The configured publishers, built once per process
-    checks.py        Startup check of PUBLISHERS
+    publishers.py    The publishers, built once per process
     wmdr2.py         Renders a record as the published file
     generators/      Record file and WNM
     transports/      S3 storage, MQTT and a log transport for development
-    celery.py        Celery app
-    tasks.py         The publishing job and retry
-    state.py         Locks and publication details in Valkey
-    views.py         Publication API under /api/publications/
+    tasks.py         The publishing job (a Django task)
     django_tests.py  Tests that need Django
     tests/           Plugin tests, plain unittest
 frontend/src/
@@ -162,8 +169,8 @@ Change both together.
 **Good places to start:**
 
 - A station save: `backend/api/stations.py`, then `publishing/publishing/tasks.py`.
-- A new publishing format or channel: add a generator or transport, then list it in
-  `PUBLISHERS`.
+- A new publishing format or channel: add a generator or transport, then use it in
+  `publishing/publishing/publishers.py`.
 
 ## To do
 
@@ -172,9 +179,9 @@ Change both together.
   changes.
 - Versioning of WMDR2 records.
 - Using Keycloak to manage user sessions.
-- Upstream confirmation of WNMs. It waits on the real broker, topic and credentials.
-  Until then the WIS2 topic in `settings.py` is a placeholder and no station
-  reaches `published`.
+- Upstream confirmation of WNMs. It waits on the real broker and credentials.
+  Until then no station reaches `published`. WNMs go to
+  `origin/a/wigos/<centre id>/metadata`.
 - Deleting stations, including the deletion WNM.
 - Contacts shared between stations, in their own table.
 - Edit rights for stations with WIGOS identifiers from two issuers: today they need

@@ -3,7 +3,7 @@
   "conformsTo": ["http://wigos.wmo.int/spec/wmdr/2/conf/core"],
   "type": "Feature",
   "geometry": { "type": "Point", "coordinates": [6.1, 46.2, 420] },
-  "time": { "date": "2020-01-01", "timestamp": "2020-01-01T00:00:37.000Z", "interval": ["2020-01", ".."] },
+  "time": { "interval": ["2020-01", ".."] },
   "properties": {
     "type": "facility",
     "title": "Full station",

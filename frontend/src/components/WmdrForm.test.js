@@ -66,8 +66,8 @@ describe("WmdrForm", () => {
     expect(preview().properties.title).toBe("Station A");
     expect(preview().geometry.coordinates[1]).toBe(46.2);
     expect(wrapper.text()).toContain("Not yet valid against the WMDR2 schema");
-    // The station's time has no resolution; configurations keep theirs.
-    expect(() => inputByLabel("Resolution")).toThrow();
+    // The station's time is only its interval; configurations keep the others.
+    for (const label of ["Date", "Timestamp", "Resolution"]) expect(() => inputByLabel(label)).toThrow();
     expect(vueWarnings()).toEqual([]);
   });
 
@@ -84,6 +84,29 @@ describe("WmdrForm", () => {
     // The primary ID can't change while editing.
     expect(inputByLabel("Local identifier").attributes("disabled")).toBeDefined();
     expect(vueWarnings()).toEqual([]);
+  });
+
+  it("keeps Save off for a loaded station until something is edited", async () => {
+    getStation.mockResolvedValue(allFields);
+    mountForm({ stationId: 7 });
+    await flushPromises();
+    const save = () => wrapper.findAll("button").find((b) => b.text() === "Save changes");
+
+    expect(save().attributes("disabled")).toBeDefined();
+    expect(wrapper.text()).toContain("No changes to save.");
+
+    await inputByLabel("Title *").setValue("Renamed");
+    expect(wrapper.text()).not.toContain("No changes to save.");
+    // Back to the loaded value: nothing to save again
+    await inputByLabel("Title *").setValue(allFields.properties.title);
+    expect(wrapper.text()).toContain("No changes to save.");
+    expect(vueWarnings()).toEqual([]);
+  });
+
+  it("never blocks a new station as unchanged", async () => {
+    mountForm();
+    await flushPromises();
+    expect(wrapper.text()).not.toContain("No changes to save.");
   });
 
   it("edits the station's interval with a read-back and an Ongoing box", async () => {
