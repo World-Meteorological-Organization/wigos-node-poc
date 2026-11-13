@@ -69,7 +69,7 @@ async function handleLogout() {
       <div class="app-bar-title">
         <h1>WMDR Station Record Builder</h1>
         <!-- On narrower screens it would run into the dark part of the banner. -->
-        <p class="d-none d-lg-block">Fill in station metadata and generate a WIGOS-conformant GeoJSON record.</p>
+        <p class="d-none d-lg-block">Fill in station metadata and generate a WMDRv2 conformant record.</p>
       </div>
       <template v-if="status === 'authenticated'" #append>
         <span class="app-bar-user mr-3">{{ user.email || user.username }}</span>
