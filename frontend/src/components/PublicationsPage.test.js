@@ -14,15 +14,11 @@ const makeRow = (fields = {}) => ({
   status: "processed",
   updated: "2026-11-02T10:00:00Z",
   changed_by: "someone",
-  finished_at: "2026-11-02T10:00:01Z",
-  last_error: "",
-  files: [],
   can_retry: false,
   ...fields,
 });
 
-const failedRow = (fields = {}) =>
-  makeRow({ status: "failed", last_error: "wis2:wnm: broker down", can_retry: true, ...fields });
+const failedRow = (fields = {}) => makeRow({ status: "failed", can_retry: true, ...fields });
 
 const respond = (results, count = results.length) => listPublications.mockResolvedValue({ count, results });
 
@@ -78,11 +74,10 @@ describe("PublicationsPage", () => {
     expect(wrapper.text()).toContain("Error: nope");
   });
 
-  it("shows a failed station's error and offers a retry", async () => {
+  it("offers a retry for a failed station", async () => {
     respond([failedRow()]);
     await mountPage();
     expect(wrapper.text()).toContain("Publishing failed");
-    expect(wrapper.text()).toContain("wis2:wnm: broker down");
     expect(retryButton()).toBeTruthy();
   });
 
@@ -106,16 +101,16 @@ describe("PublicationsPage", () => {
     expect(retryButton()).toBeUndefined();
   });
 
-  it("shows why a retry was refused and updates the list", async () => {
+  it("shows why a retry failed and updates the list", async () => {
     respond([failedRow()]);
     await mountPage();
-    retryPublication.mockRejectedValue(new Error("This station can't be retried: its job may still be running"));
+    retryPublication.mockRejectedValue(new Error("Station 7 not found"));
     respond([failedRow()]);
 
     await retryButton().trigger("click");
     await flushPromises();
 
-    expect(wrapper.text()).toContain("0-756-0-a: This station can't be retried: its job may still be running");
+    expect(wrapper.text()).toContain("0-756-0-a: Station 7 not found");
     expect(listPublications).toHaveBeenCalledTimes(2);
   });
 

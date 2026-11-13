@@ -116,8 +116,8 @@ export async function listPublications(filters = {}) {
   return data;
 }
 
-// Publishes the station's current record again; returns its updated row. A refusal
-// (e.g. its job may still be running) is thrown with the reason.
+// Publishes the station's current record again, whatever its status; returns its
+// updated row. An error (e.g. a station the user can't edit) is thrown with the reason.
 export async function retryPublication(stationId) {
   const res = handle401(await fetch(`${API_URL}/api/publications/${encodeURIComponent(stationId)}/retry/`, {
     method: "POST",

@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from . import auth, views
+from . import auth, publications, views
 from .views import Wmdrv2BatchView, Wmdrv2ByWsiView, Wmdrv2View
 
 urlpatterns = [
@@ -15,6 +15,8 @@ urlpatterns = [
     path("wmdrv2/<int:station_id>",  Wmdrv2View.as_view() , name="wmdrv2"), # GET and PUT
     path("my_issuer_of_identifiers/", views.my_issuer_of_identifiers, name="my_issuer_of_identifiers"),
     path('check_wigosidentifiers/', views.check_wigosidentifiers, name='check_wigosidentifiers'),
+    path("publications/", publications.PublicationListView.as_view(), name="publications"),
+    path("publications/<int:station_id>/retry/", publications.PublicationRetryView.as_view(), name="publication-retry"),
     # JSON auth endpoints for the SPA (the DRF HTML login stays at auth/ below)
     path("csrf/", auth.csrf, name="auth-csrf"),
     path("login/", auth.login, name="auth-login"),

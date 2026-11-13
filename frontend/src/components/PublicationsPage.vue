@@ -129,10 +129,7 @@ const formatTime = (value) => (value ? new Date(value).toLocaleString() : "");
             <td class="when">{{ formatTime(row.updated) }}</td>
             <td>{{ row.wigos_identifier }}</td>
             <td>{{ row.changed_by || "Administrator" }}</td>
-            <td>
-              <PublicationStatusChip :status="row.status" />
-              <p v-if="row.last_error" class="row-error text-error">{{ row.last_error }}</p>
-            </td>
+            <td><PublicationStatusChip :status="row.status" /></td>
             <td class="row-actions">
               <v-btn
                 v-if="row.can_retry"
@@ -194,12 +191,6 @@ const formatTime = (value) => (value ? new Date(value).toLocaleString() : "");
 
 .when {
   white-space: nowrap;
-}
-
-.row-error {
-  margin: 0.4rem 0 0;
-  font-size: 0.85rem;
-  overflow-wrap: anywhere;
 }
 
 .row-actions {

@@ -1,5 +1,8 @@
-"""The publication state of the stations a user can edit, and retrying them."""
+"""The publication status of the stations a user can edit, and publishing one
+again. The status on the station is the only record of how publishing went;
+the details of a failure are in the publisher's log."""
 
+from django.db import transaction
 from django.db.models import F
 from django.db.models.fields.json import KT
 from rest_framework.pagination import LimitOffsetPagination
@@ -7,10 +10,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.models import Station
-from api.stations import editable_station_ids
-
-from . import tasks
+from .models import Station
+from .stations import editable_station_ids, publish
 
 Status = Station.PublicationStatus
 
@@ -27,19 +28,13 @@ def visible_stations(user):
         Station.objects.filter(pk__in=editable_station_ids(user))
         .exclude(publication_status="")
         .annotate(updated=KT("wmdrv2__properties__updated"))
-        .select_related("last_changed_by", "publication")
-        .defer("wmdrv2", "location")
+        .select_related("last_changed_by")
+        .defer("location")
         .order_by(F("updated").desc(nulls_last=True), "-id")
     )
 
 
 def station_data(station):
-    """The error and the finish time are those of the last job, which a newer
-    save makes out of date. A station whose job hasn't finished yet has no
-    publication record."""
-    publication = getattr(station, "publication", None)
-    finished_at = publication.finished_at.isoformat() if publication and publication.finished_at else None
-    finished = station.publication_status in (Status.PROCESSED, Status.FAILED)
     return {
         "station_id": station.pk,
         "wigos_identifier": station.wigos_identifier,
@@ -48,10 +43,8 @@ def station_data(station):
         "updated": station.updated,
         # username, not get_username(), which is the email; never set for superusers
         "changed_by": station.last_changed_by.username if station.last_changed_by else None,
-        "finished_at": finished_at if finished else None,
-        "last_error": publication.error if publication and station.publication_status == Status.FAILED else "",
-        "files": [d["url"] for d in publication.deliveries if d["url"]] if publication else [],
-        "can_retry": station.publication_status in tasks.RETRYABLE,
+        # the page offers a retry only after a failure; the endpoint takes any status
+        "can_retry": station.publication_status == Status.FAILED,
     }
 
 
@@ -59,7 +52,7 @@ class PublicationListView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        stations = visible_stations(request.user)
+        stations = visible_stations(request.user).defer("wmdrv2")
         if "status" in request.query_params:
             stations = stations.filter(publication_status=request.query_params["status"])
 
@@ -69,14 +62,18 @@ class PublicationListView(APIView):
 
 
 class PublicationRetryView(APIView):
+    """Publishes the station's current record again, whatever its status, as an
+    update. Publishing a record more than once does no harm. If an earlier job
+    is still running, both run, and whichever finishes last writes the status."""
+
     permission_classes = [IsAuthenticated]
 
     def post(self, request, station_id):
-        stations = visible_stations(request.user).filter(pk=station_id)
-        if not stations.exists():  # one they can't edit looks the same
-            return Response({"detail": f"Station {station_id} not found"}, status=404)
-        try:
-            tasks.retry_publication(station_id)
-        except tasks.RetryRefused as e:
-            return Response({"detail": f"This station can't be retried: {e}."}, status=409)
-        return Response(station_data(stations.get()))
+        with transaction.atomic():
+            station = visible_stations(request.user).filter(pk=station_id).first()
+            if station is None:  # one they can't edit looks the same
+                return Response({"detail": f"Station {station_id} not found"}, status=404)
+            Station.objects.filter(pk=station.pk).update(publication_status=Status.PENDING)
+            station.publication_status = Status.PENDING
+            publish(station)
+        return Response(station_data(station))

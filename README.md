@@ -22,7 +22,7 @@ flowchart LR
     frontend -- /api --> backend["backend<br>Django + DRF"]
     backend -- "saves a station<br>and queues its job" --> db[("db<br>PostGIS<br>stations + job queue")]
     db --> publisher["publisher<br>Django Tasks, 4 processes"]
-    publisher -- "status and<br>publication details" --> db
+    publisher -- "publication<br>status" --> db
     publisher -- record file --> minio[("minio<br>web storage")]
     publisher -- WNM --> mosquitto["mosquitto<br>MQTT broker"]
 ```
@@ -31,7 +31,7 @@ flowchart LR
 |---|---|---|
 | `frontend` | Vite dev server for the Vue app | 5173 |
 | `backend` | REST API and Django admin | 8000 |
-| `db` | Stations, users, groups, the job queue and publication details (PostgreSQL + PostGIS) | 5432 |
+| `db` | Stations with their publication status, users, groups and the job queue (PostgreSQL + PostGIS) | 5432 |
 | `publisher` | Runs the publishing jobs: 4 processes, one job at a time each, restarted if one exits | none |
 | `minio` | Web storage for the record files | 9000, console 9001 |
 | `mosquitto` | MQTT broker for the WNMs | 1883 |
@@ -40,16 +40,19 @@ flowchart LR
 
 1. Creating or changing a station through the API (the form or the batch wizard)
    sets its `publication_status` to `pending` and, in the same transaction, queues
-   a job with the station's id and the record as saved. Saves from the Django
-   admin or the shell aren't published.
+   a job with the station's id and the record as saved. The save that creates the
+   station announces it as new (`canonical`), every later one as an `update`. Saves
+   from the Django admin or the shell aren't published.
 2. A publisher process publishes the job's record: it stores the file, then sends the
    WNM, whose integrity is computed over the stored bytes. Only a job whose record is
-   still the station's current one updates the station's status and publication
-   details, so they always end with the newest version. WNMs of two jobs of the
-   same station can go out in either order.
-3. The station ends as `processed` or `failed`, always for its newest version. A
-   failure removes the stored file, and a user can retry from the Publishing page.
-   Retries are manual.
+   still the station's current one updates the station's status, so it always ends
+   with the newest version's outcome. WNMs of two jobs of the same station can go out
+   in either order.
+3. The station ends as `processed` or `failed`, always for its newest version. The
+   status is the only record of the outcome; why a job failed is in the publisher's
+   log (`docker compose logs publisher`). A failure removes the stored file, and a
+   user can retry it from the Publishing page, which publishes the current record
+   again as an update. Retries are manual.
 
 A failure to publish never fails the save. The save and its job are committed
 together, so a saved change always has its job.
@@ -130,6 +133,7 @@ backend/
   api/
     models.py        Station, users and issuer groups
     stations.py      Rules for creating and changing a station; asks for publication
+    publications.py  Publication API under /api/publications/: status list and retry
     views.py         REST endpoints
     auth.py          Login endpoints for the frontend
     schemas/         WMDR2 JSON schema (keep identical to the frontend copy)
@@ -141,9 +145,7 @@ publishing/
     wmdr2.py         Renders a record as the published file
     generators/      Record file and WNM
     transports/      S3 storage, MQTT and a log transport for development
-    models.py        Publication details of each station
-    tasks.py         The publishing job (a Django task) and retry
-    views.py         Publication API under /api/publications/
+    tasks.py         The publishing job (a Django task)
     django_tests.py  Tests that need Django
     tests/           Plugin tests, plain unittest
 frontend/src/

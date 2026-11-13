@@ -12,6 +12,7 @@ from django.db import IntegrityError, transaction
 from guardian.shortcuts import assign_perm, get_objects_for_user
 from jsonschema import Draft202012Validator
 
+from publishing.base import Operation
 from publishing.tasks import request_publication
 
 from .models import Station, WIGOSNodeGroup
@@ -138,12 +139,13 @@ def _save(station):
         raise StationError(f"The station could not be saved: {e}") from e
 
 
-def _publish(station):
+def publish(station, operation=Operation.UPDATE):
     """Queue the station's job, with the record as saved, in the same
     transaction as the change: the job is a row in the database, so a rolled
     back batch update or dry run queues nothing, and a saved change always has
-    its job."""
-    request_publication(station.pk, station.wmdrv2)
+    its job. The record is announced as new only by the save that created the
+    station."""
+    request_publication(station.pk, station.wmdrv2, operation)
 
 
 @transaction.atomic
@@ -157,7 +159,7 @@ def create_station(user, wmdrv2):
     # after save so the station has a pk to attach object permissions to
     assign_perm("change_station", user, station)
     assign_issuer_groups(station, wsis)
-    _publish(station)
+    publish(station, Operation.CREATE)
     return station
 
 
@@ -188,5 +190,5 @@ def update_station(user, station, wmdrv2):
     _save(station)  # owner is unchanged on update
     added = [wsi for wsi in new_wsis if issuer_of(wsi) not in {issuer_of(old) for old in old_wsis}]
     assign_issuer_groups(station, added)
-    _publish(station)
+    publish(station)
     return station
