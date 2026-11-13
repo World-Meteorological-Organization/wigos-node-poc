@@ -44,12 +44,13 @@ flowchart LR
    station announces it as new (`canonical`), every later one as an `update`. Saves
    from the Django admin or the shell aren't published.
 2. A publisher process publishes the job's record: it stores the file, then sends the
-   WNM, whose integrity is computed over the stored bytes. Only a job whose record is
-   still the station's current one updates the station's status, so it always ends
-   with the newest version's outcome. WNMs of two jobs of the same station can go out
-   in either order.
-3. The station ends as `processed` or `failed`, always for its newest version. The
-   status is the only record of the outcome; why a job failed is in the publisher's
+   WNM, whose integrity is computed over the stored bytes, and writes the outcome to
+   the station's status. Jobs of the same station aren't kept apart: the last to
+   finish sets the status, even if its record is older, and their WNMs can go out in
+   either order. The station's record is always right, so republishing it fixes
+   whatever such a race leaves wrong.
+3. The station ends as `processed` or `failed`. The status is the only record of
+   the outcome; why a job failed is in the publisher's
    log (`docker compose logs publisher`). A failure removes the stored file, and a
    user can retry it from the Publishing page, which publishes the current record
    again as an update. Retries are manual.

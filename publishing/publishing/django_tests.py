@@ -131,7 +131,7 @@ class JobTestCase(TestCase):
         """The job the retry endpoint queues, run here."""
         tasks.publish_station.call(station.pk, Station.objects.get(pk=station.pk).wmdrv2, Operation.UPDATE)
 
-    def test_an_out_of_date_job_publishes_but_leaves_the_station_alone(self):
+    def test_an_out_of_date_job_still_publishes_and_writes_the_status(self):
         station = self.station()
         first = Station.objects.get(pk=station.pk).wmdrv2
         self.change(station, updated="2026-11-05T11:00:00Z", title="Changed")
@@ -139,22 +139,7 @@ class JobTestCase(TestCase):
         tasks.publish_station.call(station.pk, first, Operation.CREATE)  # the first save's job, run late
 
         self.assertEqual((len(self.storage.files), len(self.broker.sent)), (1, 1))
-        self.assertEqual(self.status_of(station), Status.PENDING)  # left to the newer save's job
-
-    def test_a_job_that_became_out_of_date_while_running_leaves_the_station_alone(self):
-        station = self.station()
-        self.run_queued()  # published once
-
-        def saved_meanwhile():
-            self.broker.before_send = None
-            self.change(station, updated="2026-11-05T11:00:00Z", title="Changed")
-
-        self.broker.before_send = saved_meanwhile
-        self.broker.failures = 1  # this job fails, but the newer save's job decides the outcome
-        with self.assertLogs("publishing", "ERROR"):
-            self.publish_again(station)
-
-        self.assertEqual(self.status_of(station), Status.PENDING)
+        self.assertEqual(self.status_of(station), Status.PROCESSED)  # the last job to finish wins
 
     def test_publishes_the_file_then_its_wnm(self):
         station = self.station()
@@ -240,33 +225,12 @@ class JobTestCase(TestCase):
         [url] = self.storage.files
         self.assertIn(url, output)  # so someone can remove it
 
-    def test_a_save_during_the_job_is_left_to_its_own_job(self):
-        station = self.station()
-
-        def saved_meanwhile():
-            self.broker.before_send = None
-            self.change(station, updated="2026-11-05T11:00:00Z", title="Changed")
-
-        self.broker.before_send = saved_meanwhile
-        self.run_queued()
-
-        self.assertEqual(self.status_of(station), Status.PENDING)
-        self.assertEqual(queued(), [(station.pk, "update")])  # the save's own job
-
-        self.run_queued()
-        self.assertEqual(self.status_of(station), Status.PROCESSED)
-        self.assertEqual(len(self.broker.sent), 2)
-
     def test_publishing_the_same_record_again_sends_it_again(self):
         station = self.station()
         self.run_queued()
         self.publish_again(station)
         self.assertEqual([w["links"][0]["rel"] for w in self.broker.sent], ["canonical", "update"])
         self.assertEqual(self.status_of(station), Status.PROCESSED)
-
-    def test_a_deleted_station_is_ignored(self):
-        tasks.publish_station.call(999999, record("0-756-0-gone"), Operation.CREATE)
-        self.assertEqual(self.broker.sent, [])
 
     def test_a_crashed_job_fails_the_station_and_the_job(self):
         station = self.station()
