@@ -8,7 +8,9 @@ import logging
 from functools import cache
 from pathlib import Path
 
+from django.conf import settings
 from django.db import IntegrityError, transaction
+from django.urls import reverse
 from guardian.shortcuts import assign_perm, get_objects_for_user
 from jsonschema import Draft202012Validator
 
@@ -148,9 +150,22 @@ def publish(station, operation=Operation.UPDATE):
     request_publication(station.pk, station.wmdrv2, operation)
 
 
+def _is_self_link(link):
+    return isinstance(link, dict) and link.get("rel") == "self"
+
+
+def with_self_link(wmdrv2):
+    """The record with its self link at the node's public URL (WIGOS_NODE_URL),
+    replacing the frontend's, which only knows the browser's address."""
+    links = [link for link in wmdrv2.get("links") or [] if not _is_self_link(link)]
+    href = settings.WIGOS_NODE_URL + reverse("wmdrv2-wsi", args=[wmdrv2["id"]])
+    return {**wmdrv2, "links": [{"rel": "self", "href": href, "type": "application/geo+json"}, *links]}
+
+
 @transaction.atomic
 def create_station(user, wmdrv2):
     validate(wmdrv2)
+    wmdrv2 = with_self_link(wmdrv2)
     wsis = wsis_of(wmdrv2)
     check_issuers(user, wsis, "create")
     station = Station(wmdrv2=wmdrv2, owner=user)
@@ -167,7 +182,7 @@ def _without_node_fields(wmdrv2):
     """The record without what the frontend sets anew on every save:
     properties.updated and the self link."""
     properties = {key: value for key, value in (wmdrv2.get("properties") or {}).items() if key != "updated"}
-    links = [link for link in wmdrv2.get("links") or [] if not (isinstance(link, dict) and link.get("rel") == "self")]
+    links = [link for link in wmdrv2.get("links") or [] if not _is_self_link(link)]
     return {**wmdrv2, "properties": properties, "links": links}
 
 
@@ -179,6 +194,7 @@ def update_station(user, station, wmdrv2):
     if not user.has_perm("change_station", station):
         raise StationError("You do not have permission to change this station.", status=403)
     validate(wmdrv2)
+    wmdrv2 = with_self_link(wmdrv2)
     old_wsis = station.get_wigos_identifiers()
     new_wsis = wsis_of(wmdrv2)
     # Old and new: the primary and additional IDs may both change.

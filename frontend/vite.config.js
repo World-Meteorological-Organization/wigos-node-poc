@@ -6,6 +6,9 @@ import vuetify from "vite-plugin-vuetify";
 // VITE_PROXY_TARGET (e.g. http://backend:8000 inside docker-compose).
 const proxyTarget = process.env.VITE_PROXY_TARGET || "http://127.0.0.1:8000";
 
+// Host the node is reached at through Traefik; Vite answers only known hosts.
+const publicHost = new URL(process.env.WIGOS_NODE_URL || "http://localhost").hostname;
+
 export default defineConfig({
   // autoImport registers only the Vuetify components the templates use.
   plugins: [vue(), vuetify({ autoImport: true })],
@@ -17,12 +20,14 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
+    allowedHosts: [publicHost],
     watch: {
       usePolling: true,
     },
+    // No /admin: the Django admin isn't reachable through the frontend (use
+    // 127.0.0.1:8000/admin on the server, e.g. through an SSH tunnel).
     proxy: {
       "/api": { target: proxyTarget, changeOrigin: true },
-      "/admin": { target: proxyTarget, changeOrigin: true },
       "/static": { target: proxyTarget, changeOrigin: true },
     },
   },

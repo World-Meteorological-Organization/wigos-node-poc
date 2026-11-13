@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -7,7 +8,14 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "insecure-dev-key-change-me")
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "true").lower() == "true"
 
+# Where the node is reached (through Traefik), e.g. https://node.example.org,
+# as wis2box's WIS2BOX_URL. It's an allowed host and a trusted origin, the
+# default base of the WNM links (<url>/data) and the base of every saved
+# record's self link.
+WIGOS_NODE_URL = os.environ.get("WIGOS_NODE_URL", "http://localhost").rstrip("/")
+
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,backend").split(",")
+ALLOWED_HOSTS.append(urlsplit(WIGOS_NODE_URL).hostname or "localhost")
 
 INSTALLED_APPS = [
     "api.apps.ApiConfig",
@@ -101,6 +109,8 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = os.environ.get(
     "CSRF_TRUSTED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173"
 ).split(",")
+# Behind Traefik Django sees plain http, so the https origin must be listed.
+CSRF_TRUSTED_ORIGINS.append(WIGOS_NODE_URL)
 
 # Publishing jobs are kept in the database and run by `manage.py run_publishers`
 # (several `db_worker` processes).
@@ -117,8 +127,9 @@ WNM_STORAGE = {
     "access_key": os.environ.get("WNM_STORAGE_ACCESS_KEY", "minioadmin"),
     "secret_key": os.environ.get("WNM_STORAGE_SECRET_KEY", "minioadmin"),
     "secure": os.environ.get("WNM_STORAGE_SECURE", "false").lower() == "true",
-    # where the public reaches the files (the WNM links)
-    "public_url": os.environ.get("WNM_STORAGE_URL", "https://wigosnode.test.wis2dev.io/webstorage"),
+    # where the public reaches the files (the WNM links); Traefik serves the
+    # bucket at <WIGOS_NODE_URL>/data
+    "public_url": os.environ.get("WNM_STORAGE_URL", f"{WIGOS_NODE_URL}/data"),
     # development: create the bucket with anonymous read if missing
     "create_bucket": os.environ.get("WNM_STORAGE_CREATE_BUCKET", str(DEBUG)).lower() == "true",
 }
