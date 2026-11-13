@@ -331,9 +331,8 @@ export function buildWmdrRecord(form, { now = new Date(), origin } = {}) {
       coordinates,
     },
   };
-  // The schema doesn't allow a resolution here, and the form has no field to
-  // clear a stored one, which would make the record impossible to save.
-  const time = cleanTime(form.time && { ...form.time, resolution: "" });
+  // Only the interval (STATION_TIME_FIELDS)
+  const time = cleanTime(form.time && { intervalStart: form.time.intervalStart, intervalEnd: form.time.intervalEnd });
   if (time) record.time = time;
   record.properties = properties;
   record.links = (form.links || []).map((link) => cleanLink(link)).filter(Boolean);

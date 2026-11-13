@@ -11,9 +11,8 @@ export const TIME_FIELDS = [
   { name: "resolution", label: "Resolution", type: "duration" },
 ];
 
-// The station's own time has no resolution (wmo-im/wmdr2 PR #41 disallows it
-// there); configurations keep it. A stored value is dropped on save.
-export const STATION_TIME_FIELDS = TIME_FIELDS.filter((field) => field.name !== "resolution");
+// The station's own time is only its interval; others are dropped on save.
+export const STATION_TIME_FIELDS = TIME_FIELDS.filter((field) => field.name === "interval");
 
 // Programme affiliation and territory `dates`: full days only, per the schema.
 export const DATES_FIELD = { name: "dates", label: "Dates", type: "interval", start: "dateStart", end: "dateEnd", daysOnly: true };

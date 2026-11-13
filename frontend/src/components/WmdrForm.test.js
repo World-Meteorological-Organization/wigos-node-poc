@@ -66,8 +66,8 @@ describe("WmdrForm", () => {
     expect(preview().properties.title).toBe("Station A");
     expect(preview().geometry.coordinates[1]).toBe(46.2);
     expect(wrapper.text()).toContain("Not yet valid against the WMDR2 schema");
-    // The station's time has no resolution; configurations keep theirs.
-    expect(() => inputByLabel("Resolution")).toThrow();
+    // The station's time is only its interval; configurations keep the others.
+    for (const label of ["Date", "Timestamp", "Resolution"]) expect(() => inputByLabel(label)).toThrow();
     expect(vueWarnings()).toEqual([]);
   });
 
